@@ -23,8 +23,8 @@ Local options:
 		    Environment: SURFRAW_ebay_country
   -results= | -r  
 	            Amount of results per page
-		    Default: com
-		    Environment: SURFRAW_ebay_country
+		    Default: 50
+		    Environment: SURFRAW_ebay_results
 
 Examples:
   $w3_argv0 -c=de sauerkraut
@@ -66,7 +66,7 @@ if [ $SURFRAW_ebay_country = fr ]; then
 	country="http://search.ebay.fr/search/search.dll?MfcISAPICommand=GetResult&krd=1&ht=1&shortcut=4&SoftProperty=MetaEndSort&cgiurl=http%3A%2F%2Fcgi.ebay.fr%2Fws%2F&maxRecordsPerPage=$SURFRAW_ebay_results&st=2&ebaytag1code=77&query="
 fi
 
-if null $w3_args; then
+if null "$w3_args"; then
     w3_browse_url "http://www.ebay.com"
 else
     escaped_args=`w3_url_of_arg $w3_args`

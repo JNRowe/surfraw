@@ -126,7 +126,7 @@ if [ $SURFRAW_sharereactor_category = gay ]; then
 fi
 
 
-if null $w3_args; then
+if null "$w3_args"; then
     w3_browse_url "http://www.sharereactor.com"
 else
     escaped_args=`w3_url_of_arg $w3_args`

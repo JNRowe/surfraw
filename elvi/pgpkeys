@@ -43,7 +43,7 @@ if [ $SURFRAW_pgpkeys_sigs = on ]; then
 	suffix="&op=vindex"
 fi
 
-if null $w3_args; then
+if null "$w3_args"; then
     w3_browse_url "http://pgp.mit.edu"
 else
     escaped_args=`w3_url_of_arg $w3_args`
