@@ -14,8 +14,11 @@ surfraw (2.0.1-1) unstable; urgency=low
   * Updated debian/surfraw.links to point elvi to elvi.1sr.gz
   * Updated AUTHORS to hopefully include every contributor, ever.
   * Changed a few "def"s to "defyn"s in surfraw.conf.in
+  * Updated README with text from new man page.
+  * Added "Copyright (c) 2003, 2004 The Surfraw-Devel Team
+    <surfraw-devel@lists.alioth.debian.org>" to the list of copyright holders.
 
- -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Tue,  3 Feb 2004 22:55:40 +0000
+ -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Tue,  3 Feb 2004 23:53:06 +0000
 
 surfraw (2.0-1) unstable; urgency=low
 
