@@ -7,3 +7,5 @@ if [ "$RET" = "true" ]
 then
 	surfraw-update-path -add -sys -all &>/dev/null || true
 fi
+
+#DEBHELPER#

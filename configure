@@ -1521,7 +1521,7 @@ fi
 
 
 
-ELVIDIR="${bindir}/surfraw-elvi"
+ELVIDIR="${prefix}/lib/surfraw"
 
 
 # Check whether --with-elvidir or --without-elvidir was given.

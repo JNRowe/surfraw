@@ -15,6 +15,25 @@
 
 				  N E W S
 
+Sun Feb  1 20:07:05 GMT 2004 - surfraw 2.0.1
+
+Please note that the elvi have moved again, to /usr/lib/surfraw
+
+If you used surfraw-update-path from version 2.0 to add the elvi
+directory to your path, you will need to run it again, first with
+-remove to remove the old path, then again with -add. To change your
+path you will need to either log out and in again or source the
+relevant config files.
+
+  * Moved elvi to /usr/lib/surfraw
+  * Updated docs for new elvi location
+  * Changed man page section for all elvi to 1sr
+  * Fixed surfraw help text
+  * Added man page links for pgpkeys, ebay and sharereactor
+  * Added linda override (and surfraw.dirs) for usr-lib-in-arch-all
+  * Added debhelper tokens to prerm/postinst 
+    (they were in released 2.0-1 but not CVS)
+
 Tue Dec 23 03:19:58 GMT 2003 - surfraw 2.0
 
 New development team, see http://alioth.debian.org/projects/surfraw

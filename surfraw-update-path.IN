@@ -405,8 +405,8 @@ surfraw-update-path [B<-add>] [B<-remove>] [B<-check>] [B<-sys>] [B<-all>] [B<-h
 
 =head1 DESCRIPTION
 
-surfraw-update-path adds the surfraw elvi directory to your PATH in
-your shell's config file.
+surfraw-update-path adds the surfraw elvi directory (@ELVIDIR@) to
+your PATH in your shell's config file.
 
 Currently it supports B<bash>, B<sh>, B<csh>, B<tcsh>, B<ash>,
 B<dash>, B<ksh>, B<pdksh>, B<zsh>, B<rc>, and B<es>
@@ -461,8 +461,7 @@ Gives a usage message
 -check returns 0 if the surfraw code is present in the file, 1 if it
 is not found, or 2 on error.
 
-All other option return 0 on success, or 2 on error.
-
+All other options return 0 on success, or 2 on error.
 
 =head1 ENVIRONMENT
 

@@ -46,13 +46,13 @@ New project home page: http://alioth.debian.org/projects/surfraw/
          $ sr ask why is jeeves gay?
          $ surfraw google -results=100 RMS, GNU, which is sinner, which is sin?
          $ sr austlii -method=phrase dog like
-         $ /usr/bin/surfraw-elvi/rhyme -method=perfect Julian
+         $ /usr/lib/surfraw/rhyme -method=perfect Julian
 
   As of Version 2.0, the elvi are no longer directly in your path.
   You can either use sr or surfraw (as above) to call the elvi,
   or if you want to retain the old behaviour, use
   surfraw-update-path(1) to add the directory
-  /usr/bin/surfraw-elvi to your PATH. This also supports
+  /usr/lib/surfraw to your PATH. This also supports
   adding surfraw to the PATH of all users and/or all shells.
 
   Global options are common to all Surfraw elvi (clients). You can
@@ -193,8 +193,8 @@ Copyright:
 New features:
 
 The elvi now live in a subdirectory that is not in your path
-(usually /usr/bin/surfraw-elvi). To access an elvis,
-either type "surfraw elviname options searchterms" or
+(usually /usr/lib/surfraw). To access an elvis, either type
+"surfraw elviname options searchterms" or
 "sr elviname options searchterms".
 
 To regain the old behaviour, either manually add the directory to your

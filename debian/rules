@@ -76,6 +76,7 @@ binary-indep: build install
 binary-arch: build install
 	dh_testdir
 	dh_testroot
+	install -m 644 debian/linda.overrides debian/surfraw/usr/share/linda/overrides/surfraw
 	dh_installdebconf	
 	dh_installdocs
 #	dh_installexamples

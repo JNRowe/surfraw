@@ -339,9 +339,8 @@ surfraw_usage() {
 	cat <<EOF
 Usage: `basename $0` [-help] [-elvi] elvis [elvioptions] [search terms]
        `basename $0` [options] bookmark
-    If you wish to run the elvi directly, run 
-    "surfraw-update-path" to append /usr/bin/surfraw/ to your
-    \$PATH in your shell's config files.
+    If you wish to run the elvi directly, run "surfraw-update-path" to append
+	$elvidir to your \$PATH in your shell's config files.
     See surfraw-update-path(1) for details
 Options:
    -elvi  List elvi

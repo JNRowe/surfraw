@@ -1,9 +1,15 @@
 surfraw (2.0.1-1) unstable; urgency=low
 
+  * Moved elvi to /usr/lib/surfraw (Closes: #230276)
+  * Updated docs for new elvi location
+  * Changed man page section for all elvi to 1sr (Closes: #230056)
+  * Fixed surfraw help text (Closes: #230109)
   * Added man page links for pgpkeys, ebay and sharereactor
-  * Changed man page section for all elvi to 1sr
+  * Added linda override (and surfraw.dirs) for usr-lib-in-arch-all
+  * Added debhelper tokens to prerm/postinst 
+    (they were in released 2.0-1 but not CVS)
 
- -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Wed, 28 Jan 2004 08:38:29 +0000
+ -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Sun,  1 Feb 2004 19:51:02 +0000
 
 surfraw (2.0-1) unstable; urgency=low
 
