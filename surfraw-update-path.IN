@@ -164,7 +164,17 @@ sub sh_bash
 sub sh_zsh 
 {
 	my($action,$sys)=@_;
-	if($sys) { return scan("/etc/zshenv",$action,$sys,$POSIX); }
+	if($sys)
+	{
+		if(-d "/etc/zsh")
+		{
+			return scan("/etc/zsh/zshenv",$action,$sys,$POSIX);
+		}
+		else
+		{
+			return scan("/etc/zshenv",$action,$sys,$POSIX);
+		}
+	}
 	elsif(exists($ENV{ZDOTDIR}))
 	{
 		return scan($ENV{ZDOTDIR}."/.zshenv",$action,$sys,$POSIX);

@@ -65,7 +65,7 @@ install: build
 
 	# Add here commands to install the package into debian/surfraw.
 	# $(MAKE) install prefix=$(CURDIR)/debian/surfraw/usr
-	$(MAKE) install prefix=`pwd`/debian/surfraw/usr sysconfdir=`pwd`/debian/surfraw/etc
+	$(MAKE) install DESTDIR=`pwd`/debian/surfraw/ # sysconfdir=`pwd`/debian/surfraw/etc
 	# mv `pwd`/debian/surfraw/usr/bin/translate `pwd`/debian/surfraw/usr/bin/stranslate
 
 # Build architecture-independent files here.

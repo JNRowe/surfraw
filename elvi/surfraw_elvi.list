@@ -1,4 +1,3 @@
-W		-- Activate Surfraw defined web-browser
 alioth		-- Search Alioth (alioth.debian.org)
 altavista	-- Search the web using Altavista (www.altavista.com)
 amazon		-- Search the amazon.com bookstore
@@ -27,6 +26,7 @@ ftpsearch	-- Search files on ftpsearch (ftpsearch.lycos.com)
 google		-- Search the web using Google (www.google.com)
 imdb		-- Search the Internet Movie Database (www.imdb.com)
 jake		-- Search journal/databases in jake (jake.med.yale.edu)
+leodict		-- Search leo's German <-> English dictionary (dict.leo.org)
 netbsd		-- Search NetBSD related information (www.netbsd.org)
 openbsd		-- Search OpenBSD related information (www.openbsd.org)
 pubmed		-- Search medical/molbio databases (www.ncbi.nlm.nih.gov)
