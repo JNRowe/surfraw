@@ -8,8 +8,14 @@ surfraw (2.0.1-1) unstable; urgency=low
   * Added linda override (and surfraw.dirs) for usr-lib-in-arch-all
   * Added debhelper tokens to prerm/postinst 
     (they were in released 2.0-1 but not CVS)
+  * Rewrote man page surfraw.1.in, added man page elvi.1sr.in
+    Both go via autoconf.
+  * Removed old debian/surfraw.1
+  * Updated debian/surfraw.links to point elvi to elvi.1sr.gz
+  * Updated AUTHORS to hopefully include every contributor, ever.
+  * Changed a few "def"s to "defyn"s in surfraw.conf.in
 
- -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Sun,  1 Feb 2004 19:51:02 +0000
+ -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Tue,  3 Feb 2004 22:55:40 +0000
 
 surfraw (2.0-1) unstable; urgency=low
 
