@@ -2,7 +2,7 @@
 # $Id$
 . /usr/share/debconf/confmodule
 
-db_input high surfraw/surfraw-path || true
+db_input medium surfraw/surfraw-path || true
 db_go || true
 
 exit 0

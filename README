@@ -1,10 +1,12 @@
 
         Surfraw - Shell Users' Revolutionary Front Rage Against the Web
                                        
-Home Page: [1]http://surfraw.sourceforge.net/
+Original Home Page: http://surfraw.sourceforge.net/
 
-Distribution:
-[2]ftp://ftp.netbsd.org/pub/NetBSD/misc/proff/surfraw-1.0.7.tar.gz
+Original Distribution:
+ ftp://ftp.netbsd.org/pub/NetBSD/misc/proff/surfraw-1.0.7.tar.gz
+
+New project home page: http://alioth.debian.org/projects/surfraw/
 
         ______  _     _  ______   _______  ______   _______  _  _  _
        / _____)(_)   (_)(_____ \ (_______)(_____ \ (_______)(_)(_)(_)
@@ -14,7 +16,8 @@ Distribution:
       (______/  \_____/ |_|   |_||_|      |_|   |_||_|   |_| \_____/
 
       Surfraw - Shell Users' Revolutionary Front Rage Against the Web
-                     http://surfraw.sourceforge.net/
+				 Old: http://surfraw.sourceforge.net/
+		   New: http://alioth.debian.org/projects/surfraw/
 
                                  Oh Baybe
                                 I need some
@@ -40,10 +43,17 @@ Distribution:
 
   For example:
 
-         $ ask why is jeeves gay?
-         $ google -results=100 RMS, GNU, which is sinner, which is sin?
-         $ austlii -method=phrase dog like
-         $ rhyme -method=perfect Julian
+         $ sr ask why is jeeves gay?
+         $ surfraw google -results=100 RMS, GNU, which is sinner, which is sin?
+         $ sr austlii -method=phrase dog like
+         $ /usr/bin/surfraw-elvi/rhyme -method=perfect Julian
+
+  As of Version 2.0, the elvi are no longer directly in your path.
+  You can either use sr or surfraw (as above) to call the elvi,
+  or if you want to retain the old behaviour, use
+  surfraw-update-path(1) to add the directory
+  /usr/bin/surfraw-elvi to your PATH. This also supports
+  adding surfraw to the PATH of all users and/or all shells.
 
   Global options are common to all Surfraw elvi (clients). You can
   get a list of the currently installed elvi by just typing `surfraw'.
@@ -181,12 +191,6 @@ Copyright:
      _________________________________________________________________
    
    
-    [3]Julian Assange
-    
-   Last modified: Sun Dec 23 21:02:17 EST 2001
+   Last modified: Mon Nov 10 00:13:50 GMT 2003 by Ian Beckwith
 
-References
 
-   1. http://surfraw.sourceforge.net/
-   2. ftp://ftp.netbsd.org/pub/NetBSD/misc/proff/surfraw-1.0.7.tar.gz
-   3. mailto:proff-projects-surfraw@iq.org
