@@ -1,5 +1,5 @@
 #!/bin/sh
-# elvis: wikipedia -- Search the free encyclopedia wikipedia
+# elvis: wikipedia	-- Search the free encyclopedia wikipedia
 # $Id$
 # Author: Moritz Muehlenhoff <jmm@informatik.uni-bremen.de>
 . surfraw || exit 1

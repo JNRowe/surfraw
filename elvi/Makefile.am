@@ -33,6 +33,7 @@ elvi_SCRIPTS	= \
 		  netbsd \
 		  openbsd \
 		  pubmed \
+		  rfc \
 		  rhyme \
 		  slashdot \
 		  sundocs \

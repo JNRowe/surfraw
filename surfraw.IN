@@ -176,7 +176,7 @@ w3_global_usage () {
 Global options:
   -browser=EXECUTABLE		Set browser
 				Default: $SURFRAW_browser
-  -elvi				List Surfraw mechanims for conquering evil
+  -elvi				List Surfraw mechanisms for conquering evil
   -escape-url-args=yes|no	Apply url escaping to arguments
 				Default: $SURFRAW_escape_url_args
 				Environment: SURFRAW_escape_url_args
