@@ -6,7 +6,7 @@ AC_INIT(surfraw.IN)
 dnl This is the only place where the package version appears
 AM_INIT_AUTOMAKE(surfraw, 1.0.7)
 
-ELVIDIR="${bindir}/surfraw-elvi"
+ELVIDIR="/usr/bin/surfraw-elvi"
 
 AC_ARG_WITH([elvidir],
 	[  --with-elvidir=ELVIDIR  specify location of elvi],
