@@ -40,7 +40,7 @@ w3_parse_args "$@"
 
 prefix="http://${SURFRAW_wikipedia_language}.wikipedia.org/w/wiki.phtml?search="
 
-if null $w3_args; then
+if null "$w3_args"; then
     w3_browse_url "http://${SURFRAW_wikipedia_language}.wikipedia.org"
 else
     escaped_args=`w3_url_of_arg $w3_args`

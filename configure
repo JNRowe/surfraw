@@ -1243,6 +1243,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
+
 am__api_version="1.7"
 ac_aux_dir=
 for ac_dir in $srcdir $srcdir/.. $srcdir/../..; do
@@ -1645,7 +1646,7 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 
 
 
-ELVIDIR="${prefix}/lib/surfraw"
+ELVIDIR="\$(libdir)/surfraw"
 
 
 # Check whether --with-elvidir or --without-elvidir was given.

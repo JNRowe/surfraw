@@ -1,5 +1,6 @@
 # $Id$
-elvidir="@ELVIDIR@"
+elvidir=$(ELVIDIR)
+
 elvi_SCRIPTS	= \
 		  alioth \
 		  altavista \
@@ -7,7 +8,6 @@ elvi_SCRIPTS	= \
 		  ask \
 		  austlii \
 		  bbcnews \
-		  britannica \
 		  cddb \
 		  cite \
 		  cnn \
@@ -17,7 +17,7 @@ elvi_SCRIPTS	= \
 		  deblists \
 		  debpackages \
 		  deja \
-                  ebay \
+		  ebay \
 		  excite \
 		  fast \
 		  filesearching \
@@ -33,18 +33,17 @@ elvi_SCRIPTS	= \
 		  leodict \
 		  netbsd \
 		  openbsd \
-                  pgpkeys \
+		  pgpkeys \
 		  pubmed \
 		  rfc \
 		  rhyme \
-                  sharereactor \
+		  sharereactor \
 		  slashdot \
 		  sundocs \
 		  sourceforge \
 		  stockquote \
 		  scaleplus \
 		  sunsolve \
-		  swhois \
 		  thesaurus \
 		  translate \
 		  webster \
@@ -57,5 +56,8 @@ sysconf_DATA	= surfraw_elvi.list
 
 EXTRA_DIST	= $(elvi_SCRIPTS)
 
+CLEANFILES = surfraw_elvi.list
+
 surfraw_elvi.list: $(elvi_SCRIPTS)
 	cat $(elvi_SCRIPTS)|egrep '^#.*elvis:'|sed 's/^.*elvis: *//'|sort > $@
+

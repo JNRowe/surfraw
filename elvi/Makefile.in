@@ -101,7 +101,8 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 
 # $Id$
-elvidir = "@ELVIDIR@"
+elvidir = $(ELVIDIR)
+
 elvi_SCRIPTS = \
 		  alioth \
 		  altavista \
@@ -109,7 +110,6 @@ elvi_SCRIPTS = \
 		  ask \
 		  austlii \
 		  bbcnews \
-		  britannica \
 		  cddb \
 		  cite \
 		  cnn \
@@ -119,7 +119,7 @@ elvi_SCRIPTS = \
 		  deblists \
 		  debpackages \
 		  deja \
-                  ebay \
+		  ebay \
 		  excite \
 		  fast \
 		  filesearching \
@@ -135,18 +135,17 @@ elvi_SCRIPTS = \
 		  leodict \
 		  netbsd \
 		  openbsd \
-                  pgpkeys \
+		  pgpkeys \
 		  pubmed \
 		  rfc \
 		  rhyme \
-                  sharereactor \
+		  sharereactor \
 		  slashdot \
 		  sundocs \
 		  sourceforge \
 		  stockquote \
 		  scaleplus \
 		  sunsolve \
-		  swhois \
 		  thesaurus \
 		  translate \
 		  webster \
@@ -159,6 +158,8 @@ elvi_SCRIPTS = \
 sysconf_DATA = surfraw_elvi.list
 
 EXTRA_DIST = $(elvi_SCRIPTS)
+
+CLEANFILES = surfraw_elvi.list
 subdir = elvi
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -277,6 +278,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-rm -f $(CONFIG_CLEAN_FILES)

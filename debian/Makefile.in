@@ -108,7 +108,7 @@ noinst_DATA = templates
 CLEANFILES = templates
 
 EXTRA_DIST = changelog config control copyright docs linda.overrides postinst \
-           prerm rules surfraw.dirs surfraw.links surfraw.links templates.IN
+           prerm rules surfraw.dirs templates.IN
 
 subdir = debian
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -256,6 +256,7 @@ templates: templates.IN
 %: %.IN
 	-rm -f $@ $@.tmp
 	sed 's,@bindir\@,${bindir},g; \
+	     s,@mandir\@,${mandir},g; \
 	     s,@VERSION\@,${VERSION},g; \
 	     s,@prefix\@,${prefix},g; \
 	     s,@ELVIDIR\@,${ELVIDIR},g; \
