@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH SURFRAW 1 "mar 3, 2002"
+.TH SURFRAW 1 "Dec 23, 2003"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -69,6 +69,32 @@ Bracket arguments with \" characters (default: no)
 .B \-quiet=yes\|no                 
 I can't enjoy it with you talking all the time (default: no)
 .br
+.SH NEW FEATURES
+.br
+.PP
+The elvi now live in a subdirectory that is not in your path
+(usually /usr/bin/surfraw-elvi). To access an elvis,
+either type "surfraw elviname options searchterms" or
+"sr elviname options searchterms".
+.PP
+To regain the old behaviour, either manually add the directory to your
+path, or use surfraw-update-path to add it to your startup files. See
+the man page for surfraw-update-path for details
+.PP
+Surfraw now supports bookmarks. To add a bookmark, add it to
+/etc/surfraw.bookmarks or ~/.surfraw.bookmarks
+.PP
+The format of the bookmarks file is simple, each bookmark is on a
+separate line, with the bookmark and URL separated by whitespace, eg:
+.PP
+ntk   http://www.ntk.net/
+.PP
+To invoke a bookmark, use "surfraw bookmark" or "sr bookmark", and if
+an elvis of that name doesn't exist, it searches for a bookmark of
+that name instead.
+.PP
+There are some example bookmarks in /etc/surfraw.bookmarks
+
 .SH AUTHOR
 This manual page was written by Christian Surchi <csurchi@debian.org>,
 for the Debian GNU/Linux system (but may be used by others).

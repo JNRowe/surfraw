@@ -187,10 +187,38 @@ Copyright:
 
         - Julian Assange
 
+
+     _________________________________________________________________
+
+New features:
+
+The elvi now live in a subdirectory that is not in your path
+(usually /usr/bin/surfraw-elvi). To access an elvis,
+either type "surfraw elviname options searchterms" or
+"sr elviname options searchterms".
+
+To regain the old behaviour, either manually add the directory to your
+path, or use surfraw-update-path to add it to your startup files. See
+the man page for surfraw-update-path for details
+
+Surfraw now supports bookmarks. To add a bookmark, add it to
+/etc/surfraw.bookmarks or ~/.surfraw.bookmarks
+
+The format of the bookmarks file is simple, each bookmark is on a
+separate line, with the bookmark and URL separated by whitespace, eg:
+
+ntk   http://www.ntk.net/
+
+To invoke a bookmark, use "surfraw bookmark" or "sr bookmark", and if
+an elvis of that name doesn't exist, it searches for a bookmark of
+that name instead.
+
+There are some example bookmarks in /etc/surfraw.bookmarks
+
+See NEWS or debian/changelog for a more detailed summary of changes.
+     _________________________________________________________________
+
   $Id$
      _________________________________________________________________
    
-   
-   Last modified: Mon Nov 10 00:13:50 GMT 2003 by Ian Beckwith
-
 

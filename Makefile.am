@@ -2,7 +2,7 @@
 SUBDIRS		= elvi debian
 
 bin_SCRIPTS	= surfraw surfraw-update-path W
-sysconf_DATA	= surfraw.conf
+sysconf_DATA	= surfraw.conf surfraw.bookmarks
 devel_extra	= banner prebuild
 man_MANS = surfraw-update-path.1
 EXTRA_DIST	= surfraw.lsm.in surfraw.IN surfraw-update-path.IN\

@@ -5,6 +5,7 @@ surfraw (2.0-1) unstable; urgency=low
   * Moved elvi to /usr/bin/surfraw-elvi. (Closes: #209155, #192869, #201175)
   * Provided surfraw-update-path to put new dir in path.
   * Added sr as alias to surfraw.
+  * Added bookmark support and /etc/surfraw.bookmarks.
   * New elvi: alioth, rfc, scpan, deblists. (Closes: #134498)
     plus leodict and happypenguin by Moritz Muehlenhoff (Closes: #217799)
     and wikipedia, also by Moritz Muehlenhoff (Closes: #223953)
