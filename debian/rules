@@ -35,7 +35,6 @@ build-stamp: configure-stamp
 
 	# Add here commands to compile the package.
 	$(MAKE) 
-	#/usr/bin/docbook-to-man debian/surfraw.sgml > surfraw.1
 
 	touch build-stamp
 
@@ -87,7 +86,7 @@ binary-arch: build install
 #	dh_installmime
 #	dh_installinit
 #	dh_installcron
-	dh_installman debian/surfraw.1  
+#	dh_installman
 #	dh_installinfo
 #	dh_undocumented
 	dh_installchangelogs ChangeLog

@@ -108,16 +108,20 @@ SUBDIRS = elvi debian
 bin_SCRIPTS = surfraw surfraw-update-path W
 sysconf_DATA = surfraw.conf surfraw.bookmarks
 devel_extra = banner prebuild
-man_MANS = surfraw-update-path.1
+man_MANS = surfraw-update-path.1 surfraw.1 elvi.1sr
 EXTRA_DIST = surfraw.lsm.in surfraw.IN surfraw-update-path.IN\
                   surfraw.spec.in aclocal.m4 HACKING Makefile.include \
+				  surfraw.1.in elvi.1sr.in \
 		  $(devel_extra)
 
-CLEANFILES = surfraw surfraw-update-path surfraw-update-path.1 surfraw.spec surfraw.lsm
+CLEANFILES = surfraw surfraw-update-path surfraw-update-path.1 surfraw.spec surfraw.lsm \
+			surfraw.1 elvi.1sr
+
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
-CONFIG_CLEAN_FILES = surfraw.conf surfraw.lsm surfraw.spec
+CONFIG_CLEAN_FILES = surfraw.conf surfraw.lsm surfraw.spec surfraw.1 \
+	elvi.1sr
 SCRIPTS = $(bin_SCRIPTS)
 
 DIST_SOURCES =
@@ -135,8 +139,9 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive pdf-recursive \
 DIST_COMMON = README $(srcdir)/Makefile.in $(srcdir)/configure \
 	$(top_srcdir)/Makefile.include AUTHORS COPYING ChangeLog \
 	INSTALL Makefile.am NEWS TODO aclocal.m4 config.guess \
-	config.sub configure configure.in install-sh missing \
-	mkinstalldirs surfraw.conf.in surfraw.lsm.in surfraw.spec.in
+	config.sub configure configure.in elvi.1sr.in install-sh \
+	missing mkinstalldirs surfraw.1.in surfraw.conf.in \
+	surfraw.lsm.in surfraw.spec.in
 DIST_SUBDIRS = $(SUBDIRS)
 all: all-recursive
 
@@ -162,6 +167,10 @@ surfraw.conf: $(top_builddir)/config.status surfraw.conf.in
 surfraw.lsm: $(top_builddir)/config.status surfraw.lsm.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 surfraw.spec: $(top_builddir)/config.status surfraw.spec.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+surfraw.1: $(top_builddir)/config.status surfraw.1.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+elvi.1sr: $(top_builddir)/config.status elvi.1sr.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 install-binSCRIPTS: $(bin_SCRIPTS)
