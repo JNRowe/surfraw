@@ -1,12 +1,16 @@
 surfraw (2.0-1) unstable; urgency=low
 
+  * Ack NMUs. (Closes: #200164, #201229, #209155, #113148, #119357, #131661)
+  * ..and..   (Closes: #149584, #156466, #141243, #154304, #164206, #141242)
   * Moved elvi to /usr/bin/surfraw-elvi. (Closes: #209155, #192869, #201175)
   * Provided surfraw-update-path to put new dir in path.
   * Added sr as alias to surfraw.
   * New elvi: alioth, scpan, deblists. (Closes: #134498)
     plus leodict and happypenguin by Moritz Muehlenhoff (Closes: #217799)
-  * Fixed elvi: altavista, debcontents, excite, amazon (Closes: #163903)
-    jake, scaleplus, slinuxdoc, sundocs, swhois, translate.
+    and wikipedia, also by Moritz Muehlenhoff (Closes: #223953)
+  * Fixed elvi: altavista, debcontents, excite, jake, scaleplus,
+    slinuxdoc, sundocs, swhois, translate.
+  * amazon: fixed (Closes: #163903), removed tag-id stuff.	
   * debcontents: changed options to SURFRAW_debcontents_*.
   * sourceforge: added -type and -exact options.
   * webster: added -t (thesaurus) option.

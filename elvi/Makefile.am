@@ -45,6 +45,7 @@ elvi_SCRIPTS	= \
 		  translate \
 		  webster \
 		  wetandwild \
+		  wikipedia \
 		  woffle \
 		  xxx \
 		  yahoo

@@ -83,8 +83,8 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if null "$w3_args"; then
-    w3_browse_url "${pre_url}/redirect-home/undergroundpubli?tag-id=undergroundpubli"
+    w3_browse_url "http://${host}/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    w3_browse_url "${pre_url}/external-search?tag-id=undergroundpubli&index=${SURFRAW_amazon_search}&keyword=${escaped_args}"
+    w3_browse_url "${pre_url}/external-search?index=${SURFRAW_amazon_search}&keyword=${escaped_args}"
 fi
