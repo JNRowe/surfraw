@@ -106,6 +106,10 @@ target_alias = @target_alias@
 noinst_DATA = templates
 
 CLEANFILES = templates
+
+EXTRA_DIST = changelog config control copyright docs linda.overrides postinst \
+           prerm rules surfraw.dirs surfraw.links surfraw.links templates.IN
+
 subdir = debian
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs

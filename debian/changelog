@@ -17,8 +17,15 @@ surfraw (2.0.1-1) unstable; urgency=low
   * Updated README with text from new man page.
   * Added "Copyright (c) 2003, 2004 The Surfraw-Devel Team
     <surfraw-devel@lists.alioth.debian.org>" to the list of copyright holders.
+  * Fixed quoting so   sr google foo "bar baz" qux   works 
+  * Makefile.am: Added missing files to EXTRA_DIST
+  * Added a debconf note (only visible if upgrading from 2.0-1)
+    explaining the elvi have moved again.
+  * configure.in: changed to new AM_INIT_AUTOMAKE format,
+    specified minimum automake version 1.7
+  * updated surfraw.lsm with new URLs
 
- -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Tue,  3 Feb 2004 23:53:06 +0000
+ -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Thu,  5 Feb 2004 00:40:22 +0000
 
 surfraw (2.0-1) unstable; urgency=low
 

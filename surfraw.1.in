@@ -117,7 +117,13 @@ Yes, yes, harder, deeper, faster, oh baybe (default: yes)
 
 .TP
 .B -q|-quote
-Bracket arguments with " characters (default: no)
+Bracket all arguments with " characters (default: no).
+Note that putting quotes round arguments works now, so you can do,
+for example:
+
+ sr google foo "bar baz" bam
+
+and the quoting is passed on to the search engine
 
 .TP
 .B -quiet=yes|no
@@ -276,11 +282,22 @@ Default:
 
 .TP
 .B SURFRAW_quote_args
-Whether to "quote" arguments.
+Whether to "quote" all the arguments.
 
 Default:
 
  defyn SURFRAW_quote_args no
+
+.TP
+.B SURFRAW_quote_ifs
+Whether to re-quote arguments if they have spaces in, ie so:
+ sr google foo "bar baz" bam
+.br
+works as expected.
+
+Default:
+
+defyn SURFRAW_quote_ifs    yes
 
 .TP
 .B SURFRAW_results

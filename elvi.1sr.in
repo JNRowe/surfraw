@@ -105,6 +105,12 @@ Yes, yes, harder, deeper, faster, oh baybe (default: yes)
 .TP
 .B -q|-quote
 Bracket arguments with " characters (default: no)
+Note that putting quotes round arguments works now, so you can do,
+for example:
+
+ sr google foo "bar baz" bam
+
+and the quoting is passed on to the search engine
 
 .TP
 .B -quiet=yes|no

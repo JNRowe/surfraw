@@ -7,7 +7,7 @@ devel_extra	= banner prebuild
 man_MANS = surfraw-update-path.1 surfraw.1 elvi.1sr
 EXTRA_DIST	= surfraw.lsm.in surfraw.IN surfraw-update-path.IN\
                   surfraw.spec.in aclocal.m4 HACKING Makefile.include \
-				  surfraw.1.in elvi.1sr.in \
+				  surfraw.1.in elvi.1sr.in W surfraw.bookmarks \
 		  $(devel_extra)
 CLEANFILES = surfraw surfraw-update-path surfraw-update-path.1 surfraw.spec surfraw.lsm \
 			surfraw.1 elvi.1sr

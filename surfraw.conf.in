@@ -72,6 +72,12 @@ defyn SURFRAW_quiet		no
 # "quote" arguments
 defyn SURFRAW_quote_args	no
 
+# requote arguments if they have spaces in
+# ie so:
+#  sr google foo "bar baz" bam
+# works.
+defyn SURFRAW_quote_ifs    yes
+
 # default number of results to return
 def   SURFRAW_results		30
 

@@ -39,6 +39,13 @@ relevant config files.
   * Updated debian/surfraw.links to point elvi to elvi.1sr.gz
   * Updated AUTHORS to hopefully include every contributor, ever.
   * Changed a few "def"s to "defyn"s in surfraw.conf.in
+  * Fixed quoting so   sr google foo "bar baz" qux   works
+  * Makefile.am: Added missing files to EXTRA_DIST
+  * Added a debconf note (only visible if upgrading from 2.0-1)
+    explaining the elvi have moved again
+  * configure.in: changed to new AM_INIT_AUTOMAKE format,
+    specified minimum automake version 1.7
+  * updated surfraw.lsm with new URLs
 
 Tue Dec 23 03:19:58 GMT 2003 - surfraw 2.0
 

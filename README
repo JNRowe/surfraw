@@ -60,6 +60,13 @@ New project home page: http://alioth.debian.org/projects/surfraw/
 
    sr google -l debian ports
 
+  Note that putting quotes round arguments works now, so you can do,
+  for example:
+
+   sr google foo "bar baz" bam
+
+  and the quoting is passed on to the search engine.
+
 Adding the elvi to your path
   
   If you are a regular user of surfraw, you will probably get sick
