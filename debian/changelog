@@ -7,20 +7,22 @@ surfraw (2.0-1) unstable; urgency=low
     plus leodict and happypenguin by Moritz Muehlenhoff (Closes: #217799)
   * Fixed elvi: altavista, debcontents, excite, amazon (Closes: #163903)
     jake, scaleplus, slinuxdoc, sundocs, swhois, translate.
-  * debcontents: changed options to SURFRAW_debcontents_*
-  * sourceforge: added -type and -exact options
+  * debcontents: changed options to SURFRAW_debcontents_*.
+  * sourceforge: added -type and -exact options.
+  * webster: added -t (thesaurus) option.
+  * debbugs: added options.
   * Removed elvi: appwatch, ftpsearch, ftpfind, raging (sites defunct).
   * Updated Standards-Version to 3.6.1.0
   * surfraw.in:
-    - Applied Brian Nelson's "-remote openURL" patch (Closes: #165967)
-    - Fixed browser selection (Closes: #118314)
-  * google -l/-lucky support (Closes: #127078, #128544)
-  * Added deja patch from Christian Garbs (Closes #149600)
-  * debian/rules: changed to use DESTDIR
+    - Applied Brian Nelson's "-remote openURL" patch (Closes: #165967).
+    - Fixed browser selection (Closes: #118314).
+  * google -l/-lucky support (Closes: #127078, #128544).
+  * Added deja patch from Christian Garbs (Closes: #149600).
+  * debian/rules: changed to use DESTDIR.
   * Closing non-bugs:
-    - Complaint about correct behaviour (Closes: #173714)
-    - Adds functionality already present in debcontents (Closes: #144080)
-    - Obsoleted by sensible-browser (imho) (Closes: #155423)
+    - Complaint about correct behaviour (Closes: #173714).
+    - Adds functionality already present in debcontents (Closes: #144080).
+    - Obsoleted by sensible-browser (imho) (Closes: #155423).
     
  -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Sun,  9 Nov 2003 22:02:44 +0000
 
