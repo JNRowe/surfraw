@@ -4,7 +4,6 @@ elvi_SCRIPTS	= \
 		  alioth \
 		  altavista \
 		  amazon \
-		  appwatch \
 		  ask \
 		  austlii \
 		  bbcnews \
@@ -23,8 +22,6 @@ elvi_SCRIPTS	= \
 		  filesearching \
 		  freebsd \
 		  freedb \
-		  ftpfind \
-		  ftpsearch \
 		  freshmeat \
 		  jake \
 		  google \
@@ -36,7 +33,6 @@ elvi_SCRIPTS	= \
 		  netbsd \
 		  openbsd \
 		  pubmed \
-		  raging \
 		  rhyme \
 		  slashdot \
 		  sundocs \
