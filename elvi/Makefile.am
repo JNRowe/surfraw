@@ -17,6 +17,7 @@ elvi_SCRIPTS	= \
 		  deblists \
 		  debpackages \
 		  deja \
+                  ebay \
 		  excite \
 		  fast \
 		  filesearching \
@@ -32,9 +33,11 @@ elvi_SCRIPTS	= \
 		  leodict \
 		  netbsd \
 		  openbsd \
+                  pgpkeys \
 		  pubmed \
 		  rfc \
 		  rhyme \
+                  sharereactor \
 		  slashdot \
 		  sundocs \
 		  sourceforge \
