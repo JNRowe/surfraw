@@ -1,5 +1,5 @@
 #!/bin/sh
-# elvis: pgpkeys - Search the PGP key database
+# elvis: pgpkeys		-- Search the PGP key database
 # Author: Moritz Muehlenhoff <jmm@informatik.uni-bremen.de>
 . surfraw || exit 1
 

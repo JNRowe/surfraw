@@ -26,7 +26,7 @@ jake		-- Search journal/databases in jake (jake.med.yale.edu)
 leodict		-- Search Leo's German <-> English dictionary (dict.leo.org)
 netbsd		-- Search NetBSD related information (www.netbsd.org)
 openbsd		-- Search OpenBSD related information (www.openbsd.org)
-pgpkeys - Search the PGP key database
+pgpkeys		-- Search the PGP key database
 pubmed		-- Search medical/molbio databases (www.ncbi.nlm.nih.gov)
 rfc		-- Search RFCs (internet standards documents)
 rhyme		-- Search for rhymes et al using Lycos Rhyme (rhyme.lycos.com)
