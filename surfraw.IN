@@ -7,11 +7,12 @@
 #
 # see the file COPYING for further copyright details
 #
-# @configure_input@
 
 surfraw_version=@VERSION@
 surfraw_api_version=1.0
 w3_argv0=`basename "$0"`
+
+elvidir="@ELVIDIR@"
 
 # defaults
 
@@ -20,11 +21,11 @@ w3_config_hook () {
 }
 
 w3_config () {
-prefix=@prefix@
-def   SURFRAW_global_conf	@sysconfdir@/surfraw.conf
-def   SURFRAW_conf		$HOME/.surfraw.conf
+	prefix=@prefix@
+   def   SURFRAW_global_conf	@sysconfdir@/surfraw.conf
+   def   SURFRAW_conf		$HOME/.surfraw.conf
 
-    test -r "$SURFRAW_global_conf" || err "couldn't source SURFRAW_global_conf ($SURFRAW_global_conf)"
+	test -r "$SURFRAW_global_conf" || err "couldn't source SURFRAW_global_conf ($SURFRAW_global_conf)"
     . "$SURFRAW_global_conf"
     w3_config_hook
     test -r "$SURFRAW_conf" && . "$SURFRAW_conf"
@@ -296,7 +297,7 @@ w3_browse_url () {
 		fi
 	else
 		if test $SURFRAW_browser_args = "none"; then
-			$SURFRAW_browser "$@"
+				$SURFRAW_browser "$@"
 		else
 			$SURFRAW_browser $SURFRAW_browser_args "$@"
 		 fi
@@ -306,8 +307,75 @@ w3_browse_url () {
 #    ifno SURFRAW_quiet && echo "Thank you for supporting the Shell Users' Revolutionary Front Rage Against the Web"
 }
 
-case "$w3_argv0" in
-    surfraw) 
-        w3_config
-	w3_parse_option -elvi ;;
-esac
+quote () {
+	quoted=`echo "$1"|sed "s/'/'\\\\\''/g"`
+	echo "'$quoted'"
+}
+
+surfraw_usage() {
+	cat <<EOF
+Usage: `basename $0` [-help] [-elvi] elvis [elvioptions] [search terms]
+    If you wish to run the elvi directly, run 
+    "surfraw-update-path" to append /usr/bin/surfraw/ to your
+    \$PATH in your shell's config files.
+    See surfraw-update-path(1) for details
+Options:
+   -elvi  List elvi
+   -help  This help
+sr is an alias for surfraw
+EOF
+}
+
+if [ "$w3_argv0" = "surfraw" -o "$w3_argv0" = "sr" ]
+then
+	w3_config
+	opts=""
+	elvi=""
+	searchterms=""
+	for arg in "$@"
+	do
+	  # if it is an option
+	  if awk -v arg="$arg" 'BEGIN { if(arg ~ /^-/) { exit 0 } else { exit 1 } } ' 
+	  then
+		  # if option before elvi
+		  if [ -z "$elvi" ]
+		  then
+			  case "$arg" in
+				  -help*) surfraw_usage;         exit 0 ;;
+				  -\?)    surfraw_usage;         exit 0 ;;
+				  -elvi*)  w3_parse_option -elvi; exit 0 ;;
+			  esac
+		  fi
+		  if  [ -z "$opts" ]
+		  then
+			  opts="`quote "$arg"`"
+		  else
+			  opts="$opts `quote "$arg"`"
+		  fi
+	  elif [ -z "$elvi" ]
+	  then
+		  elvi="$arg"
+	  else
+		  if [ -z "$searchterms" ]
+		  then
+			  searchterms="`quote "$arg"`"
+		  else
+			  searchterms="$searchterms `quote "$arg"`"
+		  fi
+	  fi
+	done
+	if [ -z "$elvi" ]
+	then
+		surfraw_usage
+		exit 0
+	else
+		if [ -x "$elvidir/$elvi" ]
+		then
+ 			sh -c "$elvidir/$elvi $opts $searchterms"
+		else
+			echo "`basename $0`: Error running elvis \"$elvi\""
+			surfraw_usage
+			exit 1
+	   fi
+	fi
+fi

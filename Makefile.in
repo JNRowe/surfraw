@@ -13,6 +13,9 @@
 # $Id$
 
 
+# $Id$
+
+
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -61,6 +64,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 host_alias = @host_alias@
 host_triplet = @host@
+ELVIDIR = @ELVIDIR@
 ISODATE = @ISODATE@
 MAKEINFO = @MAKEINFO@
 PACKAGE = @PACKAGE@
@@ -68,24 +72,30 @@ VERSION = @VERSION@
 sr_graphical_browser = @sr_graphical_browser@
 sr_text_browser = @sr_text_browser@
 
-SUBDIRS = elvi
+SUBDIRS = elvi debian
 
-bin_SCRIPTS = surfraw
+bin_SCRIPTS = surfraw surfraw-update-path W
 sysconf_DATA = surfraw.conf
 devel_extra = banner prebuild
-EXTRA_DIST = surfraw.lsm.in surfraw.in surfraw.spec.in                   aclocal.m4 HACKING 		  $(devel_extra)
+man_MANS = surfraw-update-path.1
+EXTRA_DIST = surfraw.lsm.in surfraw.IN surfraw-update-path.IN                   surfraw.spec.in aclocal.m4 HACKING Makefile.include 		  $(devel_extra)
 
+CLEANFILES = surfraw surfraw-update-path surfraw-update-path.1 surfraw.spec surfraw.lsm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
-CONFIG_CLEAN_FILES =  surfraw.conf surfraw.lsm surfraw surfraw.spec
+CONFIG_CLEAN_FILES =  surfraw.conf surfraw.lsm surfraw.spec
 SCRIPTS =  $(bin_SCRIPTS)
 
+man1dir = $(mandir)/man1
+MANS = $(man_MANS)
+
+NROFF = nroff
 DATA =  $(sysconf_DATA)
 
 DIST_COMMON =  README AUTHORS COPYING ChangeLog INSTALL Makefile.am \
 Makefile.in NEWS TODO aclocal.m4 config.guess config.sub configure \
 configure.in install-sh missing mkinstalldirs surfraw.conf.in \
-surfraw.in surfraw.lsm.in surfraw.spec.in
+surfraw.lsm.in surfraw.spec.in
 
 
 DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
@@ -94,7 +104,7 @@ TAR = tar
 GZIP_ENV = --best
 all: all-redirect
 .SUFFIXES:
-$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) $(top_srcdir)/Makefile.include
 	cd $(top_srcdir) && $(AUTOMAKE) --gnu Makefile
 
 Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status $(BUILT_SOURCES)
@@ -111,8 +121,6 @@ $(srcdir)/configure: $(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENCI
 surfraw.conf: $(top_builddir)/config.status surfraw.conf.in
 	cd $(top_builddir) && CONFIG_FILES=$@ CONFIG_HEADERS= $(SHELL) ./config.status
 surfraw.lsm: $(top_builddir)/config.status surfraw.lsm.in
-	cd $(top_builddir) && CONFIG_FILES=$@ CONFIG_HEADERS= $(SHELL) ./config.status
-surfraw: $(top_builddir)/config.status surfraw.in
 	cd $(top_builddir) && CONFIG_FILES=$@ CONFIG_HEADERS= $(SHELL) ./config.status
 surfraw.spec: $(top_builddir)/config.status surfraw.spec.in
 	cd $(top_builddir) && CONFIG_FILES=$@ CONFIG_HEADERS= $(SHELL) ./config.status
@@ -135,6 +143,45 @@ uninstall-binSCRIPTS:
 	list='$(bin_SCRIPTS)'; for p in $$list; do \
 	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`; \
 	done
+
+install-man1:
+	$(mkinstalldirs) $(DESTDIR)$(man1dir)
+	@list='$(man1_MANS)'; \
+	l2='$(man_MANS)'; for i in $$l2; do \
+	  case "$$i" in \
+	    *.1*) list="$$list $$i" ;; \
+	  esac; \
+	done; \
+	for i in $$list; do \
+	  if test -f $(srcdir)/$$i; then file=$(srcdir)/$$i; \
+	  else file=$$i; fi; \
+	  ext=`echo $$i | sed -e 's/^.*\\.//'`; \
+	  inst=`echo $$i | sed -e 's/\\.[0-9a-z]*$$//'`; \
+	  inst=`echo $$inst | sed '$(transform)'`.$$ext; \
+	  echo " $(INSTALL_DATA) $$file $(DESTDIR)$(man1dir)/$$inst"; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(man1dir)/$$inst; \
+	done
+
+uninstall-man1:
+	@list='$(man1_MANS)'; \
+	l2='$(man_MANS)'; for i in $$l2; do \
+	  case "$$i" in \
+	    *.1*) list="$$list $$i" ;; \
+	  esac; \
+	done; \
+	for i in $$list; do \
+	  ext=`echo $$i | sed -e 's/^.*\\.//'`; \
+	  inst=`echo $$i | sed -e 's/\\.[0-9a-z]*$$//'`; \
+	  inst=`echo $$inst | sed '$(transform)'`.$$ext; \
+	  echo " rm -f $(DESTDIR)$(man1dir)/$$inst"; \
+	  rm -f $(DESTDIR)$(man1dir)/$$inst; \
+	done
+install-man: $(MANS)
+	@$(NORMAL_INSTALL)
+	$(MAKE) $(AM_MAKEFLAGS) install-man1
+uninstall-man:
+	@$(NORMAL_UNINSTALL)
+	$(MAKE) $(AM_MAKEFLAGS) uninstall-man1
 
 install-sysconfDATA: $(sysconf_DATA)
 	@$(NORMAL_INSTALL)
@@ -318,26 +365,28 @@ installcheck: installcheck-recursive
 install-exec-am: install-binSCRIPTS install-sysconfDATA
 install-exec: install-exec-recursive
 
-install-data-am:
+install-data-am: install-man
 install-data: install-data-recursive
 
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
 install: install-recursive
-uninstall-am: uninstall-binSCRIPTS uninstall-sysconfDATA
+uninstall-am: uninstall-binSCRIPTS uninstall-man uninstall-sysconfDATA
 uninstall: uninstall-recursive
-all-am: Makefile $(SCRIPTS) $(DATA)
+all-am: Makefile $(SCRIPTS) $(MANS) $(DATA)
 all-redirect: all-recursive
 install-strip:
 	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
 installdirs: installdirs-recursive
 installdirs-am:
-	$(mkinstalldirs)  $(DESTDIR)$(bindir) $(DESTDIR)$(sysconfdir)
+	$(mkinstalldirs)  $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1 \
+		$(DESTDIR)$(sysconfdir)
 
 
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-rm -f Makefile $(CONFIG_CLEAN_FILES)
@@ -365,7 +414,8 @@ maintainer-clean-am:  maintainer-clean-tags maintainer-clean-generic \
 maintainer-clean: maintainer-clean-recursive
 	-rm -f config.status
 
-.PHONY: uninstall-binSCRIPTS install-binSCRIPTS uninstall-sysconfDATA \
+.PHONY: uninstall-binSCRIPTS install-binSCRIPTS install-man1 \
+uninstall-man1 install-man uninstall-man uninstall-sysconfDATA \
 install-sysconfDATA install-data-recursive uninstall-data-recursive \
 install-exec-recursive uninstall-exec-recursive installdirs-recursive \
 uninstalldirs-recursive all-recursive check-recursive \
@@ -380,12 +430,30 @@ installdirs mostlyclean-generic distclean-generic clean-generic \
 maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
 
-htdocs: index.html
-	scp index.html surfraw.sourceforge.net:/home/groups/s/su/surfraw/htdocs/index.html
-README: index.html
-	st=`stty -g`; stty cols 80; lynx -dump $< >$@ || rm -f $@; stty $$st
-ftp:
-	scp $(PACKAGE)-$(VERSION).tar.gz proff@ftp.netbsd.org:/pub/NetBSD/misc/proff/
+surfraw: surfraw.IN
+
+surfraw-update-path: surfraw-update-path.IN
+
+surfraw-update-path.1: surfraw-update-path
+	-rm -f $@
+	pod2man $< > $@
+
+%: %.IN
+	-rm -f $@ $@.tmp
+	sed 's,@bindir\@,${bindir},g; \
+	     s,@VERSION\@,${VERSION},g; \
+	     s,@prefix\@,${prefix},g; \
+	     s,@ELVIDIR\@,${ELVIDIR},g; \
+	     s,@sysconfdir\@,${sysconfdir},g' $< >$@.tmp
+	chmod +x $@.tmp
+	mv $@.tmp $@
+
+#htdocs: index.html
+#	scp index.html surfraw.sourceforge.net:/home/groups/s/su/surfraw/htdocs/index.html
+#README: index.html
+#	st=`stty -g`; stty cols 80; lynx -dump $< >$@ || rm -f $@; stty $$st
+#ftp:
+#	scp $(PACKAGE)-$(VERSION).tar.gz proff@ftp.netbsd.org:/pub/NetBSD/misc/proff/
 #download:
 #	ncftpput -F download.sourceforge.net /incoming $(PACKAGE)-$(VERSION).tar.gz
 

@@ -1,0 +1,12 @@
+Template: surfraw/surfraw-path
+Type: boolean
+Default: false
+Description: Do you want the surfraw elvi directory (@ELVIDIR@) added to the PATH for all shells?
+ Surfraw has been rearranged so the elvi (tools to search websites) are in a separate directory and no longer in your path. To run an elvis now, use:
+   surfraw elviname [options] searchterms
+ sr is an alias for surfraw, so you could do, for example:
+   sr google -lucky my 200 monkeys
+ .
+ If you wish to retain the old behaviour of running elvi directly, use surfraw-update-path(1) to append @ELVIDIR@ to your shell's PATH
+ .
+ If you wish, you can now configure all (known) shells so they have the elvi in their path.

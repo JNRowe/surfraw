@@ -1,5 +1,6 @@
 # $Id$
-bin_SCRIPTS	= \
+elvidir="@ELVIDIR@"
+elvi_SCRIPTS	= \
 		  alioth \
 		  altavista \
 		  amazon \
@@ -44,7 +45,6 @@ bin_SCRIPTS	= \
 		  swhois \
 		  thesaurus \
 		  translate \
-		  W \
 		  webster \
 		  wetandwild \
 		  woffle \
@@ -52,7 +52,7 @@ bin_SCRIPTS	= \
 		  yahoo
 sysconf_DATA	= surfraw_elvi.list
 
-EXTRA_DIST	= $(bin_SCRIPTS)
+EXTRA_DIST	= $(elvi_SCRIPTS)
 
-surfraw_elvi.list: $(bin_SCRIPTS)
-	cat $(bin_SCRIPTS)|egrep '^#.*elvis:'|sed 's/^.*elvis: *//'|sort > $@
+surfraw_elvi.list: $(elvi_SCRIPTS)
+	cat $(elvi_SCRIPTS)|egrep '^#.*elvis:'|sed 's/^.*elvis: *//'|sort > $@
