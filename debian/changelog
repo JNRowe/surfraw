@@ -10,7 +10,7 @@ surfraw (2.0-1) unstable; urgency=low
     and wikipedia, also by Moritz Muehlenhoff (Closes: #223953)
   * Fixed elvi: altavista, debcontents, excite, jake, scaleplus,
     slinuxdoc, sundocs, swhois, translate.
-  * amazon: fixed (Closes: #163903), removed tag-id stuff.	
+  * amazon: fixed test (Closes: #163903) and -country, removed tag-id stuff.
   * debcontents: changed options to SURFRAW_debcontents_*.
   * sourceforge: added -type and -exact options.
   * webster: added -t (thesaurus) option.
