@@ -1,3 +1,10 @@
+surfraw (2.0.1-1) unstable; urgency=low
+
+  * Added man page links for pgpkeys, ebay and sharereactor
+  * Changed man page section for all elvi to 1sr
+
+ -- Ian Beckwith <ianb@nessie.mcc.ac.uk>  Wed, 28 Jan 2004 08:38:29 +0000
+
 surfraw (2.0-1) unstable; urgency=low
 
   * Ack NMUs. (Closes: #200164, #201229, #209155, #113148, #119357, #131661)
