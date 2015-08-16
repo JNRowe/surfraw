@@ -48,9 +48,9 @@ if ok SURFRAW_f5_dc; then
     exit $?
 fi
 if test -z "$escaped_args"; then
-    w3_browse_url "http://www.f5.com"
+    w3_browse_url "https://www.f5.com"
 else
-    w3_browse_url "http://www.f5.com/search?q=${escaped_args}"
+    w3_browse_url "https://www.f5.com/search?q=${escaped_args}"
 
 fi
 exit $?
