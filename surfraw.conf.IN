@@ -35,8 +35,8 @@ defyn   SURFRAW_graphical		yes
 def   SURFRAW_text_browser	@TEXTBROWSER@
 
 # name/path of browser executable
-# e.g mozilla, netscape etc
-def   SURFRAW_graphical_browser	@GRAPHICALBROWSER@
+# e.g mozilla, netscape etc. Default to $BROWSER if no listed ones found
+def   SURFRAW_graphical_browser	"${BROWSER:-@GRAPHICALBROWSER@}"
 
 # text browser arguments, or "none"
 def   SURFRAW_text_browser_args	none
