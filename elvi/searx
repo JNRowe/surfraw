@@ -1,7 +1,7 @@
 #!/bin/sh
 # elvis: searx           -- Search using searx metasearch engine instances (https://searx.me and others)
-# author: krosos         -- contact: krosos.sdf.org
-# 2015-08-04
+# author: Nils Gillmann  -- contact: niasterisk@grrlz.net
+# 2016-02-17
 
 . surfraw || exit 1
 
