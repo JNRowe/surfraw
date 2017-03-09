@@ -17,7 +17,7 @@ w3_config
 w3_parse_args "$@"
 if test -z "$w3_args"
 then
-    w3_browse_url "http://developer.mozilla.org"
+    w3_browse_url "https://developer.mozilla.org"
 else
     w3_custom_search -s=developer.mozilla.org "$w3_shquoted_args"
 fi
