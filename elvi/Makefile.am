@@ -19,7 +19,6 @@ dist_elvi_SCRIPTS	= \
 		  bookfinder \
 		  bugmenot \
 		  bugzilla \
-		  cablesearch \
 		  cia \
 		  cisco \
 		  cite \
@@ -44,7 +43,6 @@ dist_elvi_SCRIPTS	= \
 		  deja \
 		  deli \
 		  discogs \
-		  dmoz \
 		  duckduckgo \
 		  ebay \
 		  etym \

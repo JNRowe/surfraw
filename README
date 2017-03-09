@@ -189,7 +189,6 @@ bing            -- Search the web using Microsoft's Bing (www.bing.com)
 bookfinder      -- Search for books using www.bookfinder.com
 bugmenot        -- Bypass compulsory web registration with bugmenot.com
 bugzilla        -- Search for bugs on Bugzilla bugtrackers
-cablesearch     -- search for leaked diplomatic communications
 cia             -- Search CIA documents at www.cia.gov
 cisco           -- Search Cisco documentation (www.cisco.com)
 cite            -- Search computer science papers (citeseerx.ist.psu.edu)
@@ -214,7 +213,6 @@ debwiki         -- Search the Debian Wikis (wiki.debian.org & women.debian.org/w
 deja            -- Search usenet using Google Groups (groups.google.com)
 deli            -- Search Delicious bookmarks
 discogs         -- Search the Discogs database of music information (www.discogs.com)
-dmoz            -- Search the Open Directory Project web directory (dmoz.org)
 duckduckgo      -- Securely search the web using duckduckgo (www.duckduckgo.com)
 ebay            -- Search the Ebay auction site
 etym            -- Look up word origins at www.etymonline.com
