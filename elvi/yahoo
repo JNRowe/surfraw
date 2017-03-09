@@ -34,8 +34,8 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.yahoo.com/"
+    w3_browse_url "https://www.yahoo.com/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    w3_browse_url "http://search.yahoo.com/search?p=${escaped_args}&n=${SURFRAW_yahoo_results}"
+    w3_browse_url "https://search.yahoo.com/search?p=${escaped_args}&n=${SURFRAW_yahoo_results}"
 fi
