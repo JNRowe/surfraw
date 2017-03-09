@@ -16,9 +16,9 @@ w3_parse_args "$@"
 # w3_args now contains a list of arguments
 
 if test -z "$w3_args"; then
-    w3_browse_url "http://bugs.gentoo.org/"
+    w3_browse_url "https://bugs.gentoo.org/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
 	terms=`echo $escaped_args | sed 's/%20/+/g'`
-	w3_browse_url "http://bugs.gentoo.org/buglist.cgi?quicksearch=${terms}"
+	w3_browse_url "https://bugs.gentoo.org/buglist.cgi?quicksearch=${terms}"
 fi

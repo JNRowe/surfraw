@@ -67,10 +67,10 @@ EOF
 w3_config
 w3_parse_args "$@"
 if test -z "$w3_args"; then
-    w3_browse_url "http://dict.leo.org/"
+    w3_browse_url "https://dict.leo.org/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    url="http://dict.leo.org/?search=${escaped_args}"
+    url="https://dict.leo.org/?search=${escaped_args}"
 
     case "$SURFRAW_leodict_lang" in
 	en|de)           ;;

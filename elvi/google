@@ -92,7 +92,7 @@ case "$SURFRAW_google_safe" in
   off)      safe="&safe=off"      ;;
 esac
 
-url="http://"
+url="https://"
 
 if test -z "$w3_args" ; then
     case "$SURFRAW_google_search" in

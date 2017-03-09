@@ -41,7 +41,7 @@ w3_parse_args "$@"
 # w3_args now contains a list of arguments
 escaped_args=$(w3_url_of_arg $w3_args)
 
-url="http://www.macports.org/ports.php"
+url="https://www.macports.org/ports.php"
 if [ -n "$escaped_args" ]
 then
     url="${url}?by=${SURFRAW_macports_by}&substr=${escaped_args}"
