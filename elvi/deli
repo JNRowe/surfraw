@@ -7,7 +7,7 @@
 w3_usage_hook () {
     cat <<EOF
 Usage: $w3_argv0 [options] [search-string]
-Description: Search Delicious bookmarks (www.delicious.com)
+Description: Search Delicious bookmarks (del.icio.us)
 
 EOF
     w3_global_usage
@@ -19,8 +19,8 @@ w3_parse_args "$@"
 
 # standard topic seach
 if [ -z "$w3_args" ]; then
-	w3_browse_url "http://www.delicious.com/discover"
+	w3_browse_url "https://www.del.icio.us/"
 else
 	escaped_args=$(w3_url_of_arg $w3_args)
-	w3_browse_url "http://www.delicious.com/search?p=${escaped_args}"
+	w3_browse_url "https://del.icio.us/search?p=${escaped_args}"
 fi

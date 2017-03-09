@@ -34,10 +34,10 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if [ $SURFRAW_debpts_viewdocs -eq 1 ]; then
-    w3_browse_url "http://www.debian.org/doc/manuals/developers-reference/ch-resources.en.html#s-pkg-tracking-system"
+    w3_browse_url "https://www.debian.org/doc/manuals/developers-reference/ch-resources.en.html#s-pkg-tracking-system"
 elif test -z "$w3_args"; then
-	w3_browse_url "http://packages.qa.debian.org/common/index.html"
+	w3_browse_url "https://packages.qa.debian.org/common/index.html"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    w3_browse_url "http://packages.qa.debian.org/common/index.html?src=${escaped_args}"
+    w3_browse_url "https://packages.qa.debian.org/common/index.html?src=${escaped_args}"
 fi
