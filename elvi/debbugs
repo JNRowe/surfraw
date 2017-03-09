@@ -127,7 +127,7 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://bugs.debian.org/"
+    w3_browse_url "https://www.debian.org/Bugs"
 else
     escaped_args=`w3_url_of_arg $w3_args`
     setoptyn donum 0
@@ -151,7 +151,7 @@ else
 
     if ifyes donum
     then
-	url="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=${escaped_args}"
+	url="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=${escaped_args}"
 	if yesno SURFRAW_debbugs_asmbox
 	then
 	    url="$url&mbox=yes"
@@ -165,7 +165,7 @@ else
 	    url="$url&boring=yes"
 	fi
     else
-	url="http://bugs.debian.org/cgi-bin/pkgreport.cgi?which=${SURFRAW_debbugs_search}&version=${SURFRAW_debbugs_version}&dist=${SURFRAW_debbugs_dist}&data=${escaped_args}"
+	url="https://bugs.debian.org/cgi-bin/pkgreport.cgi?which=${SURFRAW_debbugs_search}&version=${SURFRAW_debbugs_version}&dist=${SURFRAW_debbugs_dist}&data=${escaped_args}"
 	if yesno SURFRAW_debbugs_archive
 	then
 	    url="$url&archive=yes"

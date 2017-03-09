@@ -133,68 +133,68 @@ test -z "$w3_args" || escaped_args=`w3_url_of_arg $w3_args`
 
 if ok SURFRAW_freebsd_portsearch; then
     if test -z "$escaped_args"; then
-        w3_browse_url "http://www.freebsd.org/cgi/ports.cgi"
+        w3_browse_url "https://www.freebsd.org/cgi/ports.cgi"
     else
-        w3_browse_url "http://www.freebsd.org/cgi/ports.cgi?query=${escaped_args}&stype=${SURFRAW_freebsd_portsearchtype}&sektion=${SURFRAW_freebsd_portsec}"
+        w3_browse_url "https://www.freebsd.org/cgi/ports.cgi?query=${escaped_args}&stype=${SURFRAW_freebsd_portsearchtype}&sektion=${SURFRAW_freebsd_portsec}"
     fi
     exit $?
 fi
 if ok SURFRAW_freebsd_pr; then
     if test -z "$escaped_args"; then
-        w3_browse_url "http://www.freebsd.org/cgi/query-pr-summary.cgi?query"
+        w3_browse_url "https://www.freebsd.org/cgi/query-pr-summary.cgi?query"
     else
-        w3_browse_url "http://www.freebsd.org/cgi/query-pr.cgi?pr=${escaped_args}"
+        w3_browse_url "https://www.freebsd.org/cgi/query-pr.cgi?pr=${escaped_args}"
     fi
     exit $?
 fi
 if ok SURFRAW_freebsd_mail; then
     if test -z "$escaped_args"; then
-        w3_browse_url "http://docs.freebsd.org/mail/"
+        w3_browse_url "https://docs.freebsd.org/mail/"
     else
-	w3_browse_url "http://www.freebsd.org/cgi/search.cgi?words=${escaped_args}&max=25&sort=score&index=recent&source=freebsd-questions"
+	w3_browse_url "https://www.freebsd.org/cgi/search.cgi?words=${escaped_args}&max=25&sort=score&index=recent&source=freebsd-questions"
     fi
     exit $?
 fi
 if ok SURFRAW_freebsd_gg; then
     if test -z "$escaped_args"; then
-        w3_browse_url "http://groups.google.com/groups?hl=en&group=mailing.freebsd"
+        w3_browse_url "https://groups.google.com/groups?hl=en&group=mailing.freebsd"
     else
-	w3_browse_url "http://groups.google.com/groups?q=${escaped_args}&hl=en&meta=group%3Dmailing.freebsd.*"
+	w3_browse_url "https://groups.google.com/groups?q=${escaped_args}&hl=en&meta=group%3Dmailing.freebsd.*"
     fi
     exit $?
 fi
 if ok SURFRAW_freebsd_cvs; then
     if test -z "$escaped_args"; then
-        w3_browse_url "http://cvsweb.freebsd.org/"
+        w3_browse_url "https://cvsweb.freebsd.org/"
     else
-	w3_browse_url "http://cvsweb.freebsd.org/cgi/cvsweb.cgi?path=${escaped_args}"
+	w3_browse_url "https://cvsweb.freebsd.org/cgi/cvsweb.cgi?path=${escaped_args}"
     fi
     exit $?
 fi
 if ok SURFRAW_freebsd_mid; then
     if test -z "$escaped_args"; then
-        w3_browse_url "http://www.freebsd.org/search/search-mid.html"
+        w3_browse_url "https://www.freebsd.org/search/search-mid.html"
     else
-	w3_browse_url "http://www.freebsd.org/cgi/mid.cgi?id=${escaped_args}&db=mid"
+	w3_browse_url "https://www.freebsd.org/cgi/mid.cgi?id=${escaped_args}&db=mid"
     fi
     exit $?
 fi
 if ok SURFRAW_freebsd_ps; then
-   w3_browse_url "http://people.freebsd.org/~fenner/portsurvey/"
+   w3_browse_url "https://people.freebsd.org/~fenner/portsurvey/"
    exit $?
 fi
 if ok SURFRAW_freebsd_elogs; then
-   w3_browse_url "http://people.freebsd.org/~fenner/errorlogs/"
+   w3_browse_url "https://people.freebsd.org/~fenner/errorlogs/"
    exit $?
 fi
 if ok SURFRAW_freebsd_prs; then
-   w3_browse_url "http://people.freebsd.org/~fenner/ports-prs.html"
+   w3_browse_url "https://people.freebsd.org/~fenner/ports-prs.html"
    exit $?
 fi
 if test -z "$escaped_args"; then
-    w3_browse_url "http://www.freebsd.org/"
+    w3_browse_url "https://www.freebsd.org/"
 else
-    w3_browse_url "http://www.freebsd.org/cgi/search.cgi?words=${escaped_args}&max=25&source=www"
+    w3_browse_url "https://www.freebsd.org/cgi/search.cgi?words=${escaped_args}&max=25&source=www"
 
 fi
 exit $?

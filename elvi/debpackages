@@ -116,8 +116,8 @@ then
 	searchpage="http://archive.debian.net/"
 	searchurl="http://archive.debian.net/search"
 else
-	searchpage="http://packages.debian.org/#search_packages"
-	searchurl="http://packages.debian.org/search"
+	searchpage="https://packages.debian.org/#search_packages"
+	searchurl="https://packages.debian.org/search"
 fi
 
 if test -z "$w3_args"; then

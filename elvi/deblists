@@ -56,9 +56,9 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     if ifyes SURFRAW_deblists_searchmsgid
     then
-        w3_browse_url "http://lists.debian.org/msgid-search"
+        w3_browse_url "https://lists.debian.org/msgid-search"
     else
-        w3_browse_url "http://lists.debian.org/search.html"
+        w3_browse_url "https://lists.debian.org/search.html"
     fi
 elif ifyes SURFRAW_deblists_searchmsgid
 then
@@ -72,12 +72,12 @@ then
         searchtype="&firsthit=I%27m+feeling+lucky"
     fi
     escaped_args=`w3_url_of_arg $w3_args`
-    w3_browse_url "http://lists.debian.org/msgid-search/?m=${escaped_args}${searchtype}"
+    w3_browse_url "https://lists.debian.org/msgid-search/?m=${escaped_args}${searchtype}"
 
 else
 
     escaped_args=`w3_url_of_arg $w3_args`
-    url="http://lists.debian.org/cgi-bin/search?P=${escaped_args}"
+    url="https://lists.debian.org/cgi-bin/search?P=${escaped_args}"
     if ifyes SURFRAW_deblists_matchany
     then
         url="$url&DEFAULTOP=or"
