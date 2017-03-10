@@ -16,8 +16,8 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.slashdot.org/"
+    w3_browse_url "https://www.slashdot.org/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    w3_browse_url "http://www.slashdot.org/index2.pl?fhfilter=${escaped_args}"
+    w3_browse_url "https://www.slashdot.org/index2.pl?fhfilter=${escaped_args}"
 fi

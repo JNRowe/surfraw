@@ -42,24 +42,24 @@ w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test "$SURFRAW_stockquote_provider" = "yahoo"; then
     if test -z "$w3_args"; then
-        w3_browse_url "http://quote.yahoo.com/"
+        w3_browse_url "https://quote.yahoo.com/"
     else
         escaped_args=`w3_url_of_arg $w3_args`
-        w3_browse_url "http://quote.yahoo.com/q?s=${escaped_args}"
+        w3_browse_url "https://quote.yahoo.com/q?s=${escaped_args}"
     fi
 elif test "$SURFRAW_stockquote_provider" = "nasdaq"; then
     if test -z "$w3_args"; then
-        w3_browse_url "http://www.nasdaq.com/"
+        w3_browse_url "https://www.nasdaq.com/"
     else
         escaped_args=`w3_url_of_arg $w3_args`
-        w3_browse_url "http://quotes.nasdaq.com/Quote.dll?mode=Stock&symbol=${escaped_args}&symbol=&symbol=&symbol=&symbol=&symbol=&symbol=&symbol=&symbol=&symbol=&multi.x=44&multi.y=12"
+        w3_browse_url "https://quotes.nasdaq.com/Quote.dll?mode=Stock&symbol=${escaped_args}&symbol=&symbol=&symbol=&symbol=&symbol=&symbol=&symbol=&symbol=&symbol=&multi.x=44&multi.y=12"
     fi
 elif test "$SURFRAW_stockquote_provider" = "quote"; then
     if test -z "$w3_args"; then
-        w3_browse_url "http://www.quote.com/"
+        w3_browse_url "https://www.quote.com/"
     else
         escaped_args=`w3_url_of_arg $w3_args`
-        w3_browse_url "http://www.quote.com/quotecom/stocks/quotes.asp?symbols=${escaped_args}"
+        w3_browse_url "https://www.quote.com/quotecom/stocks/quotes.asp?symbols=${escaped_args}"
     fi
 else
     err "-provider ${SURFRAW_stockquote_provider} unsupported"

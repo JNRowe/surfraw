@@ -15,7 +15,7 @@ w3_usage_hook () {
 
 Usage: $w3_argv0 [options] [search-string]
 Description:
- Search Stack Overflow (http://stackoverflow.com)
+ Search Stack Overflow (https://stackoverflow.com)
  Combine search terms (tags) with a "+" eg., "bash+script"
 
 Local options:
@@ -66,9 +66,9 @@ esac
 
 # Check for Unix & Linux Exchange
 if [ "$SURFRAW_stack_unix" = 1 ]; then
-	url="http://unix.stackexchange.com"
+	url="https://unix.stackexchange.com"
 else
-	url="http://stackoverflow.com"
+	url="https://stackoverflow.com"
 fi
 
 # No arguments passed

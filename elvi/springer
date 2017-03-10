@@ -53,10 +53,10 @@ case "$SURFRAW_springer_fields" in
 esac
 
 if null "$w3_args"; then
-    w3_browse_url "http://www.springer.com"
+    w3_browse_url "https://www.springer.com"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    url="http://www.springer.com/?searchKey=easySearchKey&searchType=easy&visited=true&propagate=false&resultStart=1&resultCount=10&SGWID=5-102-14-0-0&queryText=${escaped_args}&easySearchOption=${field}&go.x=8&go.y=7"
+    url="https://www.springer.com/?searchKey=easySearchKey&searchType=easy&visited=true&propagate=false&resultStart=1&resultCount=10&SGWID=5-102-14-0-0&queryText=${escaped_args}&easySearchOption=${field}&go.x=8&go.y=7"
     w3_browse_url "${url}"
 fi
 
