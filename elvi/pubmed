@@ -41,8 +41,8 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi"
+    w3_browse_url "https://www.ncbi.nlm.nih.gov/entrez/query.fcgi"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    w3_browse_url "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?SUBMIT=y&term=${escaped_args}&db=${SURFRAW_pubmed_database}&orig_db=PubMed&cmd="
+    w3_browse_url "https://www.ncbi.nlm.nih.gov/entrez/query.fcgi?SUBMIT=y&term=${escaped_args}&db=${SURFRAW_pubmed_database}&orig_db=PubMed&cmd="
 fi
