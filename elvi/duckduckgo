@@ -1,5 +1,5 @@
 #!/bin/sh
-# elvis: duckduckgo	-- Securely search the web using duckduckgo (www.duckduckgo.com)
+# elvis: duckduckgo	-- Securely search the web using duckduckgo (duckduckgo.com)
 # coder@kyleisom.net 20110105
 # relevant: https://duckduckgo.com/params.html
 # similar to duckduckgo elvi, adds more options and defaults to SSL.
@@ -7,7 +7,7 @@
 
 w3_config_hook () {
     def     SURFRAW_duckduckgo_results             "$SURFRAW_results"
-    def     SURFRAW_duckduckgo_base_url            "www.duckduckgo.com"
+    def     SURFRAW_duckduckgo_base_url            "duckduckgo.com"
     def     SURFRAW_duckduckgo_search              search
     def     SURFRAW_duckduckgo_params              "&kg=g"
     defyn   SURFRAW_duckduckgo_https_arg           0
@@ -21,7 +21,7 @@ w3_usage_hook () {
     cat <<EOF
 Usage: $w3_argv0 [options] [search words]...
 Description:
-  Surfraw search the web using DuckDuckGo (www.duckduckgo.com)
+  Surfraw search the web using DuckDuckGo (duckduckgo.com)
 Local options:
     -d,-ducky,-l,-lucky         use in case of overwhelming feeling of duckiness
     -j,-javascript              use javascript
@@ -36,7 +36,7 @@ w3_parse_option_hook () {
     opt="$1"
     optarg="$2"
     case "$opt" in
-    -d*|-l|-lu*)            setoptyn    SURFRAW_duckduckgo_got_a_ducky_feeling 1 ;;
+    -d*|-l|-lu*)        setoptyn    SURFRAW_duckduckgo_got_a_ducky_feeling 1 ;;
     -j|-javascript*)    setoptyn    SURFRAW_duckduckgo_use_javascript      1 ;;
     -safe*)				setoptyn    SURFRAW_duckduckgo_safe_arg            1 ;;
     -r|-redirect*)      setoptyn    SURFRAW_duckduckgo_redirect_arg        1 ;;
