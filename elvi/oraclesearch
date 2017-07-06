@@ -19,6 +19,6 @@ if test -z "$w3_args"; then
     w3_browse_url "http://search.oracle.com/search/search"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    w3_browse_url "http://search.oracle.com/search/search?q=${escaped_args}"
+    w3_browse_url "https://www.oracle.com/search/results?Ntt=${escaped_args}&Dy=1&Nty=1&Ntk=S3"
 
 fi

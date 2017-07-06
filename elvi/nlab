@@ -8,7 +8,7 @@ w3_usage_hook () {
     cat <<EOF
 Usage: $w3_argv0 [search terms]...
 Description:
-    Search the nLab Wiki (http://ncatlab.org)
+    Search the nLab Wiki (https://ncatlab.org)
 
     Local options:
     The nLab wiki search accepts regular expressions as search terms.
@@ -22,8 +22,8 @@ w3_parse_args "$@"
 
 # w3_args now contains a list of arguments
 if [ -z "$w3_args" ]; then
-    w3_browse_url "http://ncatlab.org/"
+    w3_browse_url "https://ncatlab.org/"
 else
     escaped_args=$(w3_url_of_arg $w3_args)
-    w3_browse_url "http://ncatlab.org/nlab/search?&query=${escaped_args}"
+    w3_browse_url "https://ncatlab.org/nlab/search?&query=${escaped_args}"
 fi

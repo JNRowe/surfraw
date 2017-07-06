@@ -6,7 +6,6 @@
 w3_config_hook () {
 defyn   SURFRAW_netbsd_mail	no
 defyn   SURFRAW_netbsd_pr	no
-defyn   SURFRAW_netbsd_ports    no
 }
 
 w3_usage_hook () {
@@ -21,9 +20,6 @@ Local options:
   -pr[=(yes|no)]		Query Problem Reports
   				Default: $SURFRAW_netbsd_pr
   				Environment: SURFRAW_netbsd_pr
-  -ps[=(yes|no)]		Search ports
-  				Default: $SURFRAW_netbsd_ports
-  				Environment: SURFRAW_netbsd_ports
 Examples:
   $w3_argv0 			Teleport to the NetBSD website
   $w3_argv0 mycroft		Search NetBSD website for odeur de mycroft
@@ -43,8 +39,6 @@ w3_parse_option_hook () {
 	-mail=*) setoptyn	SURFRAW_netbsd_mail		$optarg	;;
 	-pr)	setoptyn	SURFRAW_netbsd_pr		yes	;;
 	-pr=*)	setoptyn	SURFRAW_netbsd_pr		$optarg	;;
-	-ps)	setoptyn	SURFRAW_netbsd_ports		yes	;;
-	-ps=*)	setoptyn	SURFRAW_netbsd_ports		$optarg	;;
 	*) return 1 ;;
     esac
     return 0
@@ -55,32 +49,24 @@ w3_parse_args "$@"
 # w3_args now contains a list of arguments
 test -z "$w3_args" || escaped_args=`w3_url_of_arg $w3_args`
 
-if ok SURFRAW_netbsd_ports; then
-    if test -z "$escaped_args"; then
-        w3_browse_url "http://pkgsrc.se/"
-    else
-        w3_browse_url "http://pkgsrc.se/search.php?so=${escaped_args}"
-    fi
-    exit $?
-fi
 if ok SURFRAW_netbsd_pr; then
     if test -z "$escaped_args"; then
-        w3_browse_url "http://www.netbsd.org/Misc/query-pr.html"
+        w3_browse_url "https://www.netbsd.org/Misc/query-pr.html"
     else
-        w3_browse_url "http://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=${escaped_args}"
+        w3_browse_url "https://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=${escaped_args}"
     fi
     exit $?
 fi
 if ok SURFRAW_netbsd_mail; then
     if test -z "$escaped_args"; then
-        w3_browse_url "http://mail-index.netbsd.org/"
+        w3_browse_url "https://mail-index.netbsd.org/"
     else
         w3_custom_search -s=mail-index.netbsd.org "$w3_shquoted_args"
     fi
     exit $?
 fi
 if test -z "$escaped_args"; then
-    w3_browse_url "http://www.netbsd.org/"
+    w3_browse_url "https://www.netbsd.org/"
 else
     w3_custom_search -s=netbsd.org "$w3_shquoted_args"
 fi
