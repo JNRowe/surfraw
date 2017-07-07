@@ -1,0 +1,54 @@
+#!/bin/sh
+# elvis: wiktionary	-- Search the free dictionary wiktionary
+# $Id$
+# Author: jason ryan • http://jasonwryan.com
+
+. surfraw || exit 1
+
+w3_config_hook () {
+def   SURFRAW_wiktionary_language	"$SURFRAW_lang"
+}
+
+w3_usage_hook () {
+    cat <<EOF
+Usage: $w3_argv0 [options] [search-string]
+Description:
+  Search the Wiktionary online dictionary
+  -language=ISOCODE | -l=ISOCODE  Two letter language code (resembles ISO country codes)
+				  Default: en
+				  Environment: SURFRAW_wiktionary_language, SURFRAW_lang
+Examples:
+  $w3_argv0 -language=de synecdoche
+EOF
+    w3_global_usage
+}
+
+w3_parse_option_hook () {
+    opt="$1"
+    optarg="$2"
+    case "$opt" in
+	-language=*)	setopt	SURFRAW_wiktionary_language  $optarg	;;
+	-l=*)       	setopt	SURFRAW_wiktionary_language  $optarg	;;
+	*) return 1 ;;
+    esac
+    return 0
+}
+
+w3_config
+# disable requoting, doesn't work with this elvi.
+#SURFRAW_quote_ifs=0
+w3_parse_args "$@"
+
+if [ -z "$SURFRAW_wiktionary_language" ]; then
+    SURFRAW_wiktionary_language="en"
+fi
+
+prefix="${SURFRAW_wiktionary_language}"
+
+if null "$w3_args"; then
+	w3_browse_url "https://${SURFRAW_wiktionary_language}.wiktionary.org"
+else
+    escaped_args=`w3_url_of_arg $w3_args`
+    w3_browse_url "https://${prefix}.wiktionary.org/wiki/${escaped_args}"
+fi
+

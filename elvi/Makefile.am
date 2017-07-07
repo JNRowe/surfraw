@@ -119,6 +119,7 @@ dist_elvi_SCRIPTS	= \
 		  webster \
 		  wetandwild \
 		  wikipedia \
+		  wiktionary \
 		  woffle \
 		  wolfram \
 		  worldwidescience \

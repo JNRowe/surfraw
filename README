@@ -289,6 +289,7 @@ wayback         -- Search The Internet Archive's Wayback Machine for a URL (arch
 webster         -- Look up word in Merriam-Webster's Dictionary (www.m-w.com)
 wetandwild      -- Real time weather information (many sources)
 wikipedia       -- Search the free encyclopedia wikipedia
+wiktionary      -- Search the free multilingual dictionary (wiktionary.org)
 woffle          -- Search the web using Woffle (localhost:8080)
 wolfram         -- Ask questions of the computational knowledge engine
 worldwidescience -- Search for science with www.worldwidescience.org

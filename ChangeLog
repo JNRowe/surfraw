@@ -1,3 +1,7 @@
+2017-06-07  Jason Ryan <jasonwryan@gmail.com>
+
+	* new elvi: wiktionary
+
 2015-09-13  Kyle Isom <kyle@imap.cc>
 
 	* use awk instead of sed for listing elvi
