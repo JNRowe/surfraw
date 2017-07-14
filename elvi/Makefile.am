@@ -80,10 +80,7 @@ dist_elvi_SCRIPTS	= \
 		  nlab \
 		  ntrs \
 		  openbsd \
-		  openports \
-		  opensearch \
 		  oraclesearch \
-		  pasearch \
 		  pgdoc \
 		  pgpkeys \
 		  phpdoc \
@@ -93,11 +90,7 @@ dist_elvi_SCRIPTS	= \
 		  pubmed \
 		  rae \
 		  rfc \
-		  rhyme \
-		  rpmsearch \
 		  scholar \
-		  scicom \
-		  scirus \
 		  scpan \
 		  searx \
 		  slashdot \
@@ -115,16 +108,13 @@ dist_elvi_SCRIPTS	= \
 		  w3rdf \
 		  wayback \
 		  webster \
-		  wetandwild \
 		  wikipedia \
 		  woffle \
 		  wolfram \
 		  worldwidescience \
-		  yacy \
 		  yahoo \
 		  yandex \
-		  youtube \
-		  yubnub
+		  youtube
 
 uninstall-local:
 	-rmdir $(DESTDIR)$(PREFIX)/$(ELVIDIR)

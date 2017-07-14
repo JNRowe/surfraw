@@ -250,10 +250,7 @@ netbsd          -- Search NetBSD related information (www.netbsd.org)
 nlab            -- Search the nLab wiki (http://ncatlab.org)
 ntrs            -- Search the NASA Technical Report Server
 openbsd         -- Search OpenBSD related information (www.openbsd.org)
-openports       -- search openports for OpenBSD packages
-opensearch      -- Search an OpenSearch-enabled website
 oraclesearch    -- Search an OpenSearch-enabled website
-pasearch        -- Search the unofficial Penny Arcade archives (pipefour.org/pa)
 pgdoc           -- Search postgres documentation (www.pgdoc.com)
 pgpkeys         -- Search the PGP key database
 phpdoc          -- Search php documentation (php.net)
@@ -263,11 +260,7 @@ priberam        -- Look up word in Priberam online dictionary (www.priberam.pt/d
 pubmed          -- Search medical/molbio databases (www.ncbi.nlm.nih.gov)
 rae             -- Busca en el diccionario de la Real Academia de la Lengua Española (Spanish Dictionary)
 rfc             -- Search RFCs (internet standards documents)
-rhyme           -- Search for rhymes et al using Lycos Rhyme (rhyme.lycos.com)
-rpmsearch       -- Search for RPMs in various distros
 scholar         -- Search Google Scholar (scholar.google.com)
-scicom          -- Search Scientific Commons
-scirus          -- Search for science using Scirus (scirus.com)
 scpan           -- Search the Comprehensive Perl Archive Network (search.cpan.org)
 searx           -- Search using searx metasearch engine instances (searx.me)
 slashdot        -- Search stories on Slashdot (www.slashdot.org)
@@ -285,16 +278,13 @@ w3link          -- Check web page links with the w3c linkchecker (validator.w3.o
 w3rdf           -- Validate a RDF URL with the w3c RDF validator (validator.w3.org)
 wayback         -- Search The Internet Archive's Wayback Machine for a URL (archive.org)
 webster         -- Look up word in Merriam-Webster's Dictionary (www.m-w.com)
-wetandwild      -- Real time weather information (many sources)
 wikipedia       -- Search the free encyclopedia wikipedia
 woffle          -- Search the web using Woffle (localhost:8080)
 wolfram         -- Ask questions of the computational knowledge engine
 worldwidescience -- Search for science with www.worldwidescience.org
-yacy            -- Search YaCy P2P search, including ScienceNet
 yahoo           -- Search Yahoo categories (www.yahoo.com)
 yandex          -- Search the web using Yandex (yandex.ru)
 youtube         -- Search YouTube (www.youtube.com)
-yubnub          -- Use the social command-line for the web (yubnub.org)
 
   All elvi have useful low calorie help, for example:
 
