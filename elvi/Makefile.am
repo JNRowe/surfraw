@@ -41,7 +41,6 @@ dist_elvi_SCRIPTS	= \
 		  debvcsbrowse \
 		  debwiki \
 		  deja \
-		  deli \
 		  discogs \
 		  duckduckgo \
 		  ebay \
