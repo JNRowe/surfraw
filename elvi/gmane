@@ -52,7 +52,7 @@ if test -z "$w3_args"
 then
     if ifyes SURFRAW_gmane_listsearch
     then
-        url=http://gmane.org/find.php
+        url=https://gmane.org/find.php
     else
         url=http://search.gmane.org/
     fi

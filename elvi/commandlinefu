@@ -46,7 +46,7 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 
-url=http://www.commandlinefu.com/commands/matching
+url=https://www.commandlinefu.com/commands/matching
 # The next part of the url is a normalized plaintext version of the search
 # query.  It seems to be unused by the CGI but it needs to be present. So we
 # normalize to "x".

@@ -114,11 +114,11 @@ then
 	searchurl="http://packages.ubuntu.com/search"
 elif ifyes SURFRAW_debcontents_archive
 then
-	searchpage="http://archive.debian.net/#search_contents"
-	searchurl="http://archive.debian.net/search"
+	searchpage="https://archive.debian.net/#search_contents"
+	searchurl="https://archive.debian.net/search"
 else
-	searchpage="http://packages.debian.org/#search_contents"
-	searchurl="http://packages.debian.org/search"
+	searchpage="https://packages.debian.org/#search_contents"
+	searchurl="https://packages.debian.org/search"
 fi
 if test -z "$w3_args"; then
     w3_browse_url "$searchpage"

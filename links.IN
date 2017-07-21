@@ -15,7 +15,6 @@ elvi.1sr.gz @mandir@/man1/bbcnews.1sr.gz
 elvi.1sr.gz @mandir@/man1/bookfinder.1sr.gz
 elvi.1sr.gz @mandir@/man1/bugmenot.1sr.gz
 elvi.1sr.gz @mandir@/man1/bugzilla.1sr.gz
-elvi.1sr.gz @mandir@/man1/cablesearch.1sr.gz
 elvi.1sr.gz @mandir@/man1/cite.1sr.gz
 elvi.1sr.gz @mandir@/man1/cia.1sr.gz
 elvi.1sr.gz @mandir@/man1/cliki.1sr.gz
@@ -37,9 +36,7 @@ elvi.1sr.gz @mandir@/man1/debsec.1sr.gz
 elvi.1sr.gz @mandir@/man1/debvcsbrowse.1sr.gz
 elvi.1sr.gz @mandir@/man1/debwiki.1sr.gz
 elvi.1sr.gz @mandir@/man1/deja.1sr.gz
-elvi.1sr.gz @mandir@/man1/deli.1sr.gz
 elvi.1sr.gz @mandir@/man1/discogs.1sr.gz
-elvi.1sr.gz @mandir@/man1/dmoz.1sr.gz
 elvi.1sr.gz @mandir@/man1/duckduckgo.1sr.gz
 elvi.1sr.gz @mandir@/man1/ebay.1sr.gz
 elvi.1sr.gz @mandir@/man1/etym.1sr.gz
@@ -73,10 +70,7 @@ elvi.1sr.gz @mandir@/man1/mysqldoc.1sr.gz
 elvi.1sr.gz @mandir@/man1/netbsd.1sr.gz
 elvi.1sr.gz @mandir@/man1/ntrs.1sr.gz
 elvi.1sr.gz @mandir@/man1/openbsd.1sr.gz
-elvi.1sr.gz @mandir@/man1/openports.1sr.gz
-elvi.1sr.gz @mandir@/man1/opensearch.1sr.gz
 elvi.1sr.gz @mandir@/man1/oraclesearch.1sr.gz
-elvi.1sr.gz @mandir@/man1/pasearch.1sr.gz
 elvi.1sr.gz @mandir@/man1/pgdoc.1sr.gz
 elvi.1sr.gz @mandir@/man1/pgpkeys.1sr.gz
 elvi.1sr.gz @mandir@/man1/phpdoc.1sr.gz
@@ -86,11 +80,7 @@ elvi.1sr.gz @mandir@/man1/priberam.1sr.gz
 elvi.1sr.gz @mandir@/man1/pubmed.1sr.gz
 elvi.1sr.gz @mandir@/man1/rae.1sr.gz
 elvi.1sr.gz @mandir@/man1/rfc.1sr.gz
-elvi.1sr.gz @mandir@/man1/rhyme.1sr.gz
-elvi.1sr.gz @mandir@/man1/rpmsearch.1sr.gz
 elvi.1sr.gz @mandir@/man1/scholar.1sr.gz
-elvi.1sr.gz @mandir@/man1/scicom.1sr.gz
-elvi.1sr.gz @mandir@/man1/scirus.1sr.gz
 elvi.1sr.gz @mandir@/man1/scpan.1sr.gz
 elvi.1sr.gz @mandir@/man1/searx.1sr.gz
 elvi.1sr.gz @mandir@/man1/slashdot.1sr.gz
@@ -108,14 +98,11 @@ elvi.1sr.gz @mandir@/man1/w3link.1sr.gz
 elvi.1sr.gz @mandir@/man1/w3rdf.1sr.gz
 elvi.1sr.gz @mandir@/man1/wayback.1sr.gz
 elvi.1sr.gz @mandir@/man1/webster.1sr.gz
-elvi.1sr.gz @mandir@/man1/wetandwild.1sr.gz
 elvi.1sr.gz @mandir@/man1/wikipedia.1sr.gz
 elvi.1sr.gz @mandir@/man1/wiktionary.1sr.gz
 elvi.1sr.gz @mandir@/man1/woffle.1sr.gz
 elvi.1sr.gz @mandir@/man1/wolfram.1sr.gz
 elvi.1sr.gz @mandir@/man1/worldwidescience.1sr.gz
-elvi.1sr.gz @mandir@/man1/yacy.1sr.gz
 elvi.1sr.gz @mandir@/man1/yahoo.1sr.gz
 elvi.1sr.gz @mandir@/man1/yandex.1sr.gz
 elvi.1sr.gz @mandir@/man1/youtube.1sr.gz
-elvi.1sr.gz @mandir@/man1/yubnub.1sr.gz

@@ -92,7 +92,7 @@ if null "$w3_args"; then
 	nl_BE)    url="http://www.benl.ebay.be"            ;;
 	se|sv)    url="http://www.tradera.com"             ;;
 	tw)       url="http://twexport.ebay.com"           ;;
-	*)        url="http://www.ebay.${TLD}"             ;;
+	*)        url="https://www.ebay.${TLD}"             ;;
     esac
     w3_browse_url "$url"
 else
@@ -104,7 +104,7 @@ else
     fi
 
     escaped_args=`w3_url_of_arg $w3_args`
-    host="http://search.ebay.${TLD}"
+    host="http://ebay.${TLD}"
     pathstart="search/search.dll?MfcISAPICommand=GetResult&krd=1&ht=1&shortcut=4&SoftProperty=MetaEndSort&cgiurl=http%3A%2F%2Fcgi"
     pathend="%2Fws%2F&maxRecordsPerPage=$SURFRAW_ebay_results&st=2&ebaytag1code=77&query=${escaped_args}"
 

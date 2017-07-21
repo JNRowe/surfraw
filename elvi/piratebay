@@ -1,5 +1,5 @@
 #!/bin/sh
-# elvis: piratebay	-- Search The Pirate Bay (http://thepiratebay.org)
+# elvis: piratebay		-- Search The Pirate Bay (https://thepiratebay.org)
 
 . surfraw || exit 1
 
@@ -71,17 +71,18 @@ escaped_args=$(w3_url_of_arg $w3_args)
 
 # just browsing category
 if [ -n "$SURFRAW_bay_categories" ] && [ -z "$w3_args" ]; then
-	w3_browse_url "http://thepiratebay.org/browse/${category}"
+	w3_browse_url "https://thepiratebay.org/browse/${category}"
 
 	# searching category for string
 	elif [ -n "$SURFRAW_bay_categories" ] && [ -n "$w3_args" ]; then
-		w3_browse_url "http://thepiratebay.org/search/${escaped_args}/0/99/${category}"
+		w3_browse_url "https://thepiratebay.org/search/${escaped_args}/0/99/${category}"
 	
 	# no arguments passed
 	elif [ -z "$w3_args" ]; then
-    	w3_browse_url "http://thepiratebay.org/"
+    	w3_browse_url "https://thepiratebay.org/"
 	
 # no category specified
-else w3_browse_url "http://thepiratebay.org/search/${escaped_args}"
+else w3_browse_url "https://thepiratebay.org/search/${escaped_args}"
 		
 fi
+

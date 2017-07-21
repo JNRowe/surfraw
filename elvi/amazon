@@ -200,7 +200,7 @@ case "$SURFRAW_amazon_country" in
 esac
 
 if null "$w3_args"; then
-    w3_browse_url "http://${host}/"
+    w3_browse_url "https://${host}/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
     if [ "$SURFRAW_amazon_search" = books ] ; then
@@ -240,5 +240,5 @@ else
         path="s/ref=nb_ss_gw"
 	args="url=search-alias%3D${SURFRAW_amazon_search}&field-keywords=${escaped_args}"
     esac
-    w3_browse_url "http://${host}/${path}?${args}"
+    w3_browse_url "https://${host}/${path}?${args}"
 fi

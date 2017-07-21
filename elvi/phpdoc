@@ -88,7 +88,7 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 
-url="http://php.net/"
+url="https://php.net/"
 
 case "$SURFRAW_php_language" in
     en) lang="en"    ;;

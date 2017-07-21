@@ -71,12 +71,12 @@ esac
 
 # no arguments present
 if [ -z "$w3_args" ]; then
-    w3_browse_url "http://www.archlinux.org/packages/"
+    w3_browse_url "https://www.archlinux.org/packages/"
 
 else
 # if w3_args contains a list of arguments
 escaped_args=$(w3_url_of_arg $w3_args)
-base="http://www.archlinux.org/packages/?sort="
+base="https://www.archlinux.org/packages/?sort="
 
 	# repository and architecture
 	if [ -n "$SURFRAW_arch_repo" -a "$SURFRAW_arch_ix" ]; then

@@ -375,8 +375,8 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.xe.net/ucc/"
+    w3_browse_url "http://www.xe.com/currencyconverter/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    w3_browse_url "http://www.xe.com/ucc/convert.cgi?Amount=${escaped_args}&From=${SURFRAW_currency_from}&To=${SURFRAW_currency_to}&submit=Perform+Currency+Conversion"
+    w3_browse_url "http://www.xe.com/currencyconverter/Amount=${escaped_args}&From=${SURFRAW_currency_from}&To=${SURFRAW_currency_to}&submit=Perform+Currency+Conversion"
 fi

@@ -38,7 +38,7 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.gutenberg.org/"
+    w3_browse_url "https://www.gutenberg.org/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
 	if ifno SURFRAW_gutenberg_author &&
@@ -48,7 +48,7 @@ else
 		SURFRAW_gutenberg_title=1
 	fi
 
-	url="http://www.gutenberg.org/catalog/world/results?"
+	url="https://www.gutenberg.org/catalog/world/results?"
 	if ifyes SURFRAW_gutenberg_author
 	then
 		url="$url&author=${escaped_args}"

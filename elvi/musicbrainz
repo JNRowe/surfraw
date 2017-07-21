@@ -24,7 +24,7 @@ Description:
 Local options:
   -d                            Direct (old) search.
   -a                            Enable advanced query syntax. See:
-                                 http://musicbrainz.org/popup/TextSearchSyntax
+                                 https://musicbrainz.org/popup/TextSearchSyntax
   -results=NUM                  Number of search results returned
                                 Default: $SURFRAW_musicbrainz_results
                                 Environment: SURFRAW_musicbrainz_results
@@ -124,10 +124,10 @@ if test -z "$w3_args" &&
    test -z "$SURFRAW_musicbrainz_tagpuid" &&
    test -z "$SURFRAW_musicbrainz_tagfile"
 then
-    w3_browse_url "http://musicbrainz.org/search.html"
+    w3_browse_url "https://musicbrainz.org/search.html"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    url="http://musicbrainz.org"
+    url="https://musicbrainz.org"
     if ifyes SURFRAW_musicbrainz_direct
     then
         case "$SURFRAW_musicbrainz_search" in

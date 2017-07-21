@@ -33,10 +33,10 @@ w3_parse_args "$@"
 # w3_args now contains a list of arguments
 
 if test -z "$w3_args"; then
-    w3_browse_url "http://last.fm/"
+    w3_browse_url "https://last.fm/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    url="http://last.fm/search?q=${escaped_args}"
+    url="https://last.fm/search?q=${escaped_args}"
     if ifno SURFRAW_lastfm_redirect
     then
 	url="${url}&noredirect=1"

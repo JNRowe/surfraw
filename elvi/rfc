@@ -79,7 +79,7 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.rfc-editor.org/rfcsearch.html"
+    w3_browse_url "https://www.rfc-editor.org/rfcsearch.html"
 else
     escaped_args=`w3_url_of_arg $w3_args`
 
@@ -115,9 +115,9 @@ else
             then
                 url="ftp://ftp.rfc-editor.org/in-notes${subdir}/${fileprefix}${escaped_args}.txt"
             elif [ $fileprefix = rfc ] || [ $fileprefix = bcp ]; then
-		url="http://tools.ietf.org/html/${fileprefix}${escaped_args}"
+		url="https://tools.ietf.org/html/${fileprefix}${escaped_args}"
 	    else
-                url="http://www.rfc-editor.org/rfc${subdir}/${fileprefix}${escaped_args}.txt"
+                url="https://www.rfc-editor.org/rfc${subdir}/${fileprefix}${escaped_args}.txt"
             fi
         else # godless PDFs
             case "$SURFRAW_rfc_search" in
@@ -133,7 +133,7 @@ else
     else
 
         # not direct to rfc, construct url from options
-        url="http://www.rfc-editor.org/cgi-bin/rfcsearch.pl?searchwords=${escaped_args}"
+        url="https://www.rfc-editor.org/cgi-bin/rfcsearch.pl?searchwords=${escaped_args}"
 
         if [ $isnum -eq 1 -a $searchset -eq 0 ]
         then

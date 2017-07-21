@@ -58,7 +58,7 @@ then
             inurl="${inurl}static/"
         fi
     fi
-    w3_browse_url "http://www.postgresql.org${inurl}"
+    w3_browse_url "https://www.postgresql.org${inurl}"
 
 else
 

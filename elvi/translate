@@ -89,7 +89,7 @@ Languages (Google only):
 Examples:
   $w3_argv0 			Provider's standard translation page
   $w3_argv0 -from=fr -to=en la verite vous liberera
-  $w3_argv0 -from=en -to=es http://tashian.com/multibabel
+  $w3_argv0 -from=en -to=es https://tashian.com/multibabel
                                 Translate the given Web page
 Bugs:
   Systrans derived providers only support the following translation
@@ -132,7 +132,7 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"
-    then w3_browse_url "http://translate.google.com/"
+    then w3_browse_url "https://translate.google.com/"
 else
     if [ -z "$SURFRAW_translate_to" ];
     then
@@ -144,9 +144,9 @@ else
     fi
     escaped_args=`w3_url_of_arg $w3_args`
     case "$escaped_args" in
-        http*) w3_browse_url "http://translate.google.com/translate?&sl=${SURFRAW_translate_from}&tl=${SURFRAW_translate_to}&u=${escaped_args}"
+        http*) w3_browse_url "https://translate.google.com/translate?&sl=${SURFRAW_translate_from}&tl=${SURFRAW_translate_to}&u=${escaped_args}"
         ;;
-        *) w3_browse_url "http://translate.google.com/?&sl=${SURFRAW_translate_from}&tl=${SURFRAW_translate_to}&q=${escaped_args}"
+        *) w3_browse_url "https://translate.google.com/?&sl=${SURFRAW_translate_from}&tl=${SURFRAW_translate_to}&q=${escaped_args}"
         ;;
     esac
 fi

@@ -104,10 +104,10 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.w3.org/RDF/Validator/"
+    w3_browse_url "https://www.w3.org/RDF/Validator/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-	url="http://www.w3.org/RDF/Validator/ARPServlet?PARSE=PARSE_URI&URI=${escaped_args}&TRIPLES_AND_GRAPH=${SURFRAW_w3rdf_output}&FORMAT=${SURFRAW_w3rdf_format}&NODE_COLOR=${SURFRAW_w3rdf_node}&NODE_TEXT_COLOR=${SURFRAW_w3rdf_nodetext}&EDGE_COLOR=${SURFRAW_w3rdf_arc}&EDGE_TEXT_COLOR=${SURFRAW_w3rdf_arctext}&FONT_SIZE=${SURFRAW_w3rdf_fontsize}&ORIENTATION=${SURFRAW_w3rdf_orientation}"
+	url="https://www.w3.org/RDF/Validator/ARPServlet?PARSE=PARSE_URI&URI=${escaped_args}&TRIPLES_AND_GRAPH=${SURFRAW_w3rdf_output}&FORMAT=${SURFRAW_w3rdf_format}&NODE_COLOR=${SURFRAW_w3rdf_node}&NODE_TEXT_COLOR=${SURFRAW_w3rdf_nodetext}&EDGE_COLOR=${SURFRAW_w3rdf_arc}&EDGE_TEXT_COLOR=${SURFRAW_w3rdf_arctext}&FONT_SIZE=${SURFRAW_w3rdf_fontsize}&ORIENTATION=${SURFRAW_w3rdf_orientation}"
 	if [ $SURFRAW_w3rdf_savedot -eq 1 ]
 	then
 		url="${url}&SAVE_DOT_FILE=on"

@@ -1,26 +1,25 @@
 #!/bin/sh
 # $Id$
-# elvis: scpan		-- Search the Comprehensive Perl Archive Network (search.cpan.org)
+# elvis: scpan		-- Search the Comprehensive Perl Archive Network (metacpan.org)
 # ianb@erislabs.net 20030918
 . surfraw || exit 1
 
 w3_config_hook () {
-def   SURFRAW_scpan_search all
+def   SURFRAW_scpan_search "$SURFRAW_scpan_opts"
 }
+
 
 w3_usage_hook () {
     cat <<EOF
 Usage: $w3_argv0 [options] [search words]...
 Description:
-  Surfraw search the Comprehensive Perl Archive Network (search.cpan.org)
+  Surfraw search the Comprehensive Perl Archive Network (metacpan.org)
 Local options:
   -search=                      Search Type
-          all     |             All
           module  |             Modules
           dist    |             Distributions
-          author                Authors
-                                Default: $SURFRAW_scpan_search
-                                Environment: SURFRAW_scpan_search
+          author  |             Authors
+                                Default: All
 EOF
     w3_global_usage
 }
@@ -38,9 +37,16 @@ w3_parse_option_hook () {
 w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
+case "$SURFRAW_scpan_search" in
+    module) searchopts="modules::"  ;;
+    dist)   searchopts="dist::"     ;;
+    author) searchopts="author::"   ;;
+    all|*)  searchopts=""           ;;
+esac
+
 if test -z "$w3_args"; then
-    w3_browse_url "http://search.cpan.org/"
+    w3_browse_url "https://metacpan.org/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-	w3_browse_url "http://search.cpan.org/search?query=${escaped_args}&mode=${SURFRAW_scpan_search}"
+	w3_browse_url "https://metacpan.org/search?q=${searchopts}${escaped_args}"
 fi

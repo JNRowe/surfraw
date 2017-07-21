@@ -1,5 +1,5 @@
 #!/bin/sh
-# elvis: pin		-- Search Pinboard bookmarks (http://pinboard.in)
+# elvis: pin		-- Search Pinboard bookmarks (https://pinboard.in)
 # author: jason ryan • http://jasonwryan.com
 
 . surfraw || exit 1

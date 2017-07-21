@@ -15,9 +15,9 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.archive.org/"
+    w3_browse_url "https://www.archive.org/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    url="http://www.archive.org/searchresults.php?mediatype=web&Submit=Take+Me+Back"
+    url="https://www.archive.org/searchresults.php?mediatype=web&Submit=Take+Me+Back"
     w3_browse_url "${url}&search=${escaped_args}"
 fi

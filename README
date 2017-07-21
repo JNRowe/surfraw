@@ -189,7 +189,6 @@ bing            -- Search the web using Microsoft's Bing (www.bing.com)
 bookfinder      -- Search for books using www.bookfinder.com
 bugmenot        -- Bypass compulsory web registration with bugmenot.com
 bugzilla        -- Search for bugs on Bugzilla bugtrackers
-cablesearch     -- search for leaked diplomatic communications
 cia             -- Search CIA documents at www.cia.gov
 cisco           -- Search Cisco documentation (www.cisco.com)
 cite            -- Search computer science papers (citeseerx.ist.psu.edu)
@@ -212,10 +211,13 @@ debsec          -- Search the Debian Security Tracker for CVE ids or package nam
 debvcsbrowse    -- Browse the VCS repository for a Debian package
 debwiki         -- Search the Debian Wikis (wiki.debian.org & women.debian.org/wiki)
 deja            -- Search usenet using Google Groups (groups.google.com)
-deli            -- Search Delicious bookmarks
 discogs         -- Search the Discogs database of music information (www.discogs.com)
+<<<<<<< HEAD
 dmoz            -- Search the Open Directory Project web directory (dmoz.org)
 duckduckgo      -- Securely search the web using duckduckgo (duckduckgo.com)
+=======
+duckduckgo      -- Securely search the web using duckduckgo (www.duckduckgo.com)
+>>>>>>> kyle/https-elvi
 ebay            -- Search the Ebay auction site
 etym            -- Look up word origins at www.etymonline.com
 excite          -- Search on Excite (www.excite.com)
@@ -252,10 +254,7 @@ netbsd          -- Search NetBSD related information (www.netbsd.org)
 nlab            -- Search the nLab wiki (http://ncatlab.org)
 ntrs            -- Search the NASA Technical Report Server
 openbsd         -- Search OpenBSD related information (www.openbsd.org)
-openports       -- search openports for OpenBSD packages
-opensearch      -- Search an OpenSearch-enabled website
 oraclesearch    -- Search an OpenSearch-enabled website
-pasearch        -- Search the unofficial Penny Arcade archives (pipefour.org/pa)
 pgdoc           -- Search postgres documentation (www.pgdoc.com)
 pgpkeys         -- Search the PGP key database
 phpdoc          -- Search php documentation (php.net)
@@ -265,11 +264,7 @@ priberam        -- Look up word in Priberam online dictionary (www.priberam.pt/d
 pubmed          -- Search medical/molbio databases (www.ncbi.nlm.nih.gov)
 rae             -- Busca en el diccionario de la Real Academia de la Lengua Española (Spanish Dictionary)
 rfc             -- Search RFCs (internet standards documents)
-rhyme           -- Search for rhymes et al using Lycos Rhyme (rhyme.lycos.com)
-rpmsearch       -- Search for RPMs in various distros
 scholar         -- Search Google Scholar (scholar.google.com)
-scicom          -- Search Scientific Commons
-scirus          -- Search for science using Scirus (scirus.com)
 scpan           -- Search the Comprehensive Perl Archive Network (search.cpan.org)
 searx           -- Search using searx metasearch engine instances (searx.me)
 slashdot        -- Search stories on Slashdot (www.slashdot.org)
@@ -287,17 +282,14 @@ w3link          -- Check web page links with the w3c linkchecker (validator.w3.o
 w3rdf           -- Validate a RDF URL with the w3c RDF validator (validator.w3.org)
 wayback         -- Search The Internet Archive's Wayback Machine for a URL (archive.org)
 webster         -- Look up word in Merriam-Webster's Dictionary (www.m-w.com)
-wetandwild      -- Real time weather information (many sources)
 wikipedia       -- Search the free encyclopedia wikipedia
 wiktionary      -- Search the free multilingual dictionary (wiktionary.org)
 woffle          -- Search the web using Woffle (localhost:8080)
 wolfram         -- Ask questions of the computational knowledge engine
 worldwidescience -- Search for science with www.worldwidescience.org
-yacy            -- Search YaCy P2P search, including ScienceNet
 yahoo           -- Search Yahoo categories (www.yahoo.com)
 yandex          -- Search the web using Yandex (yandex.ru)
 youtube         -- Search YouTube (www.youtube.com)
-yubnub          -- Use the social command-line for the web (yubnub.org)
 
   All elvi have useful low calorie help, for example:
 

@@ -22,7 +22,7 @@ Local options:
 				  mandriva, gentoo, novell
                                 Default: $SURFRAW_bugzilla_site
                                 Environment: SURFRAW_bugzilla_site
-				Examples: bugzilla -s=http://bugs.kde.org ipv6
+				Examples: bugzilla -s=https://bugs.kde.org ipv6
 				          bugzilla -s=kde ipv6
   -status=open            |     Bug status
           closed          |
@@ -65,15 +65,14 @@ esac
 
 case "$SURFRAW_bugzilla_site" in
     kernel)      setopt SURFRAW_bugzilla_site "https://bugzilla.kernel.org"         ;;
-    mozilla)     setopt SURFRAW_bugzilla_site "http://bugzilla.mozilla.org"         ;;
-    gnome)       setopt SURFRAW_bugzilla_site "http://bugzilla.gnome.org"           ;;
-    kde)         setopt SURFRAW_bugzilla_site "http://bugs.kde.org"                 ;;
-    apache)      setopt SURFRAW_bugzilla_site "http://issues.apache.org/bugzilla"   ;;
-    freedesktop) setopt SURFRAW_bugzilla_site "http://bugs.freedesktop.org"         ;;
+    mozilla)     setopt SURFRAW_bugzilla_site "https://bugzilla.mozilla.org"         ;;
+    gnome)       setopt SURFRAW_bugzilla_site "https://bugzilla.gnome.org"           ;;
+    kde)         setopt SURFRAW_bugzilla_site "https://bugs.kde.org"                 ;;
+    apache)      setopt SURFRAW_bugzilla_site "https://issues.apache.org/bugzilla"   ;;
+    freedesktop) setopt SURFRAW_bugzilla_site "https://bugs.freedesktop.org"         ;;
     eclipse)     setopt SURFRAW_bugzilla_site "https://bugs.eclipse.org/bugs"       ;;
-    redhat)      setopt SURFRAW_bugzilla_site "http://bugzilla.redhat.com/bugzilla" ;;
-    mandriva)    setopt SURFRAW_bugzilla_site "http://qa.mandriva.com"              ;;
-    gentoo)      setopt SURFRAW_bugzilla_site "http://bugs.gentoo.org"              ;;
+    redhat)      setopt SURFRAW_bugzilla_site "https://bugzilla.redhat.com/" ;;
+    gentoo)      setopt SURFRAW_bugzilla_site "https://bugs.gentoo.org"              ;;
     novell)      setopt SURFRAW_bugzilla_site "https://bugzilla.novell.com"         ;;
 esac
 
