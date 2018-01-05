@@ -36,7 +36,7 @@ Description: fast unix command line interface to WWW
 Package: surfraw-extra
 Architecture: all
 Depends: surfraw, ${misc:Depends}, lynx | www-browser, libwww-opensearch-perl, libwww-perl, libhtml-parser-perl
-Recommends: links | elinks | elinks-lite | w3m | w3m-ssl | lynx-cur
+Recommends: links | elinks | elinks-lite | w3m | w3m-ssl
 Suggests: screen
 Breaks: surfraw (<< 2.1.7)
 Description: extra surfraw search tools with heavy dependencies
