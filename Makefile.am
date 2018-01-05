@@ -39,6 +39,7 @@ surfraw: surfraw.IN
 	sed -e 's,@VERSION\@,${VERSION},g; '\
 	    -e 's,@ELVIDIR\@,${ELVIDIR},g; '\
 	    -e 's,@AWK\@,${AWK},g; '\
+	    -e 's,@PERL\@,${PERL},g; '\
 	    -e 's,@sysconfdir\@,${sysconfdir},g ' $? > $@.tmp
 	chmod +x $@.tmp
 	mv $@.tmp $@

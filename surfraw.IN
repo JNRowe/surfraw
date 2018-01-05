@@ -160,7 +160,8 @@ setoptyn () {
 
 quote_ifs () {
 	 if [ -z "$1" ];   then return;  fi
-     perl -e '$ifs=$ENV{IFS} || " "; $arg=shift;if($arg =~/[$ifs]/) { $arg="\"$arg\""; } print "$arg\n"; ' -- "$1"
+     @PERL@ -e '$ifs=$ENV{IFS} || " "; $arg=shift;if($arg =~/[$ifs]/) { $arg="\"$arg\""; } print "$arg\n"; ' -- "$1"
+
 }
 
 bookmark_file_search () {
