@@ -1,7 +1,7 @@
 
         Surfraw - Shell Users' Revolutionary Front Rage Against the Web
 
-Home Page: http://surfraw.alioth.debian.org
+Home Page: https://gitlab.com/surfraw/Surfraw
 
         ______  _     _  ______   _______  ______   _______  _  _  _
        / _____)(_)   (_)(_____ \ (_______)(_____ \ (_______)(_)(_)(_)
@@ -11,8 +11,8 @@ Home Page: http://surfraw.alioth.debian.org
       (______/  \_____/ |_|   |_||_|      |_|   |_||_|   |_| \_____/
 
    Surfraw - Shell Users' Revolutionary Front Rage Against the Web
-		 New: http://surfraw.alioth.debian.org
-		 Old: http://surfraw.sourceforge.net/
+         New: https://gitlab.com/surfraw/Surfraw
+		 Old: http://surfraw.alioth.debian.org
 
 			       Oh Baybe
 			     I need some
@@ -341,7 +341,7 @@ Global options:
   -version                      Display Surfraw version (2.2.7)
   --                            End of options
 Copyright:
-  Copyright (c) 2003-2013 The Surfraw-Devel Team
+  Copyright (c) 2003-2018 The Surfraw-Devel Team
                            <surfraw-devel@lists.alioth.debian.org>
   Copyright (c) 2000-2001 Julian Assange <proff@iq.org>
   Copyright (c) 2001 Australian Institute for Collaborative Research

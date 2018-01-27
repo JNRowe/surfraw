@@ -14,6 +14,28 @@
                             Surfin' in the raw!
 
                                   N E W S
+Sat Jan 13 18:55:20 GMT 2018  - surfraw 2.3.0
+
+        * We are moving! This is the last release on Debian's platform.
+          For all future development, please check out
+          https://gitlab.com/surfraw/Surfraw
+
+	    * All elvi now use HTTPS
+          + Elvi for sites that don't work with HTTPS have left the building:
+        	- cablesearch
+	   	    - dmoz
+	   	    - openports
+	   	    - opensearch
+	   	    - pasearch
+	   	    - rhyme
+	   	    - rpmsearch
+	   	    - scicom
+	   	    - scirus
+	   	    - wetandwild
+	   	    - yacy
+	   	    - yubnub
+	    * Select Perl version at buildtime (Mark Meyer)
+	    * Remove lynx-cur (closes #882286)
 
 Tue Dec 10 15:49:46 GMT 2013  - surfraw 2.2.9
 

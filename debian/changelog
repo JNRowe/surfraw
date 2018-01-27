@@ -1,3 +1,12 @@
+surfraw (2.3.0-1) unstable; urgency=low
+
+  * New upstream version
+  * Select Perl version at buildtime (Mark Meyer)
+  * Remove lynx-cur (Closes: #882286)
+  * Packages the https elvi
+
+ -- Jason Ryan <jasonwryan@gmail.com>  Sat, 13 Jan 2018 18:52:10 +0000
+
 surfraw (2.2.9-1) unstable; urgency=low
 
   * New upstream version

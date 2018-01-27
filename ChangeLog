@@ -1,3 +1,9 @@
+2018-01-13  Jason Ryan <jasonwryan@gmail.com>
+	* Bump version to 2.3.0
+	* Select Perl version at buildtime (Mark Meyer)
+	* Remove lynx-cur (closes #882286)
+	* Packages the https elvi
+
 2017-06-07  Jason Ryan <jasonwryan@gmail.com>
 
 	* new elvi: wiktionary

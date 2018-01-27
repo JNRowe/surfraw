@@ -5,11 +5,7 @@ if OPENSEARCH
 dist_bin_SCRIPTS = opensearch-discover opensearch-genquery
 endif
 devel_extra	= banner prebuild
-if BASHCOMPLETIONS
-noinst_DATA	= surfraw.bookmarks
-else
-noinst_DATA	= surfraw.bookmarks surfraw-bash-completion
-endif
+noinst_DATA	= surfraw-bash-completion surfraw.bookmarks
 man_MANS = surfraw-update-path.1 surfraw.1 elvi.1sr
 if OPENSEARCH
 man_MANS += opensearch-discover.1 opensearch-genquery.1
@@ -20,7 +16,7 @@ debian_extra = debian/NEWS debian/README.Debian debian/changelog debian/compat d
 				debian/surfraw-extra.files debian/surfraw-extra.install debian/watch
 
 EXTRA_DIST	= surfraw.lsm.in surfraw.IN surfraw-update-path.IN\
-                  surfraw.spec.in aclocal.m4 HACKING  \
+          surfraw.spec.in aclocal.m4 HACKING STYLE \
 		  surfraw.1.IN elvi.1sr.IN surfraw.bookmarks links.IN \
 		  surfraw-bash-completion.IN surfraw.conf.IN \
 		  $(devel_extra) $(debian_extra)
@@ -95,7 +91,7 @@ opensearch-genquery.1: opensearch-genquery
 	-rm -f $@
 	pod2man $? > $@
 
-install-data-hook: links surfraw-bash-completion
+install-data-hook: links
 	chmod -x surfraw.conf elvi.1sr surfraw.1
 	mkdir -p $(DESTDIR)@sysconfdir@/xdg/surfraw
 	cp surfraw.conf $(DESTDIR)@sysconfdir@/xdg/surfraw/conf
@@ -107,10 +103,6 @@ install-data-hook: links surfraw-bash-completion
 if INSTALLSR
 	ln -sf surfraw $(DESTDIR)/@bindir@/sr
 	ln -sf surfraw.1.gz $(DESTDIR)/@mandir@/man1/sr.1.gz
-endif
-if BASHCOMPLETIONS
-	mkdir -p $(DESTDIR)@sysconfdir@/bash_completion.d
-	@cp $(top_srcdir)/surfraw-bash-completion $(DESTDIR)@sysconfdir@/bash_completion.d/surfraw
 endif
 
 uninstall-local: links
@@ -126,9 +118,7 @@ if INSTALLSR
 	rm -f $(DESTDIR)/@bindir@/sr
 	rm -f $(DESTDIR)/@mandir@/man1/sr.1.gz
 endif
-if BASHCOMPLETIONS
-	-rm -f $(DESTDIR)@sysconfdir@/bash_completion.d/surfraw
-endif
+
 
 submit-lsm: surfraw.lsm
 	mail -s add LSM@qqx.org < $?
