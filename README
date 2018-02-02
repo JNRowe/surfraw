@@ -163,8 +163,7 @@ EXAMPLES
          $ surfraw google -results=100 RMS, GNU, which is sinner, which is sin?
          $ sr wikipedia surfraw
          $ sr austlii -method=phrase dog like
-         $ /usr/lib/surfraw/rhyme -method=perfect Julian
-
+         $ /usr/lib/surfraw/stack -u -s=vote shell
 OPTIONS
 
   Global options are common to all Surfraw elvi (clients). You can
@@ -212,12 +211,7 @@ debvcsbrowse    -- Browse the VCS repository for a Debian package
 debwiki         -- Search the Debian Wikis (wiki.debian.org & women.debian.org/wiki)
 deja            -- Search usenet using Google Groups (groups.google.com)
 discogs         -- Search the Discogs database of music information (www.discogs.com)
-<<<<<<< HEAD
-dmoz            -- Search the Open Directory Project web directory (dmoz.org)
-duckduckgo      -- Securely search the web using duckduckgo (duckduckgo.com)
-=======
 duckduckgo      -- Securely search the web using duckduckgo (www.duckduckgo.com)
->>>>>>> kyle/https-elvi
 ebay            -- Search the Ebay auction site
 etym            -- Look up word origins at www.etymonline.com
 excite          -- Search on Excite (www.excite.com)
@@ -291,61 +285,17 @@ yahoo           -- Search Yahoo categories (www.yahoo.com)
 yandex          -- Search the web using Yandex (yandex.ru)
 youtube         -- Search YouTube (www.youtube.com)
 
-  All elvi have useful low calorie help, for example:
 
-Usage: rhyme [options] [search words]...
-Description:
-  Surfraw search for rhymes and other word correlations using
-  Lycos Rhyme (rhyme.lycos.com)
-Example:
-  $ rhyme Julian
-  $ rhyme -method=rel surfer
-Results:
-  Hurclean St. Julien.
-  surfboarder, bather, natator, swimmer
-Local options:
-  -method=                      Type of word correlation to search for
-          prefect       |       Perfect rhyme
-          syn           |       Synonyms
-          hom           |       Homophones
-          cons          |       Consonsant rhymes only
-          rel           |       Semantically related words
-          sub           |       Phrases
-          spell         |       Similar spellings
-          pic           |       Pictures
-          shake         |       Match with Shakespeare archives
-          def                   Find wordnet definition
-                                Default: perfect
-                                Environment: SURFRAW_rhyme_method
-Global options:
-  -browser=EXECUTABLE           Set browser
-                                Default: sensible-browser
-  -elvi                         List Surfraw mechanisms for conquering evil
-  -escape-url-args=yes|no       Apply url escaping to arguments
-                                Default: yes
-                                Environment: SURFRAW_escape_url_args
-  -g | -graphical               Get some windowed sin
-                                Default: yes
-                                Environment: SURFRAW_graphical
-  -help                         What you're reading now, dude
-  -lh | -local-help             Just show elvi-specific help, not the global options
-  -p | -print                   Just print search URL, don't pass to browser
-  -o | -o=FILE                  Fetch URL and dump to stdout or FILE.
-  -new[=yes|no]                 Start in a new window
-                                Default: no
-                                Environment: SURFRAW_new_window
-  -t | -text                    Back to the yellow brick road
-  -q | -quote                   Quote arguments with " characters
-                                Default: no
-                                Environment: SURFRAW_quote_args
-  -version                      Display Surfraw version (2.2.7)
-  --                            End of options
-Copyright:
-  Copyright (c) 2003-2018 The Surfraw-Devel Team
-                           <surfraw-devel@lists.alioth.debian.org>
-  Copyright (c) 2000-2001 Julian Assange <proff@iq.org>
-  Copyright (c) 2001 Australian Institute for Collaborative Research
-  Copyright (c) 2000 Melbourne Institute for Advanced Study
+All elvi have useful low calorie help, for example:
+
+	sr bbcnews -help
+	Usage: bbcnews [options] [search words]...
+	Description:
+  		Surfraw search BBC News (news.bbc.co.uk)
+	Local options:
+  		-scope=world | uk           Search world or uk news
+        	                        Default: world
+            	                    Environment: SURFRAW_bbcnews_scope
 
   If you just want to see the elvi-specific help, use
   elvi -lh or -local-help.
