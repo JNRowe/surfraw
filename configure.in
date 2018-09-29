@@ -47,7 +47,7 @@ AC_SUBST(VERSION)
 AC_SUBST(TEXTBROWSER)
 AC_SUBST(GRAPHICALBROWSER)
 
-ISODATE=`date +%Y-%m-%d`
+ISODATE=`date -u -r ChangeLog +%Y-%m-%d`
 AC_SUBST(ISODATE)
 
 dnl Checks for programs.
