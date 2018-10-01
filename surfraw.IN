@@ -36,10 +36,14 @@ find_global_conf () {
 		break
 	    fi
 	done
-    elif test -r "@sysconfdir@/xdg/surfraw/$base"; then # XDG default
-	conf="@sysconfdir@/xdg/surfraw/$base"
-    elif test -r "@sysconfdir@/surfraw.$base"; then # old surfraw default
-	conf="@sysconfdir@/surfraw.$base"
+    fi
+
+    if test -n "$conf"; then
+	if test -r "@sysconfdir@/xdg/surfraw/$base"; then # XDG default
+	    conf="@sysconfdir@/xdg/surfraw/$base"
+	elif test -r "@sysconfdir@/surfraw.$base"; then # old surfraw default
+	    conf="@sysconfdir@/surfraw.$base"
+	fi
     fi
     echo "$conf"
 }
