@@ -1,0 +1,60 @@
+#!/bin/sh
+# $Id$
+# elvis: dockerhub -- Search for Docker images (https://hub.docker.com)
+. surfraw || exit 1
+
+w3_config_hook () {
+    defyn SURFRAW_dockerhub_automatic 0
+    defyn SURFRAW_dockerhub_official  0
+    def   SURFRAW_dockerhub_pulls     0
+    def   SURFRAW_dockerhub_stars     0
+}
+
+w3_usage_hook () {
+    cat <<EOF
+Usage: $w3_argv0 [options] [search words]
+Description:
+  Surfraw search the Docker images.
+Local options:
+  -automatic                    Search only for automatically built images
+                                Default: $SURFRAW_dockerhub_automatic
+                                Environment: SURFRAW_dockerhub_automatic
+  -official                     Search only for official images
+                                Default: $SURFRAW_dockerhub_official
+  -pulls                        Search only for images with no less than
+                                given number of pulls
+                                Default: $SURFRAW_dockerhub_pulls
+                                Environment: SURFRAW_dockerhub_pulls
+  -stars                        Search only for images with no less than
+                                given number of stars
+                                Default: $SURFRAW_dockerhub_stars
+                                Environment: SURFRAW_dockerhub_stars
+EOF
+    w3_global_usage
+}
+
+w3_parse_option_hook () {
+    opt="$1"
+    optarg="$2"
+    case "$opt" in
+        (-a|-auto*)     setoptyn SURFRAW_dockerhub_automatic 1         ;;
+        (-f|-off*)      setoptyn SURFRAW_dockerhub_official  1         ;;
+        (-s=*|-stars=*) setopt   SURFRAW_dockerhub_stars     "$optarg" ;;
+        (-p=*|-pulls=*) setopt   SURFRAW_dockerhub_pulls     "$optarg" ;;
+        (*) return 1 ;;
+    esac
+    return 0
+}
+
+w3_config
+w3_parse_args "$@"
+
+escaped_args=$(w3_url_of_arg $w3_args)
+url='https://hub.docker.com/search/'
+url="${url}?isAutomated=${SURFRAW_dockerhub_automatic}"
+url="${url}&isOfficial=${SURFRAW_dockerhub_official}"
+url="${url}&pullCount=${SURFRAW_dockerhub_pulls}"
+url="${url}&starCount=${SURFRAW_dockerhub_stars}"
+url="${url}&q=${escaped_args}"
+
+w3_browse_url "${url}"

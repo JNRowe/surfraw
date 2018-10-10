@@ -42,6 +42,7 @@ dist_elvi_SCRIPTS	= \
 		  debwiki \
 		  deja \
 		  discogs \
+		  dockerhub \
 		  duckduckgo \
 		  ebay \
 		  etym \

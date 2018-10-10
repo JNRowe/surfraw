@@ -211,6 +211,7 @@ debvcsbrowse    -- Browse the VCS repository for a Debian package
 debwiki         -- Search the Debian Wikis (wiki.debian.org & women.debian.org/wiki)
 deja            -- Search usenet using Google Groups (groups.google.com)
 discogs         -- Search the Discogs database of music information (www.discogs.com)
+dockerhub       -- Search for Docker images (https://hub.docker.com)
 duckduckgo      -- Securely search the web using duckduckgo (www.duckduckgo.com)
 ebay            -- Search the Ebay auction site
 etym            -- Look up word origins at www.etymonline.com
