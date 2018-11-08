@@ -22,30 +22,34 @@ w3_config_hook () {
 }
 
 find_global_conf () {
-    base="$1"
-    local conf OIFS
-    conf=""
-    if test -n "$XDG_CONFIG_DIRS"; then
-	OIFS="$IFS"
-	IFS=:
-	set $XDG_CONFIG_DIRS
-	IFS="$OIFS"
-	for i in "$@"; do
-	    if test -r "$i/surfraw/$base"; then
-		conf="$i/surfraw/$base"
-		break
-	    fi
-	done
+    local base="${1}"
+    local conf
+    set --
+
+    if [ "${XDG_CONFIG_DIRS}" ] ; then
+        local OIFS="${IFS}"
+        IFS=":"
+        set -- ${XDG_CONFIG_DIRS}
+        IFS="$OIFS"
+    fi
+    set -- "$@" "@sysconfdir@/xdg"
+
+    for dir ; do
+        conf="${dir}/surfraw/${base}"
+        if [ -r "${conf}" ] ; then
+            printf "%s" "${conf}"
+            return 0
+        fi
+    done
+
+    # old surfraw default
+    conf="@sysconfdir@/xdg/surfraw/$base"
+    if [ -r "${conf}" ] ; then
+        printf "%s" "${conf}"
+        return 0
     fi
 
-    if test -n "$conf"; then
-	if test -r "@sysconfdir@/xdg/surfraw/$base"; then # XDG default
-	    conf="@sysconfdir@/xdg/surfraw/$base"
-	elif test -r "@sysconfdir@/surfraw.$base"; then # old surfraw default
-	    conf="@sysconfdir@/surfraw.$base"
-	fi
-    fi
-    echo "$conf"
+    return 1
 }
 
 load_global_conf () {
