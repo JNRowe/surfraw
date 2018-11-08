@@ -40,7 +40,7 @@ fi
 if test -z "$w3_args"; then
     w3_browse_url "https://www.google.com/intl/$SURFRAW_lang/help/features_list.html#cached"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
 	if [ "$SURFRAW_cache_graphic" = 1 ]; then
 	     w3_browse_url "https://www.google.com/search?q=cache:${escaped_args}&hl=$SURFRAW_lang"
         else

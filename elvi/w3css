@@ -59,7 +59,7 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     w3_browse_url "https://jigsaw.w3.org/css-validator/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
 	url="https://jigsaw.w3.org/css-validator/validator?uri=${escaped_args}&warning=${SURFRAW_w3css_warnings}&profile=${SURFRAW_w3css_profile}&usermedium=${SURFRAW_w3css_medium}"
 
 	w3_browse_url "${url}"

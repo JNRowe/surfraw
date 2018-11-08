@@ -11,7 +11,7 @@
 
 surfraw_version=@VERSION@
 surfraw_api_version=1.0
-w3_argv0=`basename "$0"`
+w3_argv0=$(basename "$0")
 
 elvidir="@ELVIDIR@"
 
@@ -112,7 +112,7 @@ err () {
 
 yesno () {
     eval value=\$${1}
-    case `echo "$value" | tr A-Z a-z` in
+    case $(echo "$value" | tr A-Z a-z) in
 	yes|true|on|1)	return 0 ;;
 	no|false|off|0)	return 1 ;;
 	*) err "\"$1\" is not set correctly. Should be (yes|on|1|no|off|0). Is \"$value\"" ;;
@@ -338,7 +338,7 @@ list_elvi() {
 w3_parse_option () {
     opt="$1"
     case "$opt" in
-	    -*=*) optarg=`echo "$opt" | sed 's/[-_a-zA-Z0-9]*=//'`
+	    -*=*) optarg=$(echo "$opt" | sed 's/[-_a-zA-Z0-9]*=//')
     esac
     w3_parse_option_hook "$opt" "$optarg" && return 0
     case "$opt" in
@@ -398,13 +398,13 @@ w3_parse_args () {
 	then
 	    if  [ -z "$w3_shquoted_args" ]
 	    then
-		w3_shquoted_args="`quote "$arg"`"
+		w3_shquoted_args="$(quote "$arg")"
 	    else
-		w3_shquoted_args="$w3_shquoted_args `quote "$arg"`"
+		w3_shquoted_args="$w3_shquoted_args $(quote "$arg")"
 	    fi
 	    if ok SURFRAW_quote_ifs
 	    then
-		arg=`quote_ifs "$arg"`
+		arg=$(quote_ifs "$arg")
 	    fi
 	    if [ -n "$w3_args" ]
 	    then
@@ -451,7 +451,7 @@ w3_dump () {
 }
 
 w3_browse_url () {
-    if ok SURFRAW_new_screen && test `echo $TERM | cut -c 1-6` = "screen" &&
+    if ok SURFRAW_new_screen && test $(echo $TERM | cut -c 1-6) = "screen" &&
 	test $mode = text; then
 	screen=yes
     else
@@ -561,7 +561,7 @@ w3_custom_search_inurl_quote_dots() {
 }
 
 quote () {
-	quoted=`echo "$1"|sed "s/'/'\\\\\''/g"`
+	quoted=$(echo "$1"|sed "s/'/'\\\\\''/g")
 	echo "'$quoted'"
 }
 
@@ -647,10 +647,10 @@ then
 		  fi
 		  if  [ -z "$opts" ]
 		  then
-			  opts="`quote "$arg"`"
+			  opts="$(quote "$arg")"
 			  unquoted_opts="$arg"
 		  else
-			  opts="$opts `quote "$arg"`"
+			  opts="$opts $(quote "$arg")"
 			  unquoted_opts="$unquoted_opts $arg"
 		  fi
 	  elif [ -z "$elvi" ]
@@ -659,10 +659,10 @@ then
 	  else
 		  if [ -z "$searchterms" ]
 		  then
-			  searchterms="`quote "$arg"`"
+			  searchterms="$(quote "$arg")"
 			  unquoted_searchterms="$arg"
 		  else
-			  searchterms="$searchterms `quote "$arg"`"
+			  searchterms="$searchterms $(quote "$arg")"
 			  unquoted_searchterms="$unquoted_searchterms $arg"
 		  fi
 	  fi
@@ -680,7 +680,7 @@ then
 		then
  			sh -c "$elvidir/$elvi $opts $searchterms"
 		else
-			bookmark=`bookmark_lookup $elvi`
+			bookmark=$(bookmark_lookup $elvi)
 			if [ -n "$bookmark" ]
 			then
                 w3_parse_args $unquoted_opts $unquoted_searchterms
@@ -688,7 +688,7 @@ then
                 w3_browse_url "$bookmark"
                 exit 0
 			else
-				echo "`basename $0`: $elvi: No elvis or bookmark with that name"
+				echo "$(basename $0): $elvi: No elvis or bookmark with that name"
 				echo "Passing everything to browser and hoping for the best..."
                 $BROWSER "$elvi $opts $unquoted_searchterms"
                 exit 0

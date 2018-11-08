@@ -19,6 +19,6 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
 	w3_browse_url "http://changelogs.debian.net/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
 	w3_browse_url "http://changelogs.debian.net/${escaped_args}"
 fi

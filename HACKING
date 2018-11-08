@@ -111,7 +111,7 @@ Or... How to Eat The CHEESE
     string argument into something that can be seen in a URL without
     embarrassment.
 
-    i.e escaped_args=`w3_url_of_arg $w3_args`
+    i.e escaped_args=$(w3_url_of_arg $w3_args)
 
     In our last exhilarating moments we then build the final URL and
     pass it onto the currently selected browser with w3_browse_url,

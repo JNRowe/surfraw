@@ -78,7 +78,7 @@ w3_parse_option_hook () {
     optarg="$2"
     case "$opt" in
     -author=*)
-	setopt   SURFRAW_bookfinder_author      `w3_url_of_arg "$optarg"` ;;
+	setopt   SURFRAW_bookfinder_author      $(w3_url_of_arg "$optarg") ;;
     -binding=any)   setopt   SURFRAW_bookfinder_binding     '*'           ;;
     -binding=*)     setopt   SURFRAW_bookfinder_binding     "$optarg"     ;;
     -classic)       setoptyn SURFRAW_bookfinder_classic     1             ;;
@@ -86,14 +86,14 @@ w3_parse_option_hook () {
     -destination=*) setopt   SURFRAW_bookfinder_destination "$optarg"     ;;
     -first)         setoptyn SURFRAW_bookfinder_first       1             ;;
     -keywords=*)
-	setopt   SURFRAW_bookfinder_keywords    `w3_url_of_arg "$optarg"` ;;
+	setopt   SURFRAW_bookfinder_keywords    $(w3_url_of_arg "$optarg") ;;
     -language=*)    setopt   SURFRAW_bookfinder_language    "$optarg"     ;;
     -maxprice=*)    setopt   SURFRAW_bookfinder_maxprice    "$optarg"     ;;
     -minprice=*)    setopt   SURFRAW_bookfinder_minprice    "$optarg"     ;;
     -search=*)      setopt   SURFRAW_bookfinder_search      "$optarg"     ;;
     -signed)        setoptyn SURFRAW_bookfinder_signed      1             ;;
     -title=*)
-	setopt   SURFRAW_bookfinder_title       `w3_url_of_arg "$optarg"` ;;
+	setopt   SURFRAW_bookfinder_title       $(w3_url_of_arg "$optarg") ;;
     -type=any)      setopt   SURFRAW_bookfinder_type        '*'           ;;
     -type=*)        setopt   SURFRAW_bookfinder_type        "$optarg"     ;;
     *) return 1 ;;
@@ -108,7 +108,7 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     url="http://www.bookfinder.com/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     case "$SURFRAW_bookfinder_search" in
         author) setopt SURFRAW_bookfinder_author "$escaped_args" ;;
         isbn) setopt SURFRAW_bookfinder_isbn   "$escaped_args" ;;

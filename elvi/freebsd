@@ -129,7 +129,7 @@ w3_parse_option_hook () {
 w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
-test -z "$w3_args" || escaped_args=`w3_url_of_arg $w3_args`
+test -z "$w3_args" || escaped_args=$(w3_url_of_arg $w3_args)
 
 if ok SURFRAW_freebsd_portsearch; then
     if test -z "$escaped_args"; then

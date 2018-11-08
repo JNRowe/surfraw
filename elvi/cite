@@ -42,7 +42,7 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     w3_browse_url "http://citeseerx.ist.psu.edu/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     url="http://citeseerx.ist.psu.edu/search?q=${escaped_args}&submit=Search"
     if ifyes SURFRAW_cite_citations; then
 	url="${url}&ic=1"

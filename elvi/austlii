@@ -49,6 +49,6 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     w3_browse_url "http://www.austlii.edu.au/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     w3_browse_url "http://www.austlii.edu.au/cgi-bin/sinosrch.cgi?method=${SURFRAW_austlii_method}&meta=%2Fau&query=${escaped_args}&results=${SURFRAW_austlii_results}&submit=Search&callback=on&mask_world=&mask_path="
 fi

@@ -116,10 +116,10 @@ else
     esac
 
     url="${url}.google.${domain}/${search}"
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     url="${url}?q=${escaped_args}&num=${SURFRAW_google_results}"
     if [ "$SURFRAW_google_lucky" = 1 ]; then
-	button=`w3_url_escape "I'm Feeling Lucky"`
+	button=$(w3_url_escape "I'm Feeling Lucky")
 	url="${url}&btnI=$button"
     fi
     url="${url}${safe}${extra}"

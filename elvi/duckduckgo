@@ -74,7 +74,7 @@ if [ "$SURFRAW_graphical" != "yes" ] ; then
     SURFRAW_duckduckgo_params="${SURFRAW_duckduckgo_params}&kf=-1&kz=-1&kq=-1&kv=-1"
 fi
 
-escaped_args=`w3_url_of_arg $w3_args`
+escaped_args=$(w3_url_of_arg $w3_args)
 if [ "$SURFRAW_duckduckgo_got_a_ducky_feeling" = 1 ]; then
     escaped_args="! ${escaped_args}"
 fi

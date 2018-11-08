@@ -102,7 +102,7 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     w3_browse_url http://www.freedb.org/
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     SURFRAW_freedb_queryopts="page=${SURFRAW_freedb_page}&"
 
     if ifyes SURFRAW_freedb_id; then

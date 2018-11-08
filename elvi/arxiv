@@ -63,26 +63,26 @@ cnt=0
 if [ ! -z "$w3_args" ]; then
     case $SURFRAW_arxiv_scope in
 	all | title | abstract)
-	    if [ `w3_url_of_arg $w3_args | cut -c1` = \" ]; then
-		terms="+EXACT+"`echo $w3_args | sed -e 's/ /_/g'`
+	    if [ $(w3_url_of_arg $w3_args | cut -c1) = \" ]; then
+		terms="+EXACT+"$(echo $w3_args | sed -e 's/ /_/g')
 	    else
 		for w in $w3_args ; do
-		    terms="+"`w3_url_of_arg $w`$terms
+		    terms="+"$(w3_url_of_arg $w)$terms
 		    cnt=$((cnt + 1))
 		    if [ $cnt -gt 1 ]; then
 		    	terms="+AND"$terms
 		    fi
 	    	done
 	    fi
-	    terms=`echo $terms | sed -e 's/"//g'`
+	    terms=$(echo $terms | sed -e 's/"//g')
 	    ;;
 	author)
 	    # Names without commas need to be reversed
 	    echo "$w3_args" | grep -q ","
 	    if [ $? -eq 0 ]; then
 	        # Name already in last, first format.
-		terms=`echo "$w3_args" | sed -e "s/,/_/g" -e "s/ //g"`
-		terms="+"`w3_url_of_arg $terms`
+		terms=$(echo "$w3_args" | sed -e "s/,/_/g" -e "s/ //g")
+		terms="+"$(w3_url_of_arg $terms)
 	    else
 	        # Name in first last format.  Need to reverse.
 		first=""
@@ -99,11 +99,11 @@ if [ ! -z "$w3_args" ]; then
 		    terms="${last}_"
 		fi
 		terms="$terms$first"
-		terms="+"`w3_url_of_arg $terms`
+		terms="+"$(w3_url_of_arg $terms)
 	    fi
 	    ;;
 	fulltext)
-	    terms=`w3_url_escape $w3_args`
+	    terms=$(w3_url_escape $w3_args)
 	    ;;
 	*)
 	    return 1 ;;

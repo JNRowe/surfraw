@@ -52,7 +52,7 @@ url=https://www.commandlinefu.com/commands/matching
 # normalize to "x".
 url=$url/x
 # What is really used is the base64 encoded query. (echo -n is not portable)
-url=$url/"`printf %s "$w3_args" | base64`"
+url=$url/"$(printf %s "$w3_args" | base64)"
 # possibly add the sorting option
 if test $SURFRAW_commandlinefu_votes -eq 1; then
     url="$url/sort-by-votes"

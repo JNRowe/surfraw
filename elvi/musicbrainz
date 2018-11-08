@@ -126,7 +126,7 @@ if test -z "$w3_args" &&
 then
     w3_browse_url "https://musicbrainz.org/search.html"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     url="https://musicbrainz.org"
     if ifyes SURFRAW_musicbrainz_direct
     then

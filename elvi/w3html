@@ -54,8 +54,8 @@ w3_parse_option_hook () {
     opt="$1"
     optarg="$2"
     case "$opt" in
-    -enco*=*)   setopt    SURFRAW_w3html_encoding `w3_url_escape "$optarg"` ;;
-	-docty*=*)  setopt    SURFRAW_w3html_doctype  `w3_url_escape "$optarg"` ;;
+    -enco*=*)   setopt    SURFRAW_w3html_encoding $(w3_url_escape "$optarg") ;;
+	-docty*=*)  setopt    SURFRAW_w3html_doctype  $(w3_url_escape "$optarg") ;;
 	-encfb)     setoptyn  SURFRAW_w3html_encodingfallback    1 ;;
 	-docfb)     setoptyn  SURFRAW_w3html_doctypefallback     1 ;;
 	-shows*)    setoptyn  SURFRAW_w3html_showsource          1 ;;
@@ -78,7 +78,7 @@ if [ $SURFRAW_w3html_usage -eq 1 ]; then
 elif test -z "$w3_args"; then
     w3_browse_url "https://validator.w3.org/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
 	url="https://validator.w3.org/check?uri=${escaped_args}&charset=${SURFRAW_w3html_encoding}&doctype=${SURFRAW_w3html_doctype}"
 	if [ $SURFRAW_w3html_encodingfallback -eq 1 ]
 	then

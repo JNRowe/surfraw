@@ -142,7 +142,7 @@ else
     then
         SURFRAW_translate_from="fr"
     fi
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     case "$escaped_args" in
         http*) w3_browse_url "https://translate.google.com/translate?&sl=${SURFRAW_translate_from}&tl=${SURFRAW_translate_to}&u=${escaped_args}"
         ;;

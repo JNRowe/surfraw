@@ -48,7 +48,7 @@ if test -z "$w3_args"
 then
     w3_browse_url "$url"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     url="${url}/FindPage?"
     if ifyes SURFRAW_debwiki_direct
     then
