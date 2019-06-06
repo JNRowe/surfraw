@@ -679,10 +679,10 @@ then
 		localelvidir=$(get_local_elvi_dir)
 		if [ -x "$localelvidir/$elvi" ]
 		then
-			sh -c "$localelvidir/$elvi $opts $searchterms"
+			exec sh -c "$localelvidir/$elvi $opts $searchterms"
 		elif [ -x "$elvidir/$elvi" ]
 		then
- 			sh -c "$elvidir/$elvi $opts $searchterms"
+			exec sh -c "$elvidir/$elvi $opts $searchterms"
 		else
 			bookmark=`bookmark_lookup $elvi`
 			if [ -n "$bookmark" ]
