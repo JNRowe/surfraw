@@ -47,6 +47,6 @@ esac
 if test -z "$w3_args"; then
     w3_browse_url "https://metacpan.org/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
 	w3_browse_url "https://metacpan.org/search?q=${searchopts}${escaped_args}"
 fi

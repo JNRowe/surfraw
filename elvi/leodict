@@ -69,12 +69,12 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     w3_browse_url "https://dict.leo.org/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     url="https://dict.leo.org/?search=${escaped_args}"
 
     case "$SURFRAW_leodict_lang" in
 	en|de)           ;;
-	*) SURFRAW_leodict_lang=`perl -e 'if((exists($ENV{LANG})) && ($ENV{LANG}=~/de/i)) { print "de\n"; } else { print "en\n"; }'` ;;
+	*) SURFRAW_leodict_lang=$(perl -e 'if((exists($ENV{LANG})) && ($ENV{LANG}=~/de/i)) { print "de\n"; } else { print "en\n"; }') ;;
     esac
 
     if yesno SURFRAW_leodict_link ; then url="$url&relink=on"

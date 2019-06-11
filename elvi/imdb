@@ -49,7 +49,7 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     w3_browse_url "http://www.imdb.com/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
 	#Avoids people having to quote "My+Movies" on command line
 	if [ $SURFRAW_imdb_category = MyMovies ]; then
 		SURFRAW_imdb_category="My+Movies"

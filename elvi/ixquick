@@ -92,6 +92,6 @@ else
 	ko|kr|kp|hangul)      SURFRAW_ixquick_lang="hangul"         ;;
 	*)                    SURFRAW_ixquick_lang="english"        ;;
     esac
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     w3_browse_url "${proto}://www.ixquick.com/do/metasearch.pl?cat=${SURFRAW_ixquick_search}&cmd=process_search&language=${SURFRAW_ixquick_lang}&query=${escaped_args}"
 fi

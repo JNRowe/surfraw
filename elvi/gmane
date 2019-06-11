@@ -57,7 +57,7 @@ then
         url=http://search.gmane.org/
     fi
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     if ifyes SURFRAW_gmane_listsearch
     then
         url="http://dir.gmane.org/search.php?match=${escaped_args}"

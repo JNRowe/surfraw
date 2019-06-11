@@ -36,7 +36,7 @@ do_control()
 
 do_package()
 {
-    if [ ! -x "`which apt-cache`" ]
+    if [ ! -x "$(which apt-cache)" ]
     then
 	err "apt-cache not installed. Try finding the homepage via debpts instead"
 	return

@@ -202,7 +202,7 @@ esac
 if null "$w3_args"; then
     w3_browse_url "https://${host}/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     if [ "$SURFRAW_amazon_search" = books ] ; then
 	SURFRAW_amazon_search=stripbooks
     elif [ "$SURFRAW_amazon_search" = all ] ; then

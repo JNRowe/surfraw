@@ -18,6 +18,6 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     w3_browse_url "http://www.excite.com/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     w3_browse_url "http://msxml.excite.com/excite/ws/results/Web/${escaped_args}/1/417/TopNavigation/Relevance/iq=true/zoom=off/_iceUrlFlag=7?_IceUrl=true"
 fi

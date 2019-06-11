@@ -62,7 +62,7 @@ else
         es|spanish) setopt   SURFRAW_jamendo_lang es  ;;
 	*)          setopt   SURFRAW_jamendo_lang en  ;;
     esac
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     w3_browse_url "https://www.jamendo.com/${SURFRAW_jamendo_lang}/search?qs=q=${escaped_args}"
 
 fi

@@ -42,7 +42,7 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     w3_browse_url "https://www.ctan.org/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
 	if ifno SURFRAW_ctan_topics  &&
 	   ifno SURFRAW_ctan_desc  &&
 	   ifno SURFRAW_ctan_authors

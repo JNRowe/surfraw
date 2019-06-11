@@ -43,7 +43,7 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
 	w3_browse_url "http://news.bbc.co.uk/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
 	if [ $SURFRAW_bbcnews_scope = uk ]; then
                 w3_browse_url "http://search.bbc.co.uk/search?scope=uk&tab=ns&q=${escaped_args}"
  	else

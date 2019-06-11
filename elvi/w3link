@@ -61,7 +61,7 @@ w3_parse_args "$@"
 if test -z "$w3_args"; then
     w3_browse_url "https://validator.w3.org/checklink"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
 	url="https://validator.w3.org/checklink?uri=${escaped_args}&depth=${SURFRAW_w3link_depth}"
 	if [ $SURFRAW_w3link_recurse -eq 1 -o $SURFRAW_w3link_depth -ge 0 ]
 	then

@@ -54,7 +54,7 @@ w3_parse_args "$@"
 if [ -z "$w3_args" ]; then
     url="http://www.mininova.org/"
 else
-    escaped_args=`w3_url_of_arg $w3_args`
+    escaped_args=$(w3_url_of_arg $w3_args)
     case $SURFRAW_mininova_category in
 	all)
 	    url="http://www.mininova.org/search/?search="$escaped_args"&cat=0"
