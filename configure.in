@@ -45,7 +45,7 @@ AC_ARG_WITH([graphical-browser],
 # Bash completions!
 # I'm not sure what to do if bash-completion isn't installed.
 AC_ARG_WITH([bash-completion-dir],
-	[AS_HELP_STRING([--with-bash-completion-dir[=PATH]],
+	[AS_HELP_STRING([--with-bash-completion-dir[[=PATH]]],
 		[Install the bash auto-completion script in this directory. NOTE: Not guaranteed to install under $prefix.])],
 	[],
 	[with_bash_completion_dir=yes])
