@@ -5,10 +5,14 @@ if OPENSEARCH
 dist_bin_SCRIPTS = opensearch-discover opensearch-genquery
 endif
 devel_extra	= banner prebuild
-noinst_DATA	= surfraw-bash-completion surfraw.bookmarks
+noinst_DATA	= surfraw.bookmarks
 man_MANS = surfraw-update-path.1 surfraw.1 elvi.1sr
 if OPENSEARCH
 man_MANS += opensearch-discover.1 opensearch-genquery.1
+endif
+if WITH_BASH_COMPLETION
+bashcompletiondir = $(BASH_COMPLETION_DIR)
+dist_bashcompletion_DATA = surfraw-bash-completion
 endif
 
 debian_extra = debian/NEWS debian/README.Debian debian/changelog debian/compat debian/control \
@@ -104,6 +108,10 @@ if INSTALLSR
 	ln -sf surfraw $(DESTDIR)/@bindir@/sr
 	ln -sf surfraw.1.gz $(DESTDIR)/@mandir@/man1/sr.1.gz
 endif
+if WITH_BASH_COMPLETION
+	## Allow bash to load completion script on-demand.
+	ln -sf surfraw-bash-completion $(BASH_COMPLETION_DIR)/surfraw
+endif
 
 uninstall-local: links
 	-rm -f $(DESTDIR)@sysconfdir@/xdg/surfraw/conf
@@ -117,6 +125,9 @@ uninstall-local: links
 if INSTALLSR
 	rm -f $(DESTDIR)/@bindir@/sr
 	rm -f $(DESTDIR)/@mandir@/man1/sr.1.gz
+endif
+if WITH_BASH_COMPLETION
+	rm -f $(BASH_COMPLETION_DIR)/surfraw
 endif
 
 
