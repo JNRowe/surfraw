@@ -111,6 +111,9 @@ endif
 if WITH_BASH_COMPLETION
 	## Allow bash to load completion script on-demand.
 	ln -sf surfraw-bash-completion $(BASH_COMPLETION_DIR)/surfraw
+if INSTALLSR
+	ln -sf surfraw-bash-completion $(BASH_COMPLETION_DIR)/sr
+endif
 endif
 
 uninstall-local: links
@@ -128,6 +131,9 @@ if INSTALLSR
 endif
 if WITH_BASH_COMPLETION
 	rm -f $(BASH_COMPLETION_DIR)/surfraw
+if INSTALLSR
+	rm -f $(BASH_COMPLETION_DIR)/sr
+endif
 endif
 
 
