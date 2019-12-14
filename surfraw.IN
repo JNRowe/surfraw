@@ -115,7 +115,7 @@ err () {
 }
 
 yesno () {
-    eval value=\$${1}
+    eval value="\"\$${1}\""
     case $(echo "$value" | tr A-Z a-z) in
 	yes|true|on|1)	return 0 ;;
 	no|false|off|0)	return 1 ;;
@@ -143,26 +143,24 @@ null () {
 }
 
 def () {
-    eval value=\$${1}
-    test -z "$value" || return 0
-    eval ${1}="$2"
+    eval value="\"\$${1}\""
+    # Do nothing if already have a value.
+    test -z "$value" && eval ${1}="\"$2\""
     return 0
 }
 
 defyn () {
-    eval value=\$${1}
-    test -z "$value" && eval ${1}="$2"
+    def "$@"
     yesno "$1"
 }
 
 setopt  () {
-    eval value=\$${1}
-    eval ${1}="$2"
+    eval value="\"\$${1}\""
+    eval ${1}="\"$2\""
 }
 
 setoptyn () {
-    eval value=\$${1}
-    eval ${1}="$2"
+    setopt "$@"
     yesno "$1"
 }
 
