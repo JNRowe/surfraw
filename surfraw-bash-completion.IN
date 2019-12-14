@@ -11,6 +11,7 @@ _surfraw()
 	local opts='-browser -elvi -escape-url-args -graphical \
 		-help -q -quote -text -version'
 	local elvi="$(cut -f1 @sysconfdir@/surfraw.bookmarks ~/.surfraw.bookmarks 2>&-
+			source surfraw && awk '{print $1}' "$(find_local_conf bookmarks)" "$(find_global_conf bookmarks)"
 			cd @ELVIDIR@ && echo * 2>&-
 			[ -d ~/.surfraw.d ] && cd ~/.surfraw.d && echo * 2>&-
 			source surfraw && cd $(get_local_elvi_dir) && echo * 2>&-)"
