@@ -349,7 +349,7 @@ w3_parse_option () {
     -bookmark-search-elvis=*)
         setopt SURFRAW_bookmark_search_elvis   $optarg ;;
 	-browser=*)	    setopt   SURFRAW_browser		$optarg	;;
-	-elvi)		    echo " GLOBAL ELVI:"
+	-elvi*)		    echo " GLOBAL ELVI:"
 			    list_elvi "$elvidir"
 			    localelvidir=$(get_local_elvi_dir)
 			    if [ -d "$localelvidir" ] && [ -n "$(ls "$localelvidir")" ]; then
@@ -361,7 +361,7 @@ w3_parse_option () {
 	-g | -graphical)    setoptyn SURFRAW_graphical		yes	;;
 	-help | --help |-h) do_help=1					;;
 	-local-help | \
-	--local-help |-lh ) do_help=1 ;setoptyn SURFRAW_local_help yes  ;;
+	--local-help |-lh|-\? ) do_help=1 ;setoptyn SURFRAW_local_help yes  ;;
 	-q | -quote)	    setoptyn SURFRAW_quote_args	    	yes	;;
 	-new)		    setoptyn SURFRAW_new_window		yes	;;
 	-new=*)		    setoptyn SURFRAW_new_window		$optarg ;;
@@ -636,13 +636,7 @@ then
 		  # if option before elvi
 		  if [ -z "$elvi" ]
 		  then
-			  case "$arg" in
-			      -help | --help |-h) do_help=1 ;;
-			      -local-help  | \
-			      --local-help | \
-			      -lh | -\? ) do_help=1 ; setoptyn SURFRAW_local_help yes ;;
-			      -elvi*)  w3_parse_option -elvi; exit 0 ;;
-			  esac
+			  w3_parse_option "$arg"
 		  fi
 		  if ok do_help
 		  then
