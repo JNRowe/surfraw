@@ -487,15 +487,15 @@ w3_browse_url () {
 			newwin=""
 		fi
 		if test $SURFRAW_browser_args = "none"; then
-			$SURFRAW_browser -remote "openURL($*$newwin)" 2>/dev/null || $SURFRAW_browser "$@" &
+			exec $SURFRAW_browser -remote "openURL($*$newwin)" 2>/dev/null || $SURFRAW_browser "$@" &
 		else
-			$SURFRAW_browser -remote "openURL($*$newwin)" 2>/dev/null || $SURFRAW_browser $SURFRAW_browser_args "$@" &
+			exec $SURFRAW_browser -remote "openURL($*$newwin)" 2>/dev/null || $SURFRAW_browser $SURFRAW_browser_args "$@" &
 		fi
 	else
 		if test $SURFRAW_browser_args = "none"; then
-				$SURFRAW_browser "$@"
+				exec $SURFRAW_browser "$@"
 		else
-			$SURFRAW_browser $SURFRAW_browser_args "$@"
+			exec $SURFRAW_browser $SURFRAW_browser_args "$@"
 		 fi
 	fi
     fi
@@ -688,7 +688,7 @@ then
 			else
 				echo "$(basename $0): $elvi: No elvis or bookmark with that name"
 				echo "Passing everything to browser and hoping for the best..."
-                $BROWSER "$elvi $opts $unquoted_searchterms"
+                exec $BROWSER "$elvi $opts $unquoted_searchterms"
                 exit 0
 			fi
 	   fi
