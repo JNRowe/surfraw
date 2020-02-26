@@ -10,11 +10,11 @@ _surfraw()
 	local prev=${COMP_WORDS[COMP_CWORD-1]}
 	local opts='-browser -elvi -escape-url-args -graphical \
 		-help -q -quote -text -version'
-	local elvi="$(cut -f1 @sysconfdir@/surfraw.bookmarks ~/.surfraw.bookmarks 2>&-
-			source surfraw && awk '{print $1}' "$(find_local_conf bookmarks)" "$(find_global_conf bookmarks)"
+	local elvi="$(source surfraw
+			cut -f1 @sysconfdir@/surfraw.bookmarks ~/.surfraw.bookmarks "$(find_local_conf bookmarks)" "$(find_global_conf bookmarks)" 2>&-
 			cd @ELVIDIR@ && echo * 2>&-
 			[ -d ~/.surfraw.d ] && cd ~/.surfraw.d && echo * 2>&-
-			source surfraw && cd $(get_local_elvi_dir) && echo * 2>&-)"
+			cd $(get_local_elvi_dir) && echo * 2>&-)"
 	if      [[ $cur == -* ]]
 	then    COMPREPLY=( $( compgen -W "$opts" -- $cur ) )
 	# I can't see a way to get the =yes/=no parts to work...
