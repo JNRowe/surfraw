@@ -109,9 +109,12 @@ if INSTALLSR
 	ln -sf surfraw.1.gz $(DESTDIR)/@mandir@/man1/sr.1.gz
 endif
 if BASHCOMPLETIONS
-	mkdir -p $(DESTDIR)@sysconfdir@/bash_completion.d
-	@cp $(top_srcdir)/surfraw-bash-completion $(DESTDIR)@sysconfdir@/bash_completion.d/surfraw
-endif
+	mkdir -p $(DESTDIR)@datadir@/bash-completion/completions
+	@cp $(top_srcdir)/surfraw-bash-completion $(DESTDIR)@datadir@/bash-completion/completions/surfraw
+if INSTALLSR
+	@ln -sf $(DESTDIR)@datadir@/bash-completion/completions/surfraw $(DESTDIR)@datadir@/bash-completion/completions/sr
+endif  # INSTALLSR
+endif  # BASHCOMPLETIONS
 
 uninstall-local: links
 	-rm -f $(DESTDIR)@sysconfdir@/xdg/surfraw/conf
@@ -127,8 +130,11 @@ if INSTALLSR
 	rm -f $(DESTDIR)/@mandir@/man1/sr.1.gz
 endif
 if BASHCOMPLETIONS
-	-rm -f $(DESTDIR)@sysconfdir@/bash_completion.d/surfraw
-endif
+	-rm -f $(DESTDIR)@datadir@/bash-completion/completions/surfraw
+if INSTALLSR
+	-rm -f $(DESTDIR)@datadir@/bash-completion/completions/sr
+endif  # INSTALLSR
+endif  # BASHCOMPLETIONS
 
 
 submit-lsm: surfraw.lsm
