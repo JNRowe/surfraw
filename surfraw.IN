@@ -87,6 +87,7 @@ load_local_conf ()
 	if [ -n "$SURFRAW_conf" ] && [ -r "$SURFRAW_conf" ]
 	then
 		. "$SURFRAW_conf"
+		return
 	fi
 	if [ -n "$conf" ] && [ -r "$conf" ]
 	then
