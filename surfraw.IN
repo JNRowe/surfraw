@@ -11,7 +11,9 @@
 
 surfraw_version=@VERSION@
 surfraw_api_version=1.0
-w3_argv0=$(basename "$0")
+# $0 can be -bash when sourced for tab completions.
+# POSIX seems to assume `--` support.
+w3_argv0=$(basename -- "$0")
 
 elvidir="@ELVIDIR@"
 
@@ -337,6 +339,100 @@ list_elvi() {
     done
 }
 
+# Should only complete for specific options
+# Called before declared-options completions
+w3_complete_hook_opt ()
+{
+	return 1
+}
+# Completions for main surfraw script
+w3_complete_hook_opt_global ()
+{
+	local opt="$1"
+	case "$opt" in
+		-bookmark-search-elvis=*)
+			cd "$(get_local_elvi_dir)" 2>/dev/null && echo *
+			cd "$elvidir" && echo *
+			;;
+		# -browser=* can be anything
+		-custom-search=*) echo google duckduckgo ;;
+		-escape-url-args=*) echo yes no ;;
+		# -o=* can be anything
+		-new=*|-ns=*|-newscreen=*) echo yes no ;;
+		*) return 1 ;;
+	esac
+}
+# Allowed to use a plain '*' in case statements
+# Called before declared-options completions
+# These must print newline-delimited completion alternatives (if any are defined for the argument)
+w3_complete_hook_arg_default ()
+{
+	local arg="$1"
+	if command -v look >/dev/null 2>&1
+	then
+		look -- "${arg:-''}"
+	else
+		return 1
+	fi
+}
+w3_complete_hook_arg ()
+{
+	w3_complete_hook_arg_default "$@"
+}
+
+w3_complete ()
+{
+	local arg="$1"
+
+	w3_complete_hook_opt "$arg" && return 0
+	w3_complete_hook_opt_global "$arg" && return 0
+	# At this point, `arg` is either:
+	#   1. an option that takes an argument BUT doesn't define completions for it;
+	#   2. a flag;
+	#   3. an incomplete option name; or
+	#   4. a non-option argument.
+	case "$arg" in
+		# Avoid completing options that don't define completions for the optarg
+		-*=*) return 0 ;;
+		# Complete options
+		-*)
+			# Remove ' ' "options"
+			echo "$SURFRAW__complete_flags $SURFRAW__complete_options" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' | tr -s '[:space:]'
+			return 0
+			;;
+	esac
+
+	w3_complete_hook_arg "$arg"
+	return 0
+}
+# Properly complete calls like "sr fooelvis -- -notanoption"
+w3_complete_arg ()
+{
+	local arg="$1"
+	w3_complete_hook_arg "$arg"
+	return 0
+}
+
+# Declare options (and valid arguments, TODO)
+# Does not need leading hyphen
+# Example use:
+#   mkopts flag optwithvar=
+mkopts ()
+{
+	for opt in "$@"
+	do
+		case "$opt" in
+			*=*) SURFRAW__complete_options="$SURFRAW__complete_options -$(echo $opt | sed 's/^\([^=]*=\).*/\1/')" ;;
+			*) SURFRAW__complete_flags="$SURFRAW__complete_flags -$opt" ;;
+		esac
+	done
+}
+
+# Options with arguments
+mkopts bookmark-search-elvis= browser= escape-url-args= new= ns= newscreen= custom-search= o=
+# Flags
+mkopts elvi graphical help local-help quote new ns newscreen o text version print
+
 w3_parse_option () {
     opt="$1"
     case "$opt" in
@@ -373,6 +469,10 @@ w3_parse_option () {
 			    setoptyn SURFRAW_graphical 		no	;;
 	-version)	    echo $surfraw_version; exit 0	    	;;
 	-p | -print)        setoptyn SURFRAW_print  yes     		;;
+	--complete=* | \
+	-complete=*)        w3_complete "$optarg"; exit 0               ;;
+	--complete-arg=* | \
+	-complete-arg=*)    w3_complete_arg "$optarg"; exit 0           ;;
 	--)		    setoptyn SURFRAW_end_of_args yes 		;;
 	-*)		    w3_bad_option "$opt"		    	;;
 	*)		    return 1					;;
@@ -684,7 +784,7 @@ then
                 w3_browse_url "$bookmark"
                 exit 0
 			else
-				echo "$(basename $0): $elvi: No elvis or bookmark with that name"
+				echo "$w3_argv0: $elvi: No elvis or bookmark with that name"
 				echo "Passing everything to browser and hoping for the best..."
                 $BROWSER "$elvi $opts $unquoted_searchterms"
                 exit 0
