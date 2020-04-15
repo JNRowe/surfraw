@@ -61,6 +61,8 @@ _surfraw ()
 				)
 				;;
 			-*)
+				# Appended spaces after completing options with arguments is annoying
+				compopt -o nospace
 				COMPREPLY=(
 					$(compgen -W "$(surfraw -complete="$cur")" -- "$cur")
 				)
@@ -79,10 +81,6 @@ _surfraw ()
 		return 0
 	fi
 
-	# Should the `-o nospace` option be used?
-	# It would only make sense with options taking arguments.
-	# How to distinguish though?
-	#   - Maybe only if all $completions end in '='?
 	local completions="$(surfraw "$elvis" -complete="$cur")"
 	case "$cur" in
 		-*=*)
@@ -93,6 +91,8 @@ _surfraw ()
 			)
 			;;
 		-*)
+			# Appended spaces after completing options with arguments is annoying
+			compopt -o nospace
 			COMPREPLY=( $(compgen -W "$completions" -- "$cur") )
 			;;
 		*)
