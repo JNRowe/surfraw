@@ -55,6 +55,16 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts results= pdf rev exact abs keyword nodirect ftp field= search=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -field=*) echo all number title author keyword ;;
+                -search=*) echo all rfc std bcp fyi ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

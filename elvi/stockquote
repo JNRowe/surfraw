@@ -26,6 +26,15 @@ Examples:
 EOF
     w3_global_usage
 }
+mkopts provider=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -provider=*) echo yahoo nasdaq quote ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

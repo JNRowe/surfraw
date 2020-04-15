@@ -173,6 +173,17 @@ Examples:
 EOF
     w3_global_usage
 }
+mkopts country= search=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+		# Dunno what args
+		# FIXME
+                #-foo=*) echo bar baz ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

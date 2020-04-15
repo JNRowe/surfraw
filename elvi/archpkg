@@ -40,6 +40,16 @@ Description: Surfraw search Arch Linux packages (www.archlinux.org)
 EOF
     w3_global_usage
 }
+mkopts arch= repo= date= num=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -arch=*) echo any i686 x86_64 ;;
+		-repo=*) echo comm commtest core extra multi multitest test ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

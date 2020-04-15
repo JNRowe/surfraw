@@ -45,6 +45,16 @@ Description:
 EOF
     w3_global_usage
 }
+mkopts category= url=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -c=*|-category=*) echo default vid socialm news music map it img files ;;
+                -u=*|-url=*) echo 1 2 3 o1 o2 cjdns ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

@@ -32,6 +32,15 @@ Description:
 EOF
     w3_global_usage
 }
+mkopts language= type=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -type=*) echo every repo user code ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

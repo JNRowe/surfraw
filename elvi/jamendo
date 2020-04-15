@@ -27,6 +27,15 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts lang=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -l=*|-lang=*) echo en english fr french de german it italian pt portuguese pl polish ru russian es spanish ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

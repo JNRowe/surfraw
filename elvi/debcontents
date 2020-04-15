@@ -88,6 +88,17 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts search= arch= distro=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -search=*) echo files path word ;;
+                -arch=*) echo i386 powerpc amd64 m68k alpha sparc arch hppa ia64 mips mipsel s390 hurd-i386 kfreebsd-amd64 kfreebsd-i386 ;;
+                # The values for -distro= in the help are outdated.
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

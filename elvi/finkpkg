@@ -92,6 +92,19 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts pkg= maintainer= dist= arch= tree= section= exact nomaint nochildren noshlibsdev
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                # Is this outdated?
+                -dist=*) echo default any 10.4 10.5 10.6 ;;
+                -arch=*) echo any i386 x86_64 powerpc ;;
+                -tree=*) echo any unstable stable bindist testing ;;
+                -section=*) echo any base crypto database devel editors games gnome graphics kde languages libs libs/perlmods libs/pythonmods libs/rubymods net sci shells sound text utils web x11 x11-system x11-wm ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

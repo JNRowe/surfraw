@@ -65,6 +65,15 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts artists albums songs rest all id bycat cat= page=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -cat=*) echo all blues classical country data folk jazz misc newage reggae rock soundtrack ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

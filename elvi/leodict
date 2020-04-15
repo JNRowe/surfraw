@@ -63,6 +63,19 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts to= lang= link= head= grid= spell= tol=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -to=*) echo de en either ;;
+                -lang=*) echo en de ;;
+                -link=*|-head=*|-grid=*) echo on off ;;
+                -spell=*) echo off standard force ;;
+                -tol=*) echo off standard high ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_config
 w3_parse_args "$@"

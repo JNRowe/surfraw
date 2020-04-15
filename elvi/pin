@@ -32,6 +32,7 @@ Description:
 EOF
     w3_global_usage
 }
+mkopts popular recent tags= user=
 
 w3_parse_option_hook () {
     opt="$1"

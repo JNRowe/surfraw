@@ -38,6 +38,15 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts sort= u num=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -s=*|-sort=*) echo new feat vote active null faq ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

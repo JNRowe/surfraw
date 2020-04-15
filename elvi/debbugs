@@ -98,6 +98,20 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts search= version= dist=
+mkopts arc raw rb rst rse merge nohead nofoot mbox sh
+mkopts incstat= exstat= incsev= exsev= inctag= extag=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                # "tag" is duplicated in help.  Error?
+                -search=*) echo pkg src bug maint tag submitter severity ;;
+                -dist=*) echo oldstable stable proposed-updates testing unstable experimental testing-proposed-updates ;;
+                # Completing the {inc,ex}{stat,sev,tag} options are too complex for surfraw ATM
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

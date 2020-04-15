@@ -87,6 +87,17 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts release= distro= search= nosub
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -release=*) echo any main contrib non-free restricted universe multiverse ;;
+                # The values for -distro= in the help are outdated.
+                -search=*) echo pkg desc src ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"
