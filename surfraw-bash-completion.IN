@@ -83,14 +83,29 @@ _surfraw ()
 	# It would only make sense with options taking arguments.
 	# How to distinguish though?
 	#   - Maybe only if all $completions end in '='?
-	# Use default completer if `surfraw -complete=*` outputs nothing.
 	local completions="$(surfraw "$elvis" -complete="$cur")"
-	if ! echo "$completions" | grep '^[[:space:]]\+$'
-	then
-		COMPREPLY=( $(compgen -W "$completions" -- "$cur") )
-	else
-		COMPREPLY=( $(compgen -o default -- "$cur") )  # copout
-	fi
+	case "$cur" in
+		-*=*)
+			# Match argument
+			local arg="$(echo "$cur" | sed 's/[-_a-zA-Z0-9]*=//')"
+			COMPREPLY=(
+				$(compgen -W "$completions" -- "$arg")
+			)
+			;;
+		-*)
+			COMPREPLY=( $(compgen -W "$completions" -- "$cur") )
+			;;
+		*)
+			# We want to complete *something* for non-option, non-elvis arguments
+			if [[ -z "$(echo "$completions" | tr -d '[:space:]')" ]]
+			then
+				COMPREPLY=( $(compgen -o default -- "$cur") )
+			else
+				COMPREPLY=( $(compgen -W "$completions" -- "$cur") )
+			fi
+			;;
+
+	esac
 	return 0
 }
 # test first in case removed-but-unpurged
