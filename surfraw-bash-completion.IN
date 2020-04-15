@@ -3,11 +3,21 @@
 _surfraw ()
 {
 	local cur words=()
-	_get_comp_words_by_ref -n = cur words
+	_get_comp_words_by_ref -n = cur words cword
 
+	local i=0
+	local end_of_args=no
+	# Determine end of args
+	for word in "${words[@]}"
+	do
+		case "$word" in
+			--) [[ $cword -ge $i ]] && end_of_args=yes ;;
+		esac
+		i="$(( i + 1 ))"
+	done
 	# Determine current elvis
 	local elvis
-	local i=0
+	i=0
 	for word in "${words[@]}"
 	do
 		# Skip "surfraw" or "sr" at start of command
@@ -28,7 +38,18 @@ _surfraw ()
 		cd "$elvidir" 2>/dev/null && echo *
 		cut -f1 "$(find_local_conf bookmarks)" "$(find_global_conf bookmarks)" 2>/dev/null)"
 
-	if [[ -z "$elvis" ]]
+	if [[ $end_of_args = yes ]]
+	then
+		# Surfraw accepts the elvis name after the "--" argument
+		if [[ -z "$elvis" ]]
+		then
+			COMPREPLY=( $(compgen -W "$elvi" -- "$cur") )
+		else
+			# We want to complete *something* for non-option, non-elvis arguments
+			COMPREPLY=( $(compgen -o default -- "$cur") )
+		fi
+		return 0
+	elif [[ -z "$elvis" ]]
 	then
 		case "$cur" in
 			# Global options
