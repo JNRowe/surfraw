@@ -2,7 +2,7 @@
 
 _surfraw ()
 {
-	local cur words=()
+	local cur words=() cword
 	_get_comp_words_by_ref -n = cur words cword
 
 	local i=0
@@ -17,18 +17,13 @@ _surfraw ()
 	done
 	# Determine current elvis
 	local elvis
-	i=0
-	for word in "${words[@]}"
+	i=1
+	# Skip "surfraw" or "sr" at start of command
+	for word in "${words[@]:1}"
 	do
-		# Skip "surfraw" or "sr" at start of command
-		if [[ $i -eq 0 ]]
-		then
-			i="$(( i + 1 ))"
-			continue
-		fi
 		case "$word" in
 			-*) : ignore options ;;
-			*) elvis="$word"; unset words[$i]; break ;;
+			*) elvis="$word"; break ;;
 		esac
 		i="$(( i + 1 ))"
 	done
