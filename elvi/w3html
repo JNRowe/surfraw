@@ -49,6 +49,7 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts usage encoding= encfb doctype= docfb nv showsource showoutline showparsetree excludeatt err
 
 w3_parse_option_hook () {
     opt="$1"

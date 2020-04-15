@@ -20,6 +20,15 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts search=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -search=*) echo title keyword ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

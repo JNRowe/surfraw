@@ -26,6 +26,7 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts html txt json rss votes sort unsort nosort
 
 w3_parse_option_hook () {
     opt="$1"

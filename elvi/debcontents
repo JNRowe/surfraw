@@ -88,6 +88,26 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts a u search= arch= distro=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -search=*) echo files path word ;;
+                -arch=*) echo i386 powerpc amd64 m68k alpha sparc arch hppa ia64 mips mipsel s390 hurd-i386 kfreebsd-amd64 kfreebsd-i386 ;;
+                # The values for -distro= in the help are outdated.
+                -distro=*)
+                        echo stable testing unstable oldstable bo hamm slink potato woody sarge etch
+                        for ubuntu_dist in dapper hardy intrepid jaunty karmic lucid maverick natty
+                        do
+                                echo "$ubuntu_dist"
+                                echo "${ubuntu_dist}-updates"
+                                echo "${ubuntu_dist}-backports"
+                        done
+                        ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

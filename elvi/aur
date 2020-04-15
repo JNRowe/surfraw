@@ -59,6 +59,19 @@ Local options
 EOF
     w3_global_usage
 }
+mkopts category= language= no-https order= orphans outdated results= search= sort=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+		# What are the categories for the AUR?  It seems to have been removed from the web interface.
+		-language=*) echo ca cs de en es fr hr hu it nb_no nb_NO pl pt ro ru sr tr uk zh_cn zh_CN ;;
+		-order=*) echo ascending descending ;;
+		-search=*) echo name maintainer submitter ;;
+		-sort=*) echo name category location votes maintainer age ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

@@ -64,6 +64,17 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts d a results= search=
+mkopts tagrelease= tagnum= tagtrack= taglen= tagfile= tagpuid=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                # "freedb" duplicated in help.  Error?
+                -search=*) echo artist release release_group label annotation barcode catno cdstub discid editor freedb isrc iswc mbid puid recording trmid work tag ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

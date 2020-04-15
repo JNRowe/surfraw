@@ -25,6 +25,7 @@ Examples:
 EOF
     w3_global_usage
 }
+mkopts language=
 
 w3_parse_option_hook () {
     opt="$1"

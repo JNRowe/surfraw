@@ -27,6 +27,15 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts category=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -category=*) echo all artists labels releases catno ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook()
 {
