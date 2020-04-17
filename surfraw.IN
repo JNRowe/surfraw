@@ -391,6 +391,13 @@ w3_complete ()
 	w3_complete_hook_arg "$arg"
 	return 0
 }
+# Properly complete calls like "sr fooelvis -- -notanoption"
+w3_complete_arg ()
+{
+	local arg="$1"
+	w3_complete_hook_arg "$arg"
+	return 0
+}
 
 # Declare options (and valid arguments, TODO)
 # Does not need leading hyphen
@@ -449,6 +456,7 @@ w3_parse_option () {
 	-version)	    echo $surfraw_version; exit 0	    	;;
 	-p | -print)        setoptyn SURFRAW_print  yes     		;;
 	-complete=*)        w3_complete "$optarg"; exit 0               ;;
+	-complete-arg=*)    w3_complete_arg "$optarg"; exit 0           ;;
 	--)		    setoptyn SURFRAW_end_of_args yes 		;;
 	-*)		    w3_bad_option "$opt"		    	;;
 	*)		    return 1					;;
