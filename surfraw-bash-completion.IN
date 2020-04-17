@@ -41,7 +41,13 @@ _surfraw ()
 			COMPREPLY=( $(compgen -W "$elvi" -- "$cur") )
 		else
 			# We want to complete *something* for non-option, non-elvis arguments
-			COMPREPLY=( $(compgen -o default -- "$cur") )
+			local completions="$(surfraw "$elvis" -complete-arg="$cur")"
+			if [[ -z "$(echo "$completions" | tr -d '[:space:]')" ]]
+			then
+				COMPREPLY=( $(compgen -o default -- "$cur") )
+			else
+				COMPREPLY=( $(compgen -W "$completions" -- "$cur") )
+			fi
 		fi
 		return 0
 	elif [[ -z "$elvis" ]]
@@ -76,21 +82,23 @@ _surfraw ()
 		return 0
 	fi
 
-	local completions="$(surfraw "$elvis" -complete="$cur")"
 	case "$cur" in
 		-*=*)
 			# Match argument
 			local arg="$(echo "$cur" | sed 's/[-_a-zA-Z0-9]*=//')"
 			COMPREPLY=(
-				$(compgen -W "$completions" -- "$arg")
+				$(compgen -W "$(surfraw "$elvis" -complete="$cur")" -- "$arg")
 			)
 			;;
 		-*)
 			# Appended spaces after completing options with arguments is annoying
 			compopt -o nospace
-			COMPREPLY=( $(compgen -W "$completions" -- "$cur") )
+			COMPREPLY=(
+				$(compgen -W "$(surfraw "$elvis" -complete="$cur")" -- "$cur")
+			)
 			;;
 		*)
+			local completions="$(surfraw "$elvis" -complete-arg="$cur")"
 			# We want to complete *something* for non-option, non-elvis arguments
 			if [[ -z "$(echo "$completions" | tr -d '[:space:]')" ]]
 			then
