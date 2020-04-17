@@ -87,7 +87,7 @@ Local options:
 EOF
     w3_global_usage
 }
-mkopts release= distro= search= nosub
+mkopts release= distro= search= nosub a u
 w3_complete_hook_opt ()
 {
         local opt="$1"
