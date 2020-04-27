@@ -5,26 +5,19 @@ _surfraw ()
 	local cur words=() cword
 	_get_comp_words_by_ref -n = cur words cword
 
-	local i=0
+	# Determine end of args and current elvis
+	local i=1
 	local end_of_args=no
-	# Determine end of args
-	for word in "${words[@]}"
-	do
-		case "$word" in
-			--) [[ $cword -ge $i ]] && end_of_args=yes ;;
-		esac
-		i="$(( i + 1 ))"
-	done
-	# Determine current elvis
 	local elvis elvis_index
-	i=1
 	# Skip "surfraw" or "sr" at start of command
 	for word in "${words[@]:1}"
 	do
 		case "$word" in
+			--) [[ $cword -ge $i ]] && end_of_args=yes ;;
 			-*) : ignore options ;;
-			*) elvis="$word"; elvis_index="$i"; break ;;
+			*) [[ -z "$elvis" ]] && elvis="$word" elvis_index="$i" ;;
 		esac
+		[[ $end_of_args = yes && -n "$elvis" ]] && break
 		i="$(( i + 1 ))"
 	done
 
