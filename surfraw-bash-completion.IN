@@ -16,14 +16,14 @@ _surfraw ()
 		i="$(( i + 1 ))"
 	done
 	# Determine current elvis
-	local elvis
+	local elvis elvis_index
 	i=1
 	# Skip "surfraw" or "sr" at start of command
 	for word in "${words[@]:1}"
 	do
 		case "$word" in
 			-*) : ignore options ;;
-			*) elvis="$word"; break ;;
+			*) elvis="$word"; elvis_index="$i"; break ;;
 		esac
 		i="$(( i + 1 ))"
 	done
@@ -74,8 +74,8 @@ _surfraw ()
 		return 0
 	fi
 
-	# Is $elvis an existing elvis?
-	if ! echo "$elvis" | grep "$(echo "$elvi" | sed 's/ /\\|/g')" >/dev/null
+	# Complete partial elvis names
+	if [[ $elvis_index -eq $cword ]]
 	then
 		# $elvis == $cur
 		COMPREPLY=( $(compgen -W "$elvi" -- "$cur") )
