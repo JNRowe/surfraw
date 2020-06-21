@@ -29,8 +29,9 @@ _surfraw ()
 	if [[ $end_of_args = yes ]]
 	then
 		# Surfraw accepts the elvis name after the "--" argument
-		if [[ -z "$elvis" ]]
+		if [[ -z "$elvis" || $elvis_index -eq $cword ]]
 		then
+			# Complete empty or partial elvis names
 			COMPREPLY=( $(compgen -W "$elvi" -- "$cur") )
 		else
 			# We want to complete *something* for non-option, non-elvis arguments
