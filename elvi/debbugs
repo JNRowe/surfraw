@@ -98,7 +98,7 @@ Local options:
 EOF
     w3_global_usage
 }
-mkopts search= version= dist=
+mkopts search= version= dist= user=
 mkopts arc raw rb rst rse merge nohead nofoot mbox sh
 mkopts incstat= exstat= incsev= exsev= inctag= extag=
 w3_complete_hook_opt ()
