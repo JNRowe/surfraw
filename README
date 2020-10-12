@@ -99,7 +99,7 @@ LOCAL ELVI
 
 BOOKMARKS
 
-  Surfraw now supports bookmarks. To add a bookmark, add it to to the
+  Surfraw now supports bookmarks. To add a bookmark, add it to the
   global bookmark list in /etc/xdg/surfraw/bookmarks or to your
   personal bookmark list in $HOME/.config/surfraw/bookmarks
 
