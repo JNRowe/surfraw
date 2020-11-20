@@ -114,6 +114,7 @@ dist_elvi_SCRIPTS	= \
 		  wolfram \
 		  worldwidescience \
 		  yahoo \
+		  yahoofinance \
 		  yandex \
 		  youtube
 
