@@ -30,7 +30,6 @@ Local options:
                  fr         |   France
                  hk         |   Hong Kong
                  ie         |   Ireland
-                 in         |   India
 		 kr         |   Korea
 		 my         |   Malaysia
 		 mx         |   Mexico
@@ -73,50 +72,79 @@ w3_parse_args "$@"
 case "$SURFRAW_ebay_country" in
     com|ar|at|be|br|ca|ch|\
      de|es|fr|fr_BE|\
-     nl_BE|ie|in|kr|\
+     nl_BE|ie|kr|\
      mx|nl|ph|pl) TLD="${SURFRAW_ebay_country}"       ;;
-    uk|nz)        TLD="co.${SURFRAW_ebay_country}"    ;;
+    uk)        TLD="co.uk"    ;;
     au|hk|sg|my)  TLD="com.${SURFRAW_ebay_country}"   ;;
-    cn|zh|zt)     TLD="com.cn"                        ;;
-    # tw uses hk for searches
-    tw)           TLD="com.hk"                        ;;
+    cn|zh|zt)     TLD="cn"                        ;;
+    # nz uses ebay.com, presumably using referrer to tell it is .nz
+    # we can't affect referrer without getting browser-specific, so
+    # just use ebay.com
     *)            TLD="com"                           ;;
 esac
 
+mainsite_search="/sch/i.html?"
+case "$SURFRAW_ebay_country" in
+	br)	base_url="www.mercadolivre.com.br"
+		search_url="lista.mercadolivre.com.br/"
+		;;
+	ar|mx)	base_url="www.mercadolibre.com.${TLD}"
+		search_url="listado.mercadolibre.com.${TLD}/"
+		;;
+	# Flemish and French Belgium search the same way as most other Ebay sites, but with a differently patterned base URL.
+	fr_BE)	base_url="www.befr.ebay.be"
+		search_url="${base_url}${mainsite_search}"
+		;;
+	nl_BE)	base_url="www.benl.ebay.be"
+		search_url="${base_url}${mainsite_search}"
+		;;
+	cn|zh|zt)
+		base_url="www.ebay.${TLD}"
+		# FIXME: I can't read Chinese characters, so someone else can fix this if it doesn't work.
+		search_url="${base_url}/newcms/search?"
+		# The old version:
+		#search_url="http://search.eachnet.com/search/basicsearch.do?satitle=${escaped_args}&sacat=0"
+		;;
+	kr)	base_url="www.auction.co.kr"
+		search_url="browse.auction.co.kr/search?"
+		;;
+	se)	base_url="www.tradera.com"
+		search_url="${base_url}/search?"
+		;;
+	tw)	base_url="twexport.ebay.com"
+		# This is done by POST...
+		# TODO: Find a way to search on the Taiwan Ebay.  Use Hong Kong for now.
+		search_url="www.ebay.com.hk${mainsite_search}"
+		;;
+	*)	base_url="www.ebay.${TLD}"
+		search_url="${base_url}${mainsite_search}"
+		;;
+esac
+
 if null "$w3_args"; then
-    case "$SURFRAW_ebay_country" in
-	br)       url="http://www.mercadolivre.com.${TLD}" ;;
-	ar|mx)    url="http://www.mercadolibre.com.${TLD}" ;;
-	kr)       url="http://www.auction.co.kr"           ;;
-	fr_BE)    url="http://www.befr.ebay.be"            ;;
-	nl_BE)    url="http://www.benl.ebay.be"            ;;
-	se|sv)    url="http://www.tradera.com"             ;;
-	tw)       url="http://twexport.ebay.com"           ;;
-	*)        url="https://www.ebay.${TLD}"             ;;
-    esac
-    w3_browse_url "$url"
+	url="$base_url"
 else
-    if [ "$SURFRAW_ebay_country" = "nz" ] ; then
-        # nz uses ebay.com, presumably using referrer to tell it is .nz
-	# we can't affect referrer without getting browser-specific, so
-	# just use ebay.com
-	TLD=com
-    fi
+	escaped_args=$(w3_url_of_arg $w3_args)
 
-    escaped_args=$(w3_url_of_arg $w3_args)
-    host="http://ebay.${TLD}"
-    pathstart="search/search.dll?MfcISAPICommand=GetResult&krd=1&ht=1&shortcut=4&SoftProperty=MetaEndSort&cgiurl=http%3A%2F%2Fcgi"
-    pathend="%2Fws%2F&maxRecordsPerPage=$SURFRAW_ebay_results&st=2&ebaytag1code=77&query=${escaped_args}"
-
-    case "$SURFRAW_ebay_country" in
-	cn|zh|zt) url="http://search.eachnet.com/search/basicsearch.do?satitle=${escaped_args}&sacat=0"  ;;
-	br)       url="http://www.mercadolivre.com.${TLD}/jm/search?as_pr_categ_id=&as_word=${escaped_args}" ;;
-	ar|mx)       url="http://www.mercadolibre.com.${TLD}/jm/search?as_pr_categ_id=&as_word=${escaped_args}" ;;
-	kr)       url="http://search.auction.co.kr/search/search.aspx?keyword=${escaped_args}&itemno=&seller=&dom=auction&isSuggestion=No&optSection=%C5%EB%C7%D5%B0%CB%BB%F6&txtKeyword=${escaped_args}&x=0&y=0" ;;
-	se|sv)    url="http://www.tradera.com/search/search_firstpage.aspx?search=${escaped_args}&search_category=-1" ;;
-	nl_BE)    url="http://search.benl.ebay.be/${pathstart}.benl.ebay.be${pathend}" ;;
-	be|fr_BE) url="http://search.befr.ebay.be/${pathstart}.befr.ebay.be${pathend}" ;;
-	*)        url="${host}/${pathstart}.ebay.${TLD}${pathend}"  ;;
-    esac
-    w3_browse_url "${url}"
+	case "$SURFRAW_ebay_country" in
+		# Brazil, Argentina, and Mexico searches replace spaces with hyphens ("-") rather than "%20" or "+".
+		br|ar|mx)
+			query="$(echo "$escaped_args" | sed 's/%20\|+/-/g')" ;;
+		cn|zh|zt)
+			query="q=${escaped_args}&catid=0" ;;
+		kr)	query="keyword=${escaped_args}" ;;
+		se)	query="q=${escaped_args}" ;;
+		# `_sacat=0` appears to be the "All Categories" option.
+		*)	query="_nkw=${escaped_args}&_ipg=${SURFRAW_ebay_results}&_sacat=0" ;;
+	esac
+	# Avoid redundant prefixes.
+	url="${search_url}${query}"
 fi
+
+case "$SURFRAW_ebay_country" in
+	# Why?  In 2021?
+	# FYI, using HTTPS times me out.
+	kr)	url="http://$url" ;;
+	*)	url="https://$url" ;;
+esac
+w3_browse_url "$url"
