@@ -39,29 +39,59 @@ unless (eval {
 	exit 3;
 }
 
+# If no protocol, try HTTPS, then HTTP if the first one fails.
 my $urlstr=shift;
-unless($urlstr=~/^http\:\/\//i)
-{
-	$urlstr="http://".$urlstr;
-}
-
-$url=URI->new($urlstr);
-
 my $ua=LWP::UserAgent->new;
-
-# FIXME: utf8 problem with weblabor.hu on next line
-# looks like a LWP::UserAgent problem, reported
-# as a comment to existing debian bug #296832
-# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=296832
-my $response=$ua->get("$url");
-
-unless($response->is_success)
+my ($url, $response);
+unless($urlstr=~/^https\:\/\//i || $urlstr=~/^http\:\/\//i)
 {
 	unless($quiet)
 	{
-		print STDERR "$me: Error retriving $url: ",$response->status_line,"\n";
+		print STDERR "$me: No protocol in URL, trying HTTPS and then HTTP\n";
 	}
-	exit 1;
+	my @testurls=("https://".$urlstr, "http://".$urlstr);
+	for (@testurls)
+	{
+		$url=URI->new($_);
+		# FIXME: utf8 problem with weblabor.hu on next line
+		# looks like a LWP::UserAgent problem, reported
+		# as a comment to existing debian bug #296832
+		# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=296832
+		$response=$ua->get("$url");
+		unless($response->is_success)
+		{
+			unless($quiet)
+			{
+				print STDERR "$me: Error retrieving $url: ",$response->status_line,"\n";
+			}
+		}
+		else
+		{
+			last
+		}
+	}
+	unless($response->is_success)
+	{
+		exit 1;
+	}
+
+}
+else
+{
+	$url=URI->new($urlstr);
+	# FIXME: utf8 problem with weblabor.hu on next line
+	# looks like a LWP::UserAgent problem, reported
+	# as a comment to existing debian bug #296832
+	# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=296832
+	$response=$ua->get("$url");
+	unless($response->is_success)
+	{
+		unless($quiet)
+		{
+			print STDERR "$me: Error retrieving $url: ",$response->status_line,"\n";
+		}
+		exit 1;
+	}
 }
 
 my $parser=HTML::Parser->new(api_version => 3,
