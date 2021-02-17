@@ -455,7 +455,9 @@ w3_parse_option () {
 			    setoptyn SURFRAW_graphical 		no	;;
 	-version)	    echo $surfraw_version; exit 0	    	;;
 	-p | -print)        setoptyn SURFRAW_print  yes     		;;
+	--complete=* | \
 	-complete=*)        w3_complete "$optarg"; exit 0               ;;
+	--complete-arg=* | \
 	-complete-arg=*)    w3_complete_arg "$optarg"; exit 0           ;;
 	--)		    setoptyn SURFRAW_end_of_args yes 		;;
 	-*)		    w3_bad_option "$opt"		    	;;
