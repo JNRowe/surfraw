@@ -43,7 +43,7 @@ unless (eval {
 my $urlstr=shift;
 my $ua=LWP::UserAgent->new;
 my ($url, $response);
-unless($urlstr=~/^https\:\/\//i || $urlstr=~/^http\:\/\//i)
+unless($urlstr=~/^https?\:\/\//i)
 {
 	unless($quiet)
 	{

@@ -53,7 +53,7 @@ my $url=shift;
 my $searchterms=join(' ',@ARGV);
 
 my $engine;
-unless($url=~/^https\:\/\//i || $url=~/^http\:\/\//i)
+unless($url=~/^https?\:\/\//i)
 {
 	unless($quiet)
 	{
