@@ -55,10 +55,7 @@ my $searchterms=join(' ',@ARGV);
 my $engine;
 unless($url=~/^https?\:\/\//i)
 {
-	unless($quiet)
-	{
-		print STDERR "$me: No protocol in URL, trying HTTPS and then HTTP\n";
-	}
+	print STDERR "$me: No protocol in URL, trying HTTPS and then HTTP\n" unless $quiet;
 	my @testurls=("https://".$url, "http://".$url);
 	for my $curr_url (@testurls)
 	{
@@ -94,14 +91,8 @@ sub check_engine
 		$exitcode=5;
 	}
 
-	unless($quiet)
-	{
-		print STDERR "$me: $errstr\n";
-	}
-	if($do_exit)
-	{
-		exit $exitcode;
-	}
+	print STDERR "$me: $errstr\n" unless $quiet;
+	exit $exitcode if $do_exit;
 }
 
 my $desc=$engine->description();

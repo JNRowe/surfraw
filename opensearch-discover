@@ -45,10 +45,7 @@ my $ua=LWP::UserAgent->new;
 my ($url, $response);
 unless($urlstr=~/^https?\:\/\//i)
 {
-	unless($quiet)
-	{
-		print STDERR "$me: No protocol in URL, trying HTTPS and then HTTP\n";
-	}
+	print STDERR "$me: No protocol in URL, trying HTTPS and then HTTP\n" unless $quiet;
 	my @testurls=("https://".$urlstr, "http://".$urlstr);
 	for (@testurls)
 	{
@@ -60,20 +57,14 @@ unless($urlstr=~/^https?\:\/\//i)
 		$response=$ua->get("$url");
 		unless($response->is_success)
 		{
-			unless($quiet)
-			{
-				print STDERR "$me: Error retrieving $url: ",$response->status_line,"\n";
-			}
+			print STDERR "$me: Error retrieving $url: ",$response->status_line,"\n" unless $quiet;
 		}
 		else
 		{
-			last
+			last;
 		}
 	}
-	unless($response->is_success)
-	{
-		exit 1;
-	}
+	exit 1 if not $response->is_success;
 
 }
 else
@@ -86,10 +77,7 @@ else
 	$response=$ua->get("$url");
 	unless($response->is_success)
 	{
-		unless($quiet)
-		{
-			print STDERR "$me: Error retrieving $url: ",$response->status_line,"\n";
-		}
+		print STDERR "$me: Error retrieving $url: ",$response->status_line,"\n" unless $quiet;
 		exit 1;
 	}
 }
