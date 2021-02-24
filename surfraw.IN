@@ -78,17 +78,39 @@ find_local_conf () {
     fi
 }
 
-load_local_conf () {
-    local conf
-    conf=""
-    if test -n "$SURFRAW_conf" && test -r "$SURFRAW_conf"; then
-	conf="$SURFRAW_conf"
-    else
-	conf="$(find_local_conf conf)"
-    fi
-    if test -n "$conf" && test -r "$conf"; then
-	. $conf
-    fi
+load_local_conf ()
+{
+	local conf="$1"
+	# Ignore invalid values of `SURFRAW_conf`.
+	# Check for `SURFRAW_conf` again in case using old config hierarchy
+	# and `SURFRAW_conf` set by global config.
+	if [ -n "$SURFRAW_conf" ] && [ -r "$SURFRAW_conf" ]
+	then
+		. "$SURFRAW_conf"
+		return
+	fi
+	if [ -n "$conf" ] && [ -r "$conf" ]
+	then
+		. "$conf"
+	fi
+}
+
+get_local_conf ()
+{
+	# Ignore invalid values of `SURFRAW_conf`.
+	if [ -n "$SURFRAW_conf" ] && [ -r "$SURFRAW_conf" ]
+	then
+		echo "$SURFRAW_conf"
+	else
+		local newstyle_config="$(find_local_conf config)"
+		local oldstyle_config="$(find_local_conf conf)"
+		if [ -n "$newstyle_config" ]
+		then
+			echo "$newstyle_config"
+		else
+			echo "$oldstyle_config"
+		fi
+	fi
 }
 
 get_local_elvi_dir () {
@@ -99,10 +121,33 @@ get_local_elvi_dir () {
     fi
 }
 
-w3_config () {
-    load_global_conf
-    w3_config_hook
-    load_local_conf
+w3_config ()
+{
+	local local_conf="$(get_local_conf)"
+	case "$(basename "$local_conf" | sed 's/^\.surfraw\.//')" in
+		# Old-style config precedence:
+		#   1. local
+		#   2. elvis
+		#   3. global
+		# Local config files override environment variables unconditionally (usually).
+		conf)
+			load_global_conf
+			w3_config_hook
+			load_local_conf "$local_conf"
+			;;
+		# New-style config precedence:
+		#   0. pre-existing environment variables
+		#   1. local
+		#   2. elvis
+		#   3. global
+		# The `def*` family of functions should be used in local config.
+		config)
+			load_local_conf "$local_conf"
+			w3_config_hook
+			load_global_conf
+			;;
+		# TODO: What to do if overridden by `SURFRAW_conf`?
+	esac
 }
 
 warn () {
