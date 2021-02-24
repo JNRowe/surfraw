@@ -40,14 +40,6 @@ GetOptions("quiet"              => \$quiet,
 
 if ($help || ($#ARGV<1)) { usage(); }
 
-my $url=shift;
-my $searchterms=join(' ',@ARGV);
-
-unless($url=~/^http\:\/\//i)
-{
-	$url="http://".$url;
-}
-
 unless (eval { require WWW::OpenSearch; })
 {
 	unless($quiet)
@@ -57,10 +49,28 @@ unless (eval { require WWW::OpenSearch; })
 	exit 4;
 }
 
+my $url=shift;
+my $searchterms=join(' ',@ARGV);
+
 my $engine;
-eval { $engine=WWW::OpenSearch->new($url); };
-if($@)
+unless($url=~/^https?\:\/\//i)
 {
+	print STDERR "$me: No protocol in URL, trying HTTPS and then HTTP\n" unless $quiet;
+	my @testurls=("https://".$url, "http://".$url);
+	for my $curr_url (@testurls)
+	{
+		eval { $engine=WWW::OpenSearch->new($curr_url); };
+		check_engine($curr_url, $curr_url eq $testurls[1]) if $@;
+	}
+}
+else
+{
+	eval { $engine=WWW::OpenSearch->new($url); };
+	check_engine($url, 1) if $@;
+}
+sub check_engine
+{
+	my ($url, $do_exit)=@_;
 	my $errstr="";
 	my $exitcode=0;
 	if($@ =~/fetching/i)
@@ -80,11 +90,9 @@ if($@)
 		$errstr=$@;
 		$exitcode=5;
 	}
-	unless($quiet)
-	{
-		print STDERR "$me: $errstr\n";
-	}
-	exit $exitcode;
+
+	print STDERR "$me: $errstr\n" unless $quiet;
+	exit $exitcode if $do_exit;
 }
 
 my $desc=$engine->description();
