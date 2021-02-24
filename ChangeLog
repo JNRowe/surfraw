@@ -1,7 +1,3 @@
-2020-12-23  Sascha <GlancingMind@outlook.com>
-
-	* Fix - test: too many arguments
-
 2021-02-24  Gabriel Lisaca <gabriel.lisaca@gmail.com>
 
 	* opensearch-discover, opensearch-genquery: support HTTPS: tries
@@ -14,6 +10,10 @@
 
 	Support for the Indian eBay site was removed because it redirects to
 	https://sellglobal.ebay.in/seller-central/seller-benefits/
+
+2020-12-23  Sascha <GlancingMind@outlook.com>
+
+	* Fix - test: too many arguments
 
 2020-08-15  Dmitry Bogatov <KAction@debian.org>
 
