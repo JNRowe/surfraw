@@ -385,7 +385,11 @@ w3_complete ()
 	w3_complete_hook_opt_global "$arg" && return 0
 	case "$arg" in
 		# Complete options
-		-*) echo "$SURFRAW__complete_flags $SURFRAW__complete_options"; return 0 ;;
+		-*)
+			# Remove ' ' "options"
+			echo "$SURFRAW__complete_flags $SURFRAW__complete_options" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' | tr -s '[:space:]'
+			return 0
+			;;
 	esac
 
 	w3_complete_hook_arg "$arg"
