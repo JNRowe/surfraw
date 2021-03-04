@@ -362,6 +362,7 @@ w3_complete_hook_opt_global ()
 }
 # Allowed to use a plain '*' in case statements
 # Called before declared-options completions
+# These must print newline-delimited completion alternatives (if any are defined for the argument)
 w3_complete_hook_arg_default ()
 {
 	local arg="$1"

@@ -92,13 +92,15 @@ _surfraw ()
 			)
 			;;
 		*)
-			local completions="$(surfraw "$elvis" --complete-arg="$cur")"
+			local completions; declare -a completions
+			mapfile -t completions < <(surfraw "$elvis" --complete-arg="$cur")
 			# We want to complete *something* for non-option, non-elvis arguments
-			if [[ -z "$(echo "$completions" | tr -d '[:space:]')" ]]
+			if [[ "${#completions[@]}" -eq 0 ]]
 			then
 				COMPREPLY=( $(compgen -o default -- "$cur") )
 			else
-				COMPREPLY=( $(compgen -W "$completions" -- "$cur") )
+				# Quote if needed: https://stackoverflow.com/a/40944195
+				mapfile -t COMPREPLY < <(compgen -W "$(printf '%q ' "${completions[@]}")" -- "$cur" | awk '/[[:space:]]/ { print "\"" $0 "\""; next } { print $0 }')
 			fi
 			;;
 
