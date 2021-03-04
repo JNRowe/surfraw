@@ -383,7 +383,14 @@ w3_complete ()
 
 	w3_complete_hook_opt "$arg" && return 0
 	w3_complete_hook_opt_global "$arg" && return 0
+	# At this point, `arg` is either:
+	#   1. an option that takes an argument BUT doesn't define completions for it;
+	#   2. a flag;
+	#   3. an incomplete option name; or
+	#   4. a non-option argument.
 	case "$arg" in
+		# Avoid completing options that don't define completions for the optarg
+		-*=*) return 0 ;;
 		# Complete options
 		-*)
 			# Remove ' ' "options"
