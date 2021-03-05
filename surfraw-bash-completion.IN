@@ -32,6 +32,14 @@ __surfraw_complete_optarg ()
 	)
 }
 
+__surfraw_get_elvi ()
+(
+	source surfraw
+	cd "$(get_local_elvi_dir)" 2>/dev/null && echo *
+	cd "$elvidir" 2>/dev/null && echo *
+	cut -f1 "$(find_local_conf bookmarks)" "$(find_global_conf bookmarks)" 2>/dev/null
+)
+
 _surfraw ()
 {
 	local cur words=() cword
@@ -53,49 +61,30 @@ _surfraw ()
 		i="$(( i + 1 ))"
 	done
 
-	local elvi="$(source surfraw
-		cd "$(get_local_elvi_dir)" 2>/dev/null && echo *
-		cd "$elvidir" 2>/dev/null && echo *
-		cut -f1 "$(find_local_conf bookmarks)" "$(find_global_conf bookmarks)" 2>/dev/null)"
-
-	if [[ $end_of_args = yes ]]
+	if [[ $elvis_index -eq $cword ]]  # complete partial elvis names
 	then
-		# Surfraw accepts the elvis name after the "--" argument
-		if [[ -z "$elvis" || $elvis_index -eq $cword ]]
-		then
-			# Complete empty or partial elvis names
-			COMPREPLY=( $(compgen -W "$elvi" -- "$cur") )
-		else
-			__surfraw_complete_arg "$elvis" "$cur"
-		fi
-		return 0
-	elif [[ -z "$elvis" ]]
+		# $elvis == $cur
+		COMPREPLY=( $(compgen -W "$(__surfraw_get_elvi)" -- "$cur") )
+	elif [[ -z "$elvis" ]]  # complete global options or elvis names
 	then
 		case "$cur" in
 			# Global options
 			-*=*) __surfraw_complete_optarg '' "$cur" ;;
 			-*) __surfraw_complete_optname '' "$cur" ;;
-			# Match elvi
-			*) COMPREPLY=( $(compgen -W "$elvi" -- "$cur") ) ;;
+			# Match empty elvis names (the partial name branch would have been executed if this *wasn't* empty)
+			# Regardless, surfraw accepts the elvis name after the "--" argument
+			'') COMPREPLY=( $(compgen -W "$(__surfraw_get_elvi)") ) ;;
 		esac
-		return 0
-	fi
-
-	# Complete partial elvis names
-	if [[ $elvis_index -eq $cword ]]
+	elif [[ $end_of_args = yes ]]  # elvis is defined, so it's safe to complete args
 	then
-		# $elvis == $cur
-		COMPREPLY=( $(compgen -W "$elvi" -- "$cur") )
-		return 0
+		__surfraw_complete_arg "$elvis" "$cur"
+	else  # now, complete elvi-specific options and arguments
+		case "$cur" in
+			-*=*) __surfraw_complete_optarg "$elvis" "$cur" ;;
+			-*) __surfraw_complete_optname "$elvis" "$cur" ;;
+			*) __surfraw_complete_arg "$elvis" "$cur" ;;
+		esac
 	fi
-
-	case "$cur" in
-		-*=*) __surfraw_complete_optarg "$elvis" "$cur" ;;
-		-*) __surfraw_complete_optname "$elvis" "$cur" ;;
-		*) __surfraw_complete_arg "$elvis" "$cur" ;;
-
-	esac
-	return 0
 }
 # test first in case removed-but-unpurged
 type -p surfraw >/dev/null 2>&1 && complete -F _surfraw surfraw sr
