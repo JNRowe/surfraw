@@ -4,7 +4,7 @@ __surfraw_validate_elvis_exists ()
 {
 	# Allow global surfraw completions
 	[[ -z "$1" ]] && return 0
-	grep -F "$(__surfraw_get_elvi | tr ' ' '\n' | tr -s '\n')" <<< "$1"
+	grep -F "$(__surfraw_get_elvi | tr ' ' '\n' | tr -s '\n')" <<< "$1" &>/dev/null
 }
 
 __surfraw_complete_arg ()
