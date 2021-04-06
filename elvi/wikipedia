@@ -46,8 +46,7 @@ if [ -z "$SURFRAW_wikipedia_language" ]; then
     SURFRAW_wikipedia_language="en"
 fi
 
-prefix="https://${SURFRAW_wikipedia_language}.wikipedia.org/wiki/index.php?search="
-suffix="&go=Go"
+prefix="https://${SURFRAW_wikipedia_language}.wikipedia.org/w/index.php?search="
 
 if null "$w3_args"; then
 	w3_browse_url "https://${SURFRAW_wikipedia_language}.wikipedia.org/wiki/Main_Page"
