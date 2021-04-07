@@ -1,6 +1,46 @@
+2021-02-24  Gabriel Lisaca <gabriel.lisaca@gmail.com>
+
+	* opensearch-discover, opensearch-genquery: support HTTPS: tries
+	HTTPS and then HTTP if no URL scheme in input
+	* etym: update for HTTPS
+
+2021-02-16  Gabriel Lisaca <gabriel.lisaca@gmail.com>
+
+	* ebay: update URLS
+
+	Support for the Indian eBay site was removed because it redirects to
+	https://sellglobal.ebay.in/seller-central/seller-benefits/
+
 2020-12-23  Sascha <GlancingMind@outlook.com>
 
 	* Fix - test: too many arguments
+
+2020-08-15  Dmitry Bogatov <KAction@debian.org>
+
+	* debbugs: add support for usertags search
+
+2020-03-08  Gabriel Lisaca <gabriel.lisaca@gmail.com>
+
+	* Use datadir and `sr` when installing bash completions: allows
+	completions to be loaded on demand
+	* Re-allow bash completions to be installed when building from source
+
+2019-12-31  Gabriel Lisaca <gabriel.lisaca@gmail.com>
+
+	* Uniformly handle options before and after elvis determined: surfraw
+	-version now works the same as surfraw elvis -version
+
+2019-12-14  Gabriel Lisaca <gabriel.lisaca@gmail.com>
+
+	* Bash-complete local and global bookmarks: surfraw and completions
+	now agree on what counts as bookmarks
+	* Allow spaces in second arg of {setopt,def}{yn,}: allows elvi to have
+	option-arguments with embedded spaces
+
+2019-09-20  Gabriel Lisaca <gabriel.lisaca@gmail.com>
+
+	* Bash-complete local elvi names: uses surfraw to get elvi names for
+	consistency
 
 2018-10-09  Dmitry Bogatov <KAction@gnu.org>
 
