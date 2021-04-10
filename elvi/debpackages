@@ -108,6 +108,10 @@ w3_complete_hook_opt ()
                 *) return 1 ;;
         esac
 }
+w3_complete_hook_arg ()
+{
+	w3_complete_packages "$@" || w3_complete_hook_arg_default "$@"
+}
 
 w3_parse_option_hook () {
     opt="$1"
