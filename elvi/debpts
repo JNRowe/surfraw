@@ -20,6 +20,10 @@ EOF
     w3_global_usage
 }
 mkopts doc
+w3_complete_hook_arg ()
+{
+	w3_complete_packages "$@" || w3_complete_hook_arg_default "$@"
+}
 
 w3_parse_option_hook () {
     opt="$1"
