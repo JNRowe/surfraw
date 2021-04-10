@@ -343,6 +343,17 @@ w3_complete_hook_opt ()
 {
 	return 1
 }
+# Provide package-name completions
+# TODO: add more distro package managers
+w3_complete_packages ()
+{
+	if command -v apt-cache >/dev/null 2>&1
+	then
+		apt-cache --generate pkgnames "$1"
+	else
+		return 1
+	fi
+}
 # Completions for main surfraw script
 w3_complete_hook_opt_global ()
 {
