@@ -68,7 +68,7 @@ w3_parse_option_hook () {
     -sa*=*)     setopt   SURFRAW_google_safe    "$optarg" ;;
     -s*=*)      setopt   SURFRAW_google_search  "$optarg" ;;
     -l|-lu*)    setoptyn SURFRAW_google_lucky   1         ;;
-    -country=*) 	setopt	 SURFRAW_google_country "$optarg" ;;
+    -c=*|-country=*) 	setopt	 SURFRAW_google_country "$optarg" ;;
     -i*)        setopt   SURFRAW_google_search  images    ;;
     -v*)        setopt   SURFRAW_google_search  videos    ;;
     -m*)        setopt   SURFRAW_google_search  maps      ;;
