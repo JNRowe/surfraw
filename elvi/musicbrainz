@@ -41,7 +41,7 @@ Local options:
           discid        |       Disc ID
           editor        |       Editor
           freedb        |       FreeDB
-          freedb        |       FreeDB ID
+          freedbid      |       FreeDB ID
           isrc          |       ISRC
           iswc          |       ISWC
           mbid          |       MBID
@@ -70,8 +70,7 @@ w3_complete_hook_opt ()
 {
         local opt="$1"
         case "$opt" in
-                # "freedb" duplicated in help.  Error?
-                -search=*) echo artist release release_group label annotation barcode catno cdstub discid editor freedb isrc iswc mbid puid recording trmid work tag ;;
+                -search=*) echo artist release release_group label annotation barcode catno cdstub discid editor freedb freedbid isrc iswc mbid puid recording trmid work tag ;;
                 *) return 1 ;;
         esac
 }
