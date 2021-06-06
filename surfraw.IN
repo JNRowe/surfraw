@@ -350,6 +350,19 @@ w3_complete_packages ()
 	if command -v apt-cache >/dev/null 2>&1
 	then
 		apt-cache --generate pkgnames "$1"
+	elif command -v pacman >/dev/null 2>&1
+	then
+		# Do prefix searches like the others.
+		# TODO: prevent accidental regex searching by users.
+		#        How often is this likely to occur though?
+		pacman -Qqs "^$1"
+	elif command -v yum >/dev/null 2>&1
+	then
+		# Get plain name excluding arch (to match the others)--assuming names have no dots.
+		yum list all "${1}*" | cut -d . -f 1
+	elif command -v fink >/dev/null 2>&1
+	then
+		fink list "${1}*" | cut -f 2
 	else
 		return 1
 	fi
