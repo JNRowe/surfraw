@@ -88,12 +88,17 @@ Local options:
   -inctag=tag1,tag2             Include given tags.
   -extag=tag3,tag4              Exclude given tags.
                                 Available tags:
-                                 potato, woody, sarge, sarge-ignore,
-				 etch, etch-ignore, sid, experimental,
-				 confirmed, d-i, fixed, fixed-in-experimental,
-				 fixed-upstream, help, l10n, moreinfo, patch,
-				 pending, security, unreproducible, upstream,
-				 wontfix, ipv6, lfs
+                                 patch, wontfix, moreinfo, unreproducible,
+                                 help, security, upstream, pending, confirmed,
+                                 ipv6, lfs, d-i, l10n, newcomer, a11y, ftbfs,
+                                 fixed-upstream, fixed, fixed-in-experimental,
+                                 potato, woody, sarge, etch, lenny, squeeze,
+                                 wheezy, jessie, stretch, buster, bullseye,
+                                 bookworm, trixie, sid, experimental,
+                                 sarge-ignore, etch-ignore, lenny-ignore,
+                                 squeeze-ignore, wheezy-ignore, jessie-ignore,
+                                 stretch-ignore, buster-ignore, bullseye-ignore,
+                                 bookworm-ignore, trixie-ignore
 EOF
     w3_global_usage
 }
@@ -109,7 +114,7 @@ w3_complete_hook_opt ()
                 # At most one csv-like value can be completed at once.
                 -incstat=*|-exstat=*) echo open forwarded pending fixed done ;;
                 -incsev=*|-exsev=*) echo critical grave serious important normal minor wishlist fixed ;;
-                -inctag=*|-extag=*) echo potato woody sarge sarge-ignore etch etch-ignore sid experimental confirmed d-i fixed fixed-in-experimental fixed-upstream help l10n moreinfo patch pending security unreproducible upstream wontfix ipv6 lfs ;;
+                -inctag=*|-extag=*) echo patch wontfix moreinfo unreproducible help security upstream pending confirmed ipv6 lfs d-i l10n newcomer a11y ftbfs fixed-upstream fixed fixed-in-experimental potato woody sarge etch lenny squeeze wheezy jessie stretch buster bullseye bookworm trixie sid experimental sarge-ignore etch-ignore lenny-ignore squeeze-ignore wheezy-ignore jessie-ignore stretch-ignore buster-ignore bullseye-ignore bookworm-ignore trixie-ignore ;;
                 *) return 1 ;;
         esac
 }
