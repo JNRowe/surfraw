@@ -10,6 +10,22 @@ Description:
 EOF
     w3_global_usage
 }
+w3_complete_hook_arg ()
+{
+	# If the control files are within reach, it's likely that we want them
+	local dir="${1:-.}"
+	if [ -n "$(find "$(dirname "$dir")" -maxdepth 2 \( -name '*.dsc' -o -name 'control' \) -print -quit)" ]
+	then
+		# Don't want to modify the bash completion script, so here we are.
+		# These should stay elvis-specific.
+		case "$1" in
+			./*|.) find "$(dirname "$dir")" -maxdepth 2 \( -name '*.dsc' -o -name 'control' \) ;;
+			*) find "$(dirname "$dir")" -maxdepth 2 \( -name '*.dsc' -o -name 'control' \) | sed 's,^\./,,' ;;
+		esac
+	else
+		w3_complete_packages "$@" || w3_complete_hook_arg_default "$@"
+	fi
+}
 
 extract_home_page ()
 {
