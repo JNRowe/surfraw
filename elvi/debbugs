@@ -51,8 +51,7 @@ Local options:
            tag          |
            submitter    |
            severity     |
-           tag          |
-           usertag
+           usertag      |
   -s                            Alias for -search=src
   -user=EMAIL                   User for usertag search, defaults to value
                                 of \$DEBEMAIL environment. Ignored if
@@ -105,7 +104,6 @@ w3_complete_hook_opt ()
 {
         local opt="$1"
         case "$opt" in
-                # "tag" is duplicated in help.  Error?
                 -search=*) echo pkg src bug maint tag submitter severity usertag ;;
                 -dist=*) echo oldstable stable proposed-updates testing unstable experimental testing-proposed-updates ;;
                 # At most one csv-like value can be completed at once.
