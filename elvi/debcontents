@@ -88,7 +88,7 @@ Local options:
 EOF
     w3_global_usage
 }
-mkopts search= arch= distro=
+mkopts a u search= arch= distro=
 w3_complete_hook_opt ()
 {
         local opt="$1"
