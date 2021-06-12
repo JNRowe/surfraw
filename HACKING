@@ -61,6 +61,44 @@ Or... How to Eat The CHEESE
     of this function and follow the surfraw usage style
     least you be marked a quiche eater.
 
+5.5)Surfraw now supports elvis-specific tab-completions, eg:
+        sr debpackages -<TAB>
+        sr debpackages -release=<TAB>
+        sr debpackages <TAB>
+    can all be defined by an elvis.
+
+    Use mkopts() to provide option name completions, eg:
+        mkopts optwitharg= optwithoutarg
+    usually after the definition of w3_usage_hook().
+
+    Optionally define w3_complete_hook_opt() for option argument completions.
+    Arguments: $1 - current option being completed.
+    Output: the possible values of $1, separated by whitespace.
+    Return value: 0 if the option exists and has completions, 1 otherwise.
+      Completes global options as a fallback.
+    Default: do nothing, just complete global options.
+
+    Optionally define w3_complete_hook_arg() for elvis argument completions.
+    Arguments: $1 - current argument being completed.
+    Output: the possible values of $1, separated by *newline* characters.
+      Note the difference between the separators of this function and
+      w3_complete_hook_opt().
+      You can use external programs, so be sure to guard it with:
+          if command -v PROGRAM >/dev/null 2>&1
+          then
+              # your code
+          else
+              return 1
+          fi
+      Inside this function, you can also use:
+          w3_complete_packages "$1"
+      to complete package names using your distro's package manager.
+    Return value: 0 if the argument can be completed, 1 otherwise.
+    Default: uses look to match the argument with the system dictionary.
+
+    You can look at w3_complete_hook_opt_global() and
+    w3_complete_hook_arg_default(), as well as other elvi for examples.
+
 6)  Next define w3_parse_option_hook(). This is called at w3_config()
     time, and takes two arguments. The first is the current
     option being examined, the second is only present if the
