@@ -148,6 +148,8 @@ ng0 <ng0@we.make.ritual.n0.is>
         elvi: searx
 
 Gabriel Lisaca <gabriel.lisaca@gmail.com>
+        elvis-specific (bash) completions
+        package name completions
         more consistent surfraw script and bash completions
         plus various tweaks/bugfixes/features.
 
