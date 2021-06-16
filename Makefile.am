@@ -31,9 +31,6 @@ CLEANFILES = surfraw surfraw-update-path surfraw-update-path.1 surfraw.spec surf
 
 BUILT_SOURCES = surfraw.conf
 
-# we cannot portably combine single suffix rules and separated dependencies
-# so we have to explicitly specify all the .IN rules
-
 do_subst = sed -e 's|@ELVIDIR[@]|${ELVIDIR}|g'\
 	    -e 's|@VERSION[@]|${VERSION}|g'\
 	    -e 's|@TEXTBROWSER[@]|${TEXTBROWSER}|g'\
