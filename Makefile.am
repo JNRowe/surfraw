@@ -34,15 +34,15 @@ BUILT_SOURCES = surfraw.conf
 # we cannot portably combine single suffix rules and separated dependencies
 # so we have to explicitly specify all the .IN rules
 
-do_subst = sed -e 's,@ELVIDIR\@,${ELVIDIR},g; '\
-	    -e 's,@VERSION\@,${VERSION},g; '\
-	    -e 's,@TEXTBROWSER\@,${TEXTBROWSER},g; '\
-	    -e 's,@GRAPHICALBROWSER\@,${GRAPHICALBROWSER},g; '\
-	    -e 's,@AWK\@,${AWK},g; '\
-	    -e 's,@PERL\@,${PERL},g; '\
-	    -e 's,@sysconfdir\@,${sysconfdir},g; ' \
-	    -e 's,@prefix\@,${prefix},g; ' \
-	    -e 's,@mandir\@,${mandir},g; ' \
+do_subst = sed -e 's|@ELVIDIR[@]|${ELVIDIR}|g; '\
+	    -e 's|@VERSION[@]|${VERSION}|g; '\
+	    -e 's|@TEXTBROWSER[@]|${TEXTBROWSER}|g; '\
+	    -e 's|@GRAPHICALBROWSER[@]|${GRAPHICALBROWSER}|g; '\
+	    -e 's|@AWK[@]|${AWK}|g; '\
+	    -e 's|@PERL[@]|${PERL}|g; '\
+	    -e 's|@sysconfdir[@]|${sysconfdir}|g; ' \
+	    -e 's|@prefix[@]|${prefix}|g; ' \
+	    -e 's|@mandir[@]|${mandir}|g; ' \
 	    $? > $@.tmp
 subst_exec = -rm -f $@ $@.tmp; \
 	$(do_subst); \
