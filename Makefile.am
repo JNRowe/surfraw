@@ -34,54 +34,44 @@ BUILT_SOURCES = surfraw.conf
 # we cannot portably combine single suffix rules and separated dependencies
 # so we have to explicitly specify all the .IN rules
 
-surfraw: surfraw.IN
-	-rm -f $@ $@.tmp
-	sed -e 's,@VERSION\@,${VERSION},g; '\
-	    -e 's,@ELVIDIR\@,${ELVIDIR},g; '\
+do_subst = sed -e 's,@ELVIDIR\@,${ELVIDIR},g; '\
+	    -e 's,@VERSION\@,${VERSION},g; '\
+	    -e 's,@TEXTBROWSER\@,${TEXTBROWSER},g; '\
+	    -e 's,@GRAPHICALBROWSER\@,${GRAPHICALBROWSER},g; '\
 	    -e 's,@AWK\@,${AWK},g; '\
 	    -e 's,@PERL\@,${PERL},g; '\
-	    -e 's,@sysconfdir\@,${sysconfdir},g ' $? > $@.tmp
-	chmod +x $@.tmp
+	    -e 's,@sysconfdir\@,${sysconfdir},g; ' \
+	    -e 's,@prefix\@,${prefix},g; ' \
+	    -e 's,@mandir\@,${mandir},g; ' \
+	    $? > $@.tmp
+subst_exec = -rm -f $@ $@.tmp; \
+	$(do_subst); \
+	chmod +x $@.tmp; \
 	mv $@.tmp $@
+subst_file = -rm -f $@ $@.tmp; \
+	$(do_subst); \
+	mv $@.tmp $@
+
+surfraw: surfraw.IN
+	$(subst_exec)
 
 surfraw.conf: surfraw.conf.IN
-	-rm -f $@ $@.tmp
-	sed -e 's,@prefix\@,${prefix},g; '\
-	    -e 's,@TEXTBROWSER\@,${TEXTBROWSER},g; '\
-	    -e 's,@GRAPHICALBROWSER\@,${GRAPHICALBROWSER},g; ' $? > $@.tmp
-	chmod +x $@.tmp
-	mv $@.tmp $@
+	$(subst_file)
 
 surfraw-update-path: surfraw-update-path.IN
-	-rm -f $@ $@.tmp
-	sed -e 's,@ELVIDIR\@,${ELVIDIR},g; ' $? > $@.tmp
-	chmod +x $@.tmp
-	mv $@.tmp $@
+	$(subst_exec)
 
 surfraw-bash-completion: surfraw-bash-completion.IN
-	-rm -f $@ $@.tmp
-	sed -e 's,@ELVIDIR\@,${ELVIDIR},g; ' $? > $@.tmp
-	chmod +x $@.tmp
-	mv $@.tmp $@
+	$(subst_file)
 
 elvi.1sr: elvi.1sr.IN
-	-rm -f $@ $@.tmp
-	sed -e 's,@ELVIDIR\@,${ELVIDIR},g; ' $? > $@.tmp
-	chmod +x $@.tmp
-	mv $@.tmp $@
+	$(subst_file)
 
 surfraw.1: surfraw.1.IN
-	-rm -f $@ $@.tmp
-	sed -e 's,@ELVIDIR\@,${ELVIDIR},g; '\
-	    -e 's,@sysconfdir\@,${sysconfdir},g' $? > $@.tmp
-	chmod +x $@.tmp
-	mv $@.tmp $@
+	$(subst_file)
 
 links: links.IN
-	-rm -f $@ $@.tmp
-	sed -e 's,@mandir\@,${mandir},g; ' $? > $@.tmp
-	chmod +x $@.tmp
-	mv $@.tmp $@
+	$(subst_file)
 
 surfraw-update-path.1: surfraw-update-path
 	-rm -f $@
@@ -96,7 +86,6 @@ opensearch-genquery.1: opensearch-genquery
 	pod2man $? > $@
 
 install-data-hook: links surfraw-bash-completion
-	chmod -x surfraw.conf elvi.1sr surfraw.1
 	mkdir -p $(DESTDIR)@sysconfdir@/xdg/surfraw
 	cp surfraw.conf $(DESTDIR)@sysconfdir@/xdg/surfraw/conf
 	cp $(top_srcdir)/surfraw.bookmarks $(DESTDIR)@sysconfdir@/xdg/surfraw/bookmarks
