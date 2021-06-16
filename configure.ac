@@ -7,6 +7,8 @@ dnl (apart from changelogs & NEWS)
 AC_INIT(surfraw, 2.3.0)
 AC_PREREQ(2.54)
 AC_CONFIG_SRCDIR([surfraw.IN])
+dnl Reduce project root clutter.
+AC_CONFIG_AUX_DIR([build-aux])
 
 dnl minimum automake version, not surfraw version
 AM_INIT_AUTOMAKE([1.10])
