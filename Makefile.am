@@ -43,35 +43,28 @@ do_subst = sed -e 's|@ELVIDIR[@]|${ELVIDIR}|g; '\
 	    -e 's|@sysconfdir[@]|${sysconfdir}|g; ' \
 	    -e 's|@prefix[@]|${prefix}|g; ' \
 	    -e 's|@mandir[@]|${mandir}|g; ' \
-	    $? > $@.tmp
-subst_exec = -rm -f $@ $@.tmp; \
-	$(do_subst); \
-	chmod +x $@.tmp; \
+	    $@.IN > $@.tmp
+
+# These depend on the config variables, so they need rebuilding upon change
+surfraw surfraw-update-path: Makefile
+	-rm -f $@ $@.tmp
+	$(do_subst)
 	mv $@.tmp $@
-subst_file = -rm -f $@ $@.tmp; \
-	$(do_subst); \
+surfraw.conf surfraw-bash-completion elvi.1sr surfraw.1 links: Makefile
+	-rm -f $@ $@.tmp
+	$(do_subst)
 	mv $@.tmp $@
 
+# Now just list their dependencies
+# Executables
 surfraw: surfraw.IN
-	$(subst_exec)
-
-surfraw.conf: surfraw.conf.IN
-	$(subst_file)
-
 surfraw-update-path: surfraw-update-path.IN
-	$(subst_exec)
-
+# Data files
+surfraw.conf: surfraw.conf.IN
 surfraw-bash-completion: surfraw-bash-completion.IN
-	$(subst_file)
-
 elvi.1sr: elvi.1sr.IN
-	$(subst_file)
-
 surfraw.1: surfraw.1.IN
-	$(subst_file)
-
 links: links.IN
-	$(subst_file)
 
 surfraw-update-path.1: surfraw-update-path
 	-rm -f $@
