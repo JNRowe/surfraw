@@ -40,7 +40,7 @@ do_subst = sed -e 's|@ELVIDIR[@]|${ELVIDIR}|g'\
 	    -e 's|@sysconfdir[@]|${sysconfdir}|g' \
 	    -e 's|@prefix[@]|${prefix}|g' \
 	    -e 's|@mandir[@]|${mandir}|g' \
-	    $@.IN > $@.tmp
+	    $(srcdir)/$@.IN > $@.tmp
 
 # These depend on the config variables, so they need rebuilding upon change
 surfraw surfraw-update-path: Makefile
@@ -55,14 +55,14 @@ surfraw.conf surfraw-bash-completion elvi.1sr surfraw.1 links: Makefile
 
 # Now just list their dependencies
 # Executables
-surfraw: surfraw.IN
-surfraw-update-path: surfraw-update-path.IN
+surfraw: $(srcdir)/surfraw.IN
+surfraw-update-path: $(srcdir)/surfraw-update-path.IN
 # Data files
-surfraw.conf: surfraw.conf.IN
-surfraw-bash-completion: surfraw-bash-completion.IN
-elvi.1sr: elvi.1sr.IN
-surfraw.1: surfraw.1.IN
-links: links.IN
+surfraw.conf: $(srcdir)/surfraw.conf.IN
+surfraw-bash-completion: $(srcdir)/surfraw-bash-completion.IN
+elvi.1sr: $(srcdir)/elvi.1sr.IN
+surfraw.1: $(srcdir)/surfraw.1.IN
+links: $(srcdir)/links.IN
 
 surfraw-update-path.1: surfraw-update-path
 	-rm -f $@
@@ -90,7 +90,7 @@ if INSTALLSR
 endif
 if BASHCOMPLETIONS
 	mkdir -p $(DESTDIR)@datadir@/bash-completion/completions
-	@cp $(top_srcdir)/surfraw-bash-completion $(DESTDIR)@datadir@/bash-completion/completions/surfraw
+	@cp $(top_builddir)/surfraw-bash-completion $(DESTDIR)@datadir@/bash-completion/completions/surfraw
 if INSTALLSR
 	@ln -sf $(DESTDIR)@datadir@/bash-completion/completions/surfraw $(DESTDIR)@datadir@/bash-completion/completions/sr
 endif  # INSTALLSR
