@@ -46,6 +46,7 @@ do_subst = sed -e 's|@ELVIDIR[@]|${ELVIDIR}|g'\
 surfraw surfraw-update-path: Makefile
 	-rm -f $@ $@.tmp
 	$(do_subst)
+	chmod +x $@.tmp
 	mv $@.tmp $@
 surfraw.conf surfraw-bash-completion elvi.1sr surfraw.1 links: Makefile
 	-rm -f $@ $@.tmp
