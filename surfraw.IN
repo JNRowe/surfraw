@@ -357,7 +357,7 @@ w3_complete_packages ()
 		# Do prefix searches like the others.
 		# TODO: prevent accidental regex searching by users.
 		#        How often is this likely to occur though?
-		pacman -Qqs "^$1"
+		pacman -Ssq "^$1"
 	elif command -v yum >/dev/null 2>&1
 	then
 		# Get plain name excluding arch (to match the others)--assuming names have no dots.
