@@ -11,7 +11,9 @@
 
 surfraw_version=@VERSION@
 surfraw_api_version=1.0
-w3_argv0=$(basename "$0")
+# $0 can be -bash when sourced for tab completions.
+# POSIX seems to assume `--` support.
+w3_argv0=$(basename -- "$0")
 
 elvidir="@ELVIDIR@"
 
@@ -806,7 +808,7 @@ then
                 w3_browse_url "$bookmark"
                 exit 0
 			else
-				echo "$(basename $0): $elvi: No elvis or bookmark with that name"
+				echo "$w3_argv0: $elvi: No elvis or bookmark with that name"
 				echo "Passing everything to browser and hoping for the best..."
                 $BROWSER "$elvi $opts $unquoted_searchterms"
                 exit 0
