@@ -21,6 +21,7 @@ Local options
            fr           |       French
            de           |       German
            he           |       Hebrew
+           jp           |       Japan
            pl           |       Polish
            pt           |       Portugese
            ro           |       Romanian
@@ -52,6 +53,7 @@ case "$SURFRAW_archwiki_language" in
     fr) domain=".fr"		;;
     de) domain=".de"		;;
     he) domain=".il"		;;
+    jp) domain=".jp"        ;;
     pl) domain=".pl"		;;
     pt) domain="-br.org"	;;
     ro) domain=".ro"		;;
