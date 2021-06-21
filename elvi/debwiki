@@ -24,6 +24,7 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts c n t d
 
 w3_parse_option_hook () {
     opt="$1"

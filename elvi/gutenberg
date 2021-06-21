@@ -21,6 +21,7 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts title author num
 
 w3_parse_option_hook () {
     opt="$1"

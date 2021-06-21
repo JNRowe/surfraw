@@ -38,6 +38,7 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts r d= s hiderd dhiderd nolang cookie
 
 w3_parse_option_hook () {
     opt="$1"

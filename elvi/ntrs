@@ -35,6 +35,16 @@ Examples:
 EOF
     w3_global_usage
 }
+mkopts fields= results=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -fields=*) echo all abstract accession center author docID keyword date title ;;
+                -results=*) echo all any ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

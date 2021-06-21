@@ -52,6 +52,8 @@ Examples:
 EOF
     w3_global_usage
 }
+mkopts country= results=
+# The values for -country= are not the same in the help and in the code.
 
 w3_parse_option_hook () {
     opt="$1"

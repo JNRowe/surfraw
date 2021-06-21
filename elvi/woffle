@@ -33,6 +33,17 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts method= format= sort=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -method=*) echo and or bool ;;
+                -format=*) echo short long ;;
+                -sort=*) echo score revscore time revtime title revtitle ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

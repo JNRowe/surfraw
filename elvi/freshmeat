@@ -11,6 +11,10 @@ Description:
 EOF
     w3_global_usage
 }
+w3_complete_hook_arg ()
+{
+	w3_complete_packages "$@" || w3_complete_hook_arg_default "$@"
+}
 
 w3_config
 w3_parse_args "$@"

@@ -37,6 +37,15 @@ Examples:
 EOF
     w3_global_usage
 }
+mkopts s f e k=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -k=*) echo sks gnupg pgp mit ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

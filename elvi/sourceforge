@@ -32,6 +32,20 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts exact exact= type=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -exact=*) echo yes no ;;
+                -type=*) echo soft people freshmeat ;;
+                *) return 1 ;;
+        esac
+}
+w3_complete_hook_arg ()
+{
+	w3_complete_packages "$@" || w3_complete_hook_arg_default "$@"
+}
 
 w3_parse_option_hook () {
     opt="$1"

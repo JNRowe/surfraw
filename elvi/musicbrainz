@@ -41,7 +41,7 @@ Local options:
           discid        |       Disc ID
           editor        |       Editor
           freedb        |       FreeDB
-          freedb        |       FreeDB ID
+          freedbid      |       FreeDB ID
           isrc          |       ISRC
           iswc          |       ISWC
           mbid          |       MBID
@@ -63,6 +63,16 @@ Local options:
   -tagpuid=FILENAME             PUID tag search          (implies -search=tag)
 EOF
     w3_global_usage
+}
+mkopts d a results= search=
+mkopts tagrelease= tagnum= tagtrack= taglen= tagfile= tagpuid=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -search=*) echo artist release release_group label annotation barcode catno cdstub discid editor freedb freedbid isrc iswc mbid puid recording trmid work tag ;;
+                *) return 1 ;;
+        esac
 }
 
 w3_parse_option_hook () {

@@ -10,7 +10,6 @@
 
 w3_config_hook () {
     def   SURFRAW_aur_action   "Search=Go"
-    def   SURFRAW_aur_category "any"
     def   SURFRAW_aur_order    "a"
     def   SURFRAW_aur_language en
     defyn SURFRAW_aur_outdated 0
@@ -26,10 +25,6 @@ Usage: $w3_argv0 [options] [search words]...
 Description:
   Search aur.archlinux.org for PKGBUILDS
 Local options
-  -category                     Search the given AUR category
-                                Consult aur.archlinux.org/packages.php for
-                                    a complete list.
-                                Default: any
   -language                     Search in your your language
                                 See aur.archlinux.org for available languages
                                 Default: en
@@ -50,7 +45,6 @@ Local options
                                 Default: name
   -sort=                        Sort by...
         name            |       Package name
-        category        |       Package category
         location        |       Package location
         votes           |       Number of votes
         maintainer      |       Package maintainer
@@ -59,12 +53,24 @@ Local options
 EOF
     w3_global_usage
 }
+mkopts language= no-https order= orphans outdated results= search= sort=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+		# What are the categories for the AUR?  It seems to have been removed from the web interface.
+		-language=*) echo ca cs de en es fr hr hu it nb_no nb_NO pl pt ro ru sr tr uk zh_cn zh_CN ;;
+		-order=*) echo ascending descending ;;
+		-search=*) echo name maintainer submitter ;;
+		-sort=*) echo name location votes maintainer age ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"
     optarg="$2"
     case "$opt" in
-        -category=*) setopt   SURFRAW_aur_category "$optarg" ;;
         -language=*) setopt   SURFRAW_aur_language "$optarg" ;;
         -no-https)   setopt   SURFRAW_aur_protocol "http" ;;
         -orphans*)   setopt   SURFRAW_aur_action   "Orphans=Orphans" ;;
@@ -81,29 +87,6 @@ w3_parse_option_hook () {
 
 w3_config
 w3_parse_args "$@"
-
-case "$SURFRAW_aur_category" in
-  a*)  aur_category=0 ;;
-  da*) aur_category=2 ;;
-  de*) aur_category=3 ;;
-  ed*) aur_category=4 ;;
-  em*) aur_category=5 ;;
-  ga*) aur_category=6 ;;
-  gn*) aur_category=7 ;;
-  i*)  aur_category=8 ;;
-  kd*) aur_category=9 ;;
-  ke*) aur_category=19 ;;
-  l*)  aur_category=10 ;;
-  mo*) aur_category=11 ;;
-  mu*) aur_category=12 ;;
-  n*)  aur_category=13 ;;
-  o*)  aur_category=14 ;;
-  sc*) aur_category=15 ;;
-  sy*) aur_category=16 ;;
-  x1*) aur_category=17 ;;
-  xf*) aur_category=18 ;;
-  *)   aur_category=0 ;;
-esac
 
 case "$SURFRAW_aur_search" in
   n*) aur_search_by=nd ;;
@@ -139,8 +122,8 @@ if test -z "$w3_args" && test "$SURFRAW_aur_action" = "Search=Go"; then
 else
     escaped_args=$(w3_url_of_arg $w3_args)
     if [ "$SURFRAW_aur_outdated" = 1 ]; then
-        w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages.php?O=0&L=0&detail=1&C=${aur_category}&K=${escaped_args}&SeB=${aur_search_by}&SB=${aur_sort_by}&SO=${SURFRAW_aur_order}&PP=${SURFRAW_aur_results}&do_${SURFRAW_aur_action}&outdated=on&setlang=${aur_lang}"
+        w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages.php?O=0&L=0&detail=1&&K=${escaped_args}&SeB=${aur_search_by}&SB=${aur_sort_by}&SO=${SURFRAW_aur_order}&PP=${SURFRAW_aur_results}&do_${SURFRAW_aur_action}&outdated=on&setlang=${aur_lang}"
     else
-        w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages.php?O=0&L=0&detail=1&C=${aur_category}&K=${escaped_args}&SeB=${aur_search_by}&SB=${aur_sort_by}&SO=${SURFRAW_aur_order}&PP=${SURFRAW_aur_results}&do_${SURFRAW_aur_action}&setlang=${aur_lang}"
+        w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages.php?O=0&L=0&detail=1&&K=${escaped_args}&SeB=${aur_search_by}&SB=${aur_sort_by}&SO=${SURFRAW_aur_order}&PP=${SURFRAW_aur_results}&do_${SURFRAW_aur_action}&setlang=${aur_lang}"
     fi
 fi

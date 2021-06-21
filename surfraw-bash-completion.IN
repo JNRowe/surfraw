@@ -1,35 +1,100 @@
 # -*- sh -*- bash programmable completion for Surfraw, v2.2
 
-# This is for people who wish to use surfraw completion, without
-# installing the bash-completion package which sets this explicitly.
-shopt -s extglob
+__surfraw_validate_elvis_exists ()
+{
+	# Allow global surfraw completions
+	[[ -z "$1" ]] && return 0
+	grep -xF "$(__surfraw_get_elvi | tr ' ' '\n' | tr -s '\n')" <<< "$1" &>/dev/null
+}
 
-_surfraw()
-{       COMPREPLY=()
-	local cur=${COMP_WORDS[COMP_CWORD]}
-	local prev=${COMP_WORDS[COMP_CWORD-1]}
-	local opts='-browser -elvi -escape-url-args -graphical \
-		-help -q -quote -text -version'
-	local elvi="$(source surfraw
-			cut -f1 @sysconfdir@/surfraw.bookmarks ~/.surfraw.bookmarks "$(find_local_conf bookmarks)" "$(find_global_conf bookmarks)" 2>&-
-			cd @ELVIDIR@ && echo * 2>&-
-			[ -d ~/.surfraw.d ] && cd ~/.surfraw.d && echo * 2>&-
-			cd $(get_local_elvi_dir) && echo * 2>&-)"
-	if      [[ $cur == -* ]]
-	then    COMPREPLY=( $( compgen -W "$opts" -- $cur ) )
-	# I can't see a way to get the =yes/=no parts to work...
-	elif    [[ $COMP_CWORD -eq 1 ]]
-	then    COMPREPLY=( $( compgen -W "$elvi" -- $cur ) )
-		# "sr go<tab>" for google
-	elif    [[ $prev == @(alioth|deb@(bugs|contents|packages|pts|sec)|freshmeat|fsfdir|sourceforge) ]]
-	then    COMPREPLY=( $(apt-cache --generate pkgnames $cur) )
-		# "sr debbugs 4<tab>" to check 44bsd-rdist bugs...
-	elif    [[ -x /usr/bin/look ]] # in bsdmainutils, "important"
-	then	COMPREPLY=( $(/usr/bin/look ${cur:-''}) )
-		# "sr l<tab> vy<tab>" to find the German for "vying"
-	else	COMPREPLY=( $( compgen -o default -- $cur) ) # copout
+__surfraw_complete_arg ()
+{
+	__surfraw_validate_elvis_exists "$1" || return 1
+	local completions; declare -a completions
+	mapfile -t completions < <(surfraw "$1" --complete-arg="$2")
+	# We want to complete *something* for non-option, non-elvis arguments
+	if [[ "${#completions[@]}" -eq 0 ]]
+	then
+		COMPREPLY=( $(compgen -o default -- "$2") )
+	else
+		# Quote if needed: https://stackoverflow.com/a/40944195
+		mapfile -t COMPREPLY < <(compgen -W "$(printf '%q ' "${completions[@]}")" -- "$2" | awk '/[[:space:]]/ { print "\"" $0 "\""; next } { print $0 }')
 	fi
-	return 0
+}
+
+__surfraw_complete_optname ()
+{
+	__surfraw_validate_elvis_exists "$1" || return 1
+	# Appended spaces after completing options with arguments is annoying
+	compopt -o nospace
+	COMPREPLY=(
+		$(compgen -W "$(surfraw "$1" --complete="$2")" -- "$2")
+	)
+}
+
+__surfraw_complete_optarg ()
+{
+	__surfraw_validate_elvis_exists "$1" || return 1
+	# Match argument
+	local arg="$(echo "$2" | sed 's/[-_a-zA-Z0-9]*=//')"
+	COMPREPLY=(
+		$(compgen -W "$(surfraw "$1" --complete="$2")" -- "$arg")
+	)
+}
+
+__surfraw_get_elvi ()
+(
+	source surfraw
+	cd "$(get_local_elvi_dir)" 2>/dev/null && echo *
+	cd "$elvidir" 2>/dev/null && echo *
+	cut -f1 "$(find_local_conf bookmarks)" "$(find_global_conf bookmarks)" 2>/dev/null
+)
+
+_surfraw ()
+{
+	local cur words=() cword
+	_get_comp_words_by_ref -n = cur words cword
+
+	# Determine end of args and current elvis
+	local i=1
+	local end_of_args=no
+	local elvis elvis_index
+	# Skip "surfraw" or "sr" at start of command
+	for word in "${words[@]:1}"
+	do
+		case "$word" in
+			--) [[ $cword -ge $i ]] && end_of_args=yes ;;
+			-*) : ignore options ;;
+			*) [[ -z "$elvis" ]] && elvis="$word" elvis_index="$i" ;;
+		esac
+		[[ $end_of_args = yes && -n "$elvis" ]] && break
+		i="$(( i + 1 ))"
+	done
+
+	if [[ $elvis_index -eq $cword ]]  # complete partial elvis names
+	then
+		# $elvis == $cur
+		COMPREPLY=( $(compgen -W "$(__surfraw_get_elvi)" -- "$cur") )
+	elif [[ -z "$elvis" ]]  # complete global options or elvis names
+	then
+		case "$cur" in
+			# Global options
+			-*=*) __surfraw_complete_optarg '' "$cur" ;;
+			-*) __surfraw_complete_optname '' "$cur" ;;
+			# Match empty elvis names (the partial name branch would have been executed if this *wasn't* empty)
+			# Regardless, surfraw accepts the elvis name after the "--" argument
+			'') COMPREPLY=( $(compgen -W "$(__surfraw_get_elvi)") ) ;;
+		esac
+	elif [[ $end_of_args = yes ]]  # elvis is defined, so it's safe to complete args
+	then
+		__surfraw_complete_arg "$elvis" "$cur"
+	else  # now, complete elvi-specific options and arguments
+		case "$cur" in
+			-*=*) __surfraw_complete_optarg "$elvis" "$cur" ;;
+			-*) __surfraw_complete_optname "$elvis" "$cur" ;;
+			*) __surfraw_complete_arg "$elvis" "$cur" ;;
+		esac
+	fi
 }
 # test first in case removed-but-unpurged
 type -p surfraw >/dev/null 2>&1 && complete -F _surfraw surfraw sr

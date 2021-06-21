@@ -72,6 +72,19 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts output= format= savedot ntriples embedded useme anon fontsize= orient= node= nodetext= arc= arctext=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -output=*) echo Triples Graphs Both ;;
+                -format=*) echo PNG_EMBED PNG_LINK SVG_LINK SVG_EMBED GIF_EMBED GIF_LINK PS_LINK HP_PCL_LINK HP_GL_LINK ISV_ZVTM ;;
+                -fontsize=*) echo 10 12 14 16 20;;
+                -orient=*) echo TB LR ;;
+                -arctext=*) echo Black Blue Darkgreen Red ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"
