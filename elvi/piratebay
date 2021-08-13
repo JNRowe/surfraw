@@ -37,6 +37,15 @@ Description:
 EOF
     w3_global_usage
 }
+mkopts sort=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -sort=*) echo all apps games music tv movies flac books dvd hrm hrt ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

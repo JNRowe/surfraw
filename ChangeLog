@@ -1,3 +1,19 @@
+2021-06-14  Gabriel Lisaca <gabriel.lisaca@gmail.com>
+
+	* Add elvis-specific completions support, with package name
+	  completions:
+		- In addition to apt-cache, package name completions also
+		  come from pacman, yum, and fink if available, with only
+		  one package manager used as the source.
+		- archpkg, genportage, debpkghome: now support package name
+		  completions just like debpackages, fsfdir, and co.
+		- finkpkg: package name completions with -pkg=
+	* google: allow -country= in addition to -c= to match docs
+	* musicbrainz: sync help text with code
+	* aur: remove categories support since it's dead code (see #14)
+	* finkpkg: update values of -dist= and -section=
+	* debbugs: update available tags
+
 2021-02-24  Gabriel Lisaca <gabriel.lisaca@gmail.com>
 
 	* opensearch-discover, opensearch-genquery: support HTTPS: tries

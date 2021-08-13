@@ -23,6 +23,7 @@ Options can be combined to search multiple types at once.
 EOF
     w3_global_usage
 }
+mkopts desc topics authors
 
 w3_parse_option_hook () {
     opt="$1"

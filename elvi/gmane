@@ -30,6 +30,15 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts list= L author= sort= or
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -sort=*) echo relevance date revdate ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

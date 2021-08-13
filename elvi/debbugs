@@ -51,8 +51,7 @@ Local options:
            tag          |
            submitter    |
            severity     |
-           tag          |
-           usertag
+           usertag      |
   -s                            Alias for -search=src
   -user=EMAIL                   User for usertag search, defaults to value
                                 of \$DEBEMAIL environment. Ignored if
@@ -89,14 +88,39 @@ Local options:
   -inctag=tag1,tag2             Include given tags.
   -extag=tag3,tag4              Exclude given tags.
                                 Available tags:
-                                 potato, woody, sarge, sarge-ignore,
-				 etch, etch-ignore, sid, experimental,
-				 confirmed, d-i, fixed, fixed-in-experimental,
-				 fixed-upstream, help, l10n, moreinfo, patch,
-				 pending, security, unreproducible, upstream,
-				 wontfix, ipv6, lfs
+                                 patch, wontfix, moreinfo, unreproducible,
+                                 help, security, upstream, pending, confirmed,
+                                 ipv6, lfs, d-i, l10n, newcomer, a11y, ftbfs,
+                                 fixed-upstream, fixed, fixed-in-experimental,
+                                 potato, woody, sarge, etch, lenny, squeeze,
+                                 wheezy, jessie, stretch, buster, bullseye,
+                                 bookworm, trixie, sid, experimental,
+                                 sarge-ignore, etch-ignore, lenny-ignore,
+                                 squeeze-ignore, wheezy-ignore, jessie-ignore,
+                                 stretch-ignore, buster-ignore, bullseye-ignore,
+                                 bookworm-ignore, trixie-ignore
 EOF
     w3_global_usage
+}
+mkopts search= version= dist= user=
+mkopts arc raw rb rst rse merge nohead nofoot mbox sh
+mkopts incstat= exstat= incsev= exsev= inctag= extag=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -search=*) echo pkg src bug maint tag submitter severity usertag ;;
+                -dist=*) echo oldstable stable proposed-updates testing unstable experimental testing-proposed-updates ;;
+                # At most one csv-like value can be completed at once.
+                -incstat=*|-exstat=*) echo open forwarded pending fixed done ;;
+                -incsev=*|-exsev=*) echo critical grave serious important normal minor wishlist fixed ;;
+                -inctag=*|-extag=*) echo patch wontfix moreinfo unreproducible help security upstream pending confirmed ipv6 lfs d-i l10n newcomer a11y ftbfs fixed-upstream fixed fixed-in-experimental potato woody sarge etch lenny squeeze wheezy jessie stretch buster bullseye bookworm trixie sid experimental sarge-ignore etch-ignore lenny-ignore squeeze-ignore wheezy-ignore jessie-ignore stretch-ignore buster-ignore bullseye-ignore bookworm-ignore trixie-ignore ;;
+                *) return 1 ;;
+        esac
+}
+w3_complete_hook_arg ()
+{
+	w3_complete_packages "$@" || w3_complete_hook_arg_default "$@"
 }
 
 w3_parse_option_hook () {

@@ -116,6 +116,19 @@ Bugs:
 EOF
     w3_global_usage
 }
+mkopts from= to=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -from=*|-to=*)
+                        echo nl en fr de el it ja
+                        echo zh zt
+                        echo auto af sq ar hy az eu be bg ca zh-CN zh-TW hr cs da et tl fi gl ka ht iw hi hu is id ga la lv lt mk ms mt no fa pl ro sr sk sl sw sv th tr uk ur vi cy yi
+                        ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

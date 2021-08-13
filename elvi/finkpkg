@@ -26,11 +26,25 @@ Local options:
   -pkg=NAME                     Search by packagename for NAME
   -maintainer=NAME              Search by maintainer for NAME
   -dist=DIST                    Specify distribution DIST
-	default         |        Supported [10.5 & 10.6] (default)
+	default         |        Supported [10.9 through 10.15] (default)
         any             |        Any
+        10.1            |        10.1
+        10.2            |        10.2
+        10.2-gcc3.3     |        10.2-gcc3.3
+        10.3            |        10.4
         10.4            |        10.4
         10.5            |        10.5
         10.6            |        10.6
+        10.7            |        10.7
+        10.8            |        10.8
+        10.9            |        10.9
+        10.10           |        10.10
+        10.11           |        10.11
+        10.12           |        10.12
+        10.13           |        10.13
+        10.14           |        10.14
+        10.14.5         |        10.14.5
+        10.15           |        10.15
 	                        Default: $SURFRAW_finkpkg_distro
 	                        Environment: SURFRAW_finkpkg_distro
   -arch=ARCH                    Search in arch ARCH
@@ -59,8 +73,10 @@ Local options:
         gnome           |        The GNOME desktop environment (version 2.26)
         graphics        |        Graphics applications and libraries
         kde             |        K Desktop Environment (version 3.5.10 and 4.2.4)
+        kde/po          |        Translations for the K Desktop Environment (version 3.5.10 and 4.2.4)
         languages       |        Programming languages (compilers, interpreters)
         libs            |        General purpose libraries
+        libs/ghc        |        Glasgow Haskell Compiler libraries
         libs/perlmods   |        Perl libraries
         libs/pythonmods |        Python libraries
         libs/rubymods   |        Ruby libraries
@@ -91,6 +107,21 @@ Local options:
                                 Environment: SURFRAW_finkpkg_noshlibsdev
 EOF
     w3_global_usage
+}
+mkopts pkg= maintainer= dist= arch= tree= section= exact nomaint nochildren noshlibsdev
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+		# Not going to get optarg here because this should be enough.  Bash should be able to fill in the gaps.
+		-pkg=*) w3_complete_packages ;;
+                # Is this outdated?
+                -dist=*) echo default any 10.1 10.2 10.2-gcc3.3 10.3 10.4 10.5 10.6 10.7 10.8 10.9 10.10 10.11 10.12 10.13 10.14 10.14.5 10.15 ;;
+                -arch=*) echo any i386 x86_64 powerpc ;;
+                -tree=*) echo any unstable stable bindist testing ;;
+                -section=*) echo any base crypto database devel editors games gnome graphics kde kde/po languages libs libs/ghc libs/perlmods libs/pythonmods libs/rubymods net sci shells sound text utils web x11 x11-system x11-wm ;;
+                *) return 1 ;;
+        esac
 }
 
 w3_parse_option_hook () {

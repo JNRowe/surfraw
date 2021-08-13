@@ -22,6 +22,15 @@ Examples:
 EOF
     w3_global_usage
 }
+mkopts dc dc=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -dc=*) echo yes no ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

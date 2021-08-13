@@ -72,6 +72,18 @@ Local Options:
 EOF
     w3_global_usage
 }
+mkopts author= binding= classic currency= destination= first keywords= language= maxprice= minprice= search= signed title= type=
+w3_complete_hook_opt ()
+{
+	local opt="$1"
+	case "$opt" in
+		-binding=*) echo any hard soft ;;
+		-language=*) echo de en es fr it nl ;;
+		-search=*) echo title author isbn ;;
+		-type=*) echo any new used ;;
+		*) return 1 ;;
+	esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

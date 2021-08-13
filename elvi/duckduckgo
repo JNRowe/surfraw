@@ -31,6 +31,7 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts ducky lucky javascript safe redirect insecure
 
 w3_parse_option_hook () {
     opt="$1"

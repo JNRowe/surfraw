@@ -21,6 +21,7 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts results= m
 
 w3_parse_option_hook () {
     opt="$1"

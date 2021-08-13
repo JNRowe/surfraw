@@ -20,6 +20,17 @@ EOF
 
     w3_global_usage
 }
+# I'm guessing at the semantics :shrug:
+mkopts v= p=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                # Lowercase is easier to type.
+                -p=*) echo se ee me ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

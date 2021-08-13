@@ -87,6 +87,31 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts release= distro= search= nosub a u
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -release=*) echo any main contrib non-free restricted universe multiverse ;;
+                # The values for -distro= in the help are outdated.
+                -distro=*)
+                        echo any stable testing unstable oldstable experimental bo hamm slink potato woody sarge etch
+                        # "any" already exists for Debian, so don't need to do here too.
+                        for ubuntu_dist in dapper hardy intrepid jaunty karmic lucid maverick natty
+                        do
+                                echo "$ubuntu_dist"
+                                echo "${ubuntu_dist}-updates"
+                                echo "${ubuntu_dist}-backports"
+                        done
+                        ;;
+                -search=*) echo pkg desc src ;;
+                *) return 1 ;;
+        esac
+}
+w3_complete_hook_arg ()
+{
+	w3_complete_packages "$@" || w3_complete_hook_arg_default "$@"
+}
 
 w3_parse_option_hook () {
     opt="$1"

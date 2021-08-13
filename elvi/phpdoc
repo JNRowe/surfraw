@@ -60,6 +60,17 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts language= search=
+mkopts all functions manual bugs news changelogs talks maillist devlist phpdoc
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -l=*|-language=*) echo en pt zh fr de ja pl ro fa es tr ;;
+                -s=*|-search=*) echo all functions manual bugs news changelogs pear pecl talks maillist devlist phpdoc ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"
