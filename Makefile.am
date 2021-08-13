@@ -82,11 +82,11 @@ install-data-hook: links surfraw-bash-completion
 	cp $(top_srcdir)/surfraw.bookmarks $(DESTDIR)@sysconfdir@/xdg/surfraw/bookmarks
 	while read target link ;\
 	do \
-		ln -sf $$target  $(DESTDIR)/$$link ;\
+		ln -sf $$target  $(DESTDIR)$$link ;\
 	done < links
 if INSTALLSR
-	ln -sf surfraw $(DESTDIR)/@bindir@/sr
-	ln -sf surfraw.1.gz $(DESTDIR)/@mandir@/man1/sr.1.gz
+	ln -sf surfraw $(DESTDIR)@bindir@/sr
+	ln -sf surfraw.1 $(DESTDIR)@mandir@/man1/sr.1
 endif
 if BASHCOMPLETIONS
 	mkdir -p $(DESTDIR)@datadir@/bash-completion/completions
@@ -103,11 +103,11 @@ uninstall-local: links
 	rmdir $(DESTDIR)@sysconfdir@/xdg 2>/dev/null
 	while read target link ;\
 	do \
-		rm -f $(DESTDIR)/$$link ;\
+		rm -f $(DESTDIR)$$link ;\
 	done < links
 if INSTALLSR
-	rm -f $(DESTDIR)/@bindir@/sr
-	rm -f $(DESTDIR)/@mandir@/man1/sr.1.gz
+	rm -f $(DESTDIR)@bindir@/sr
+	rm -f $(DESTDIR)@mandir@/man1/sr.1.gz
 endif
 if BASHCOMPLETIONS
 	-rm -f $(DESTDIR)@datadir@/bash-completion/completions/surfraw
