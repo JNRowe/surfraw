@@ -56,8 +56,8 @@ AC_SUBST(VERSION)
 AC_SUBST(TEXTBROWSER)
 AC_SUBST(GRAPHICALBROWSER)
 
-ISODATE=`date -u -r ChangeLog +%Y-%m-%d`
-AC_SUBST(ISODATE)
+AC_CONFIG_COMMANDS_PRE([ISODATE=`date -u -r "$srcdir/ChangeLog" +%Y-%m-%d`
+			AC_SUBST(ISODATE)])
 
 dnl Checks for programs.
 AC_PROG_INSTALL
