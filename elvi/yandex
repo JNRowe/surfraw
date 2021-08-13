@@ -21,6 +21,7 @@ Local options:		Specialized search on topic
 EOF
     w3_global_usage
 }
+mkopts dict news images market maps
 
 w3_parse_option_hook () {
     opt="$1"

@@ -49,6 +49,16 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts lucky results= search= country= images videos maps news groups safe=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -search=*) echo images videos maps groups news bsd linux mac unclesam ;;
+                -safe=*) echo default off moderate strict ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"
@@ -58,7 +68,7 @@ w3_parse_option_hook () {
     -sa*=*)     setopt   SURFRAW_google_safe    "$optarg" ;;
     -s*=*)      setopt   SURFRAW_google_search  "$optarg" ;;
     -l|-lu*)    setoptyn SURFRAW_google_lucky   1         ;;
-    -c=*) 	setopt	 SURFRAW_google_country "$optarg" ;;
+    -c=*|-country=*) 	setopt	 SURFRAW_google_country "$optarg" ;;
     -i*)        setopt   SURFRAW_google_search  images    ;;
     -v*)        setopt   SURFRAW_google_search  videos    ;;
     -m*)        setopt   SURFRAW_google_search  maps      ;;

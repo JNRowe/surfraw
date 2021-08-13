@@ -22,6 +22,7 @@ EOF
     w3_custom_search_usage
     w3_global_usage
 }
+mkopts c v=
 
 w3_parse_option_hook () {
     opt="$1"

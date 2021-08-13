@@ -173,6 +173,16 @@ Examples:
 EOF
     w3_global_usage
 }
+mkopts country= search=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -country=*) echo com ca cn zh zt de fr jp uk;;
+		# There are so many *site-specific* values for `-search=` that it's not useful to complete.
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

@@ -29,6 +29,15 @@ Local options:
 EOF
     w3_global_usage
 }
+mkopts category=
+w3_complete_hook_opt ()
+{
+        local opt="$1"
+        case "$opt" in
+                -category=*) echo All Titles MyMovies People Characters Quotes Bios Plots ;;
+                *) return 1 ;;
+        esac
+}
 
 w3_parse_option_hook () {
     opt="$1"

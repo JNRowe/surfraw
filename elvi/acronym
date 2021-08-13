@@ -47,75 +47,76 @@ Local option:
 EOF
     w3_global_usage
 }
+mkopts ict sci gov org biz common exact wim zip random fake alphabetic unverified
 
 w3_parse_option_hook () {
     opt="$1"
     optarg="$2"
     case "$opt" in
 #Information Technology category
-    -i*)        setoptyn SURFRAW_acronym_ict   1
+    -i|-ict)        setoptyn SURFRAW_acronym_ict   1
 		setoptyn SURFRAW_acronym_sci   0
                 setoptyn SURFRAW_acronym_gov   0
                 setoptyn SURFRAW_acronym_org   0
                 setoptyn SURFRAW_acronym_biz   0
                 setoptyn SURFRAW_acronym_pop   0 ;;
 #Science & Medicine category
-    -s*)        setoptyn SURFRAW_acronym_sci   1
+    -s|-sci)        setoptyn SURFRAW_acronym_sci   1
                 setoptyn SURFRAW_acronym_ict   0
                 setoptyn SURFRAW_acronym_gov   0
                 setoptyn SURFRAW_acronym_org   0
                 setoptyn SURFRAW_acronym_biz   0
                 setoptyn SURFRAW_acronym_pop   0 ;;
 #Government & Military category
-    -g*)        setoptyn SURFRAW_acronym_gov   1
+    -g|-gov)        setoptyn SURFRAW_acronym_gov   1
                 setoptyn SURFRAW_acronym_sci   0
                 setoptyn SURFRAW_acronym_ict   0
                 setoptyn SURFRAW_acronym_org   0
                 setoptyn SURFRAW_acronym_biz   0
                 setoptyn SURFRAW_acronym_pop   0 ;;
 #Organizations & Schools category
-    -o*)        setoptyn SURFRAW_acronym_org   1
+    -o|-org)        setoptyn SURFRAW_acronym_org   1
                 setoptyn SURFRAW_acronym_sci   0
                 setoptyn SURFRAW_acronym_gov   0
                 setoptyn SURFRAW_acronym_ict   0
                 setoptyn SURFRAW_acronym_biz   0
                 setoptyn SURFRAW_acronym_pop   0 ;;
 #Business & Finance category
-    -b*)        setoptyn SURFRAW_acronym_biz   1
+    -b|-biz)        setoptyn SURFRAW_acronym_biz   1
                 setoptyn SURFRAW_acronym_sci   0
                 setoptyn SURFRAW_acronym_gov   0
                 setoptyn SURFRAW_acronym_org   0
                 setoptyn SURFRAW_acronym_ict   0
                 setoptyn SURFRAW_acronym_pop   0 ;;
 #Slang & Pop Culture category
-    -c*)        setoptyn SURFRAW_acronym_pop   1
+    -c|-common)        setoptyn SURFRAW_acronym_pop   1
                 setoptyn SURFRAW_acronym_sci   0
                 setoptyn SURFRAW_acronym_gov   0
                 setoptyn SURFRAW_acronym_org   0
                 setoptyn SURFRAW_acronym_biz   0
                 setoptyn SURFRAW_acronym_ict   0 ;;
 #exact match
-    -e*)        setoptyn SURFRAW_acronym_exa   1
+    -e|-exact)        setoptyn SURFRAW_acronym_exa   1
 		setoptyn SURFRAW_acronym_wim   0
                 setoptyn SURFRAW_acronym_zip   0 ;;
 #Word(s) in meaning match
-    -w*)        setoptyn SURFRAW_acronym_wim   1
+    -w|-wim)        setoptyn SURFRAW_acronym_wim   1
                 setoptyn SURFRAW_acronym_exa   0
                 setoptyn SURFRAW_acronym_zip   0 ;;
 #Location (postal code, name) match
-    -z*)        setoptyn SURFRAW_acronym_zip   1
+    -z|-zip)        setoptyn SURFRAW_acronym_zip   1
                 setoptyn SURFRAW_acronym_wim   0
                 setoptyn SURFRAW_acronym_exa   0 ;;
 #Random acronym
-    -r*)        setoptyn SURFRAW_acronym_ran   1
+    -r|-random)        setoptyn SURFRAW_acronym_ran   1
 	        setoptyn SURFRAW_acronym_gen   0 ;;
 #Fake acronym
-    -f*)        setoptyn SURFRAW_acronym_gen   1
+    -f|-fake)        setoptyn SURFRAW_acronym_gen   1
 	        setoptyn SURFRAW_acronym_ran   0 ;;
 #Sort alphabetically
-    -a*)	setoptyn SURFRAW_acronym_alpha  1 ;;
+    -a|-alphabetic)	setoptyn SURFRAW_acronym_alpha  1 ;;
 #Match from Acronym Attic
-    -u*)	setoptyn SURFRAW_acronym_attic  1 ;;
+    -u|-unverified)	setoptyn SURFRAW_acronym_attic  1 ;;
 
     *) 		return 1 ;;
     esac
