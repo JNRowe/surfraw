@@ -38,7 +38,7 @@ w3_complete_hook_opt ()
 {
         local opt="$1"
         case "$opt" in
-                -l=*|-language=*) echo en fr de he pl pt ro es sv uk ;;
+                -l=*|-language=*) echo en fr de he jp pl pt ro es sv uk ;;
                 *) return 1 ;;
         esac
 }
