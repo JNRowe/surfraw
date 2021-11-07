@@ -489,7 +489,7 @@ w3_browse_url () {
 		if test $SURFRAW_browser_args = "none"; then
 			exec $SURFRAW_browser -remote "openURL($*$newwin)"
 		else
-			exec $SURFRAW_browser -remote "openURL($*$newwin)"
+			exec $SURFRAW_browser $SURFRAW_browser_args -remote "openURL($*$newwin)"
 		fi
 	else
 		if test $SURFRAW_browser_args = "none"; then
