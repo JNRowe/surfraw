@@ -34,5 +34,5 @@ if test -z "$w3_args"; then
     w3_browse_url "https://www.finance.yahoo.com/"
 else
     escaped_args=$(w3_url_of_arg $w3_args)
-    w3_browse_ul "https://finance.yahoo.com/quote/${escaped_args}"
+    w3_browse_url "https://finance.yahoo.com/quote/${escaped_args}"
 fi
