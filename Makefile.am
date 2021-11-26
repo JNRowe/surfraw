@@ -92,7 +92,7 @@ if BASHCOMPLETIONS
 	mkdir -p $(DESTDIR)@datadir@/bash-completion/completions
 	@cp $(top_builddir)/surfraw-bash-completion $(DESTDIR)@datadir@/bash-completion/completions/surfraw
 if INSTALLSR
-	@ln -sf $(DESTDIR)@datadir@/bash-completion/completions/surfraw $(DESTDIR)@datadir@/bash-completion/completions/sr
+	@ln -sf surfraw $(DESTDIR)@datadir@/bash-completion/completions/sr
 endif  # INSTALLSR
 endif  # BASHCOMPLETIONS
 
