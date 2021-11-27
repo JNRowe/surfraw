@@ -97,10 +97,7 @@ endif  # INSTALLSR
 endif  # BASHCOMPLETIONS
 
 uninstall-local: links
-	-rm -f $(DESTDIR)@sysconfdir@/xdg/surfraw/conf
-	-rm -f $(DESTDIR)@sysconfdir@/xdg/surfraw/bookmarks
-	rmdir $(DESTDIR)@sysconfdir@/xdg/surfraw 2>/dev/null
-	rmdir $(DESTDIR)@sysconfdir@/xdg 2>/dev/null
+	rm -rf $(DESTDIR)@sysconfdir@/xdg/surfraw
 	while read target link ;\
 	do \
 		rm -f $(DESTDIR)@mandir@/man1/$$link ;\
