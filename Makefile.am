@@ -103,7 +103,7 @@ uninstall-local: links
 	rmdir $(DESTDIR)@sysconfdir@/xdg 2>/dev/null
 	while read target link ;\
 	do \
-		rm -f $(DESTDIR)$$link ;\
+		rm -f $(DESTDIR)@mandir@/man1/$$link ;\
 	done < links
 if INSTALLSR
 	rm -f $(DESTDIR)@bindir@/sr
