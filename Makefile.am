@@ -77,9 +77,9 @@ opensearch-genquery.1: opensearch-genquery
 	pod2man $? > $@
 
 install-data-hook: links surfraw-bash-completion
-	mkdir -p $(DESTDIR)@sysconfdir@/xdg/surfraw
-	cp surfraw.conf $(DESTDIR)@sysconfdir@/xdg/surfraw/conf
-	cp $(top_srcdir)/surfraw.bookmarks $(DESTDIR)@sysconfdir@/xdg/surfraw/bookmarks
+	$(MKDIR_P) $(DESTDIR)@sysconfdir@/xdg/surfraw
+	$(INSTALL_DATA) surfraw.conf $(DESTDIR)@sysconfdir@/xdg/surfraw/conf
+	$(INSTALL_DATA) $(top_srcdir)/surfraw.bookmarks $(DESTDIR)@sysconfdir@/xdg/surfraw/bookmarks
 	while read target link ;\
 	do \
 		ln -sf $$target  $(DESTDIR)$$link ;\
@@ -89,8 +89,8 @@ if INSTALLSR
 	ln -sf surfraw.1 $(DESTDIR)@mandir@/man1/sr.1
 endif
 if BASHCOMPLETIONS
-	mkdir -p $(DESTDIR)@datadir@/bash-completion/completions
-	@cp $(top_builddir)/surfraw-bash-completion $(DESTDIR)@datadir@/bash-completion/completions/surfraw
+	$(MKDIR_P) $(DESTDIR)@datadir@/bash-completion/completions
+	$(INSTALL_DATA) surfraw-bash-completion $(DESTDIR)@datadir@/bash-completion/completions/surfraw
 if INSTALLSR
 	@ln -sf surfraw $(DESTDIR)@datadir@/bash-completion/completions/sr
 endif  # INSTALLSR
