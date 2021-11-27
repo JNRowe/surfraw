@@ -62,6 +62,7 @@ AC_CONFIG_COMMANDS_PRE([ISODATE=`date -u -r "$srcdir/ChangeLog" +%Y-%m-%d`
 dnl Checks for programs.
 AC_PROG_INSTALL
 AC_PROG_MKDIR_P
+AC_PROG_LN_S
 AC_PROG_AWK
 AC_PATH_PROG([PERL], [perl], [perl])
 AC_SUBST(PERL)

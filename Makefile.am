@@ -80,19 +80,19 @@ install-data-hook: links surfraw-bash-completion
 	$(MKDIR_P) $(DESTDIR)@sysconfdir@/xdg/surfraw
 	$(INSTALL_DATA) surfraw.conf $(DESTDIR)@sysconfdir@/xdg/surfraw/conf
 	$(INSTALL_DATA) $(top_srcdir)/surfraw.bookmarks $(DESTDIR)@sysconfdir@/xdg/surfraw/bookmarks
-	while read target link ;\
+	while read target link; \
 	do \
-		ln -sf $$target  $(DESTDIR)$$link ;\
+		(cd $(DESTDIR)@mandir@/man1 && rm -f $$link && $(LN_S) $$target $$link); \
 	done < links
 if INSTALLSR
-	ln -sf surfraw $(DESTDIR)@bindir@/sr
-	ln -sf surfraw.1 $(DESTDIR)@mandir@/man1/sr.1
+	(cd $(DESTDIR)@bindir@ && rm -f sr && $(LN_S) surfraw sr)
+	(cd $(DESTDIR)@mandir@/man1 && rm -f sr.1 && $(LN_S) surfraw.1 sr.1)
 endif
 if BASHCOMPLETIONS
 	$(MKDIR_P) $(DESTDIR)@datadir@/bash-completion/completions
 	$(INSTALL_DATA) surfraw-bash-completion $(DESTDIR)@datadir@/bash-completion/completions/surfraw
 if INSTALLSR
-	@ln -sf surfraw $(DESTDIR)@datadir@/bash-completion/completions/sr
+	(cd $(DESTDIR)@datadir@/bash-completion/completions && rm -f sr && $(LN_S) surfraw sr)
 endif  # INSTALLSR
 endif  # BASHCOMPLETIONS
 
