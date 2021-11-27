@@ -107,7 +107,7 @@ uninstall-local: links
 	done < links
 if INSTALLSR
 	rm -f $(DESTDIR)@bindir@/sr
-	rm -f $(DESTDIR)@mandir@/man1/sr.1.gz
+	rm -f $(DESTDIR)@mandir@/man1/sr.1
 endif
 if BASHCOMPLETIONS
 	-rm -f $(DESTDIR)@datadir@/bash-completion/completions/surfraw
