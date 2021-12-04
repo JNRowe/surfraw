@@ -24,5 +24,5 @@ if test -z "$w3_args"; then
     w3_browse_url "https://directory.fsf.org/"
 else
     escaped_args=$(w3_url_of_arg $w3_args)
-	w3_browse_url "https://directory.fsf.org/search/?query=${escaped_args}"
+    w3_browse_url "https://directory.fsf.org/wiki?title=Special:Search&search=${escaped_args}"
 fi
