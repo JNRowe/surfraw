@@ -1,10 +1,10 @@
 #!/bin/sh
 # $Id$
-# elvis: ixquick		-- Search the web using ixquick [HTTPS] (www.ixquick.com)
+# elvis: ixquick		-- Search the web using startpage [HTTPS] (startpage.com)
 . surfraw || exit 1
 
 w3_config_hook () {
-def   SURFRAW_ixquick_search 'do/metasearch.pl'
+def   SURFRAW_ixquick_search web
 def   SURFRAW_ixquick_lang "$SURFRAW_lang"
 defyn SURFRAW_ixquick_ssl   yes
 }
@@ -13,7 +13,7 @@ w3_usage_hook () {
     cat <<EOF
 Usage: $w3_argv0 [options] [search words]...
 Description:
-  Surfraw search the web using Ixquick metasearch [HTTPS] (www.ixquick.com)
+  Surfraw search the web using Startpage (formerly Ixquick) metasearch [HTTPS] (startpage.com)
 Local options:
   -nossl                        Don't use https
                                 Environment: SURFRAW_ixquick_ssl
@@ -102,6 +102,9 @@ else
 	ko|kr|kp|hangul)      SURFRAW_ixquick_lang="hangul"         ;;
 	*)                    SURFRAW_ixquick_lang="english"        ;;
     esac
+    case "$SURFRAW_ixquick_search" in
+        pics) SURFRAW_ixquick_search=images ;;
+    esac
     escaped_args=$(w3_url_of_arg $w3_args)
-    w3_browse_url "${proto}://www.ixquick.com/do/metasearch.pl?cat=${SURFRAW_ixquick_search}&cmd=process_search&language=${SURFRAW_ixquick_lang}&query=${escaped_args}"
+    w3_browse_url "${proto}://startpage.com/sp/search?cat=${SURFRAW_ixquick_search}&language=${SURFRAW_ixquick_lang}&query=${escaped_args}"
 fi
