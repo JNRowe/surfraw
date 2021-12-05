@@ -1,2 +1,1 @@
-excite foo
-Wikipedia
+SKIP HTTP 307 redirect and needs javascript(?)
