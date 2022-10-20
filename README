@@ -277,6 +277,7 @@ w3link          -- Check web page links with the w3c linkchecker (validator.w3.o
 w3rdf           -- Validate a RDF URL with the w3c RDF validator (validator.w3.org)
 wayback         -- Search The Internet Archive's Wayback Machine for a URL (archive.org)
 webster         -- Look up word in Merriam-Webster's Dictionary (www.m-w.com)
+wikifeet        -- Search celebrity feet images on wikifeet
 wikipedia       -- Search the free encyclopedia wikipedia
 wiktionary      -- Search the free multilingual dictionary (wiktionary.org)
 woffle          -- Search the web using Woffle (localhost:8080)
