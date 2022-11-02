@@ -118,12 +118,12 @@ esac
 
 # w3_args now contains a list of arguments
 if test -z "$w3_args" && test "$SURFRAW_aur_action" = "Search=Go"; then
-    w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages.php?setlang=${aur_lang}"
+    w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages?setlang=${aur_lang}"
 else
     escaped_args=$(w3_url_of_arg $w3_args)
     if [ "$SURFRAW_aur_outdated" = 1 ]; then
-        w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages.php?O=0&L=0&detail=1&&K=${escaped_args}&SeB=${aur_search_by}&SB=${aur_sort_by}&SO=${SURFRAW_aur_order}&PP=${SURFRAW_aur_results}&do_${SURFRAW_aur_action}&outdated=on&setlang=${aur_lang}"
+        w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages?O=0&L=0&detail=1&&K=${escaped_args}&SeB=${aur_search_by}&SB=${aur_sort_by}&SO=${SURFRAW_aur_order}&PP=${SURFRAW_aur_results}&do_${SURFRAW_aur_action}&outdated=on&setlang=${aur_lang}"
     else
-        w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages.php?O=0&L=0&detail=1&&K=${escaped_args}&SeB=${aur_search_by}&SB=${aur_sort_by}&SO=${SURFRAW_aur_order}&PP=${SURFRAW_aur_results}&do_${SURFRAW_aur_action}&setlang=${aur_lang}"
+        w3_browse_url "${SURFRAW_aur_protocol}://aur.archlinux.org/packages?O=0&L=0&detail=1&&K=${escaped_args}&SeB=${aur_search_by}&SB=${aur_sort_by}&SO=${SURFRAW_aur_order}&PP=${SURFRAW_aur_results}&do_${SURFRAW_aur_action}&setlang=${aur_lang}"
     fi
 fi
