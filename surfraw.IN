@@ -45,7 +45,7 @@ find_global_conf () {
     done
 
     # old surfraw default
-    conf="@sysconfdir@/xdg/surfraw/$base"
+    conf="@sysconfdir@/xdg/surfraw.$base"
     if [ -r "${conf}" ] ; then
         printf "%s" "${conf}"
         return 0
