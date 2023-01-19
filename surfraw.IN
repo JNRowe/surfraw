@@ -461,6 +461,7 @@ mkopts ()
 mkopts bookmark-search-elvis= browser= escape-url-args= new= ns= newscreen= custom-search= o=
 # Flags
 mkopts elvi graphical help local-help quote new ns newscreen o text version print
+# Completion-related options won't be included because they aren't needed for ordinary use.
 
 w3_parse_option () {
     opt="$1"
