@@ -90,3 +90,13 @@ def SURFRAW_lang     	  	""
 # with (eg) site: specifiers
 # supported: google duckduckgo
 def SURFRAW_customsearch_provider duckduckgo
+
+# Do useful but potentially expensive default completions for the
+# arguments of an elvis?
+# This can be useful for completion interfaces (e.g., Bash, Zsh, Emacs)
+# to provide better default suggestions than surfraw.
+# For example, this option applies to (1) but not to (2) or (3):
+#   1. surfraw <TAB>
+#   2. surfraw -<TAB>
+#   3. surfraw -opt=<TAB>
+defyn SURFRAW_default_arg_completions yes

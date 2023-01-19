@@ -401,7 +401,12 @@ w3_complete_hook_arg_default ()
 }
 w3_complete_hook_arg ()
 {
-	w3_complete_hook_arg_default "$@"
+	if ok SURFRAW_default_arg_completions
+	then
+		w3_complete_hook_arg_default "$@"
+	else
+		return 1
+	fi
 }
 
 w3_complete ()
@@ -497,6 +502,8 @@ w3_parse_option () {
 	-complete=*)        w3_complete "$optarg"; exit 0               ;;
 	--complete-arg=* | \
 	-complete-arg=*)    w3_complete_arg "$optarg"; exit 0           ;;
+	--default-arg-completions=* | -default-arg-completions=*)
+	    		    setoptyn SURFRAW_default_arg_completions "$optarg"	;;
 	--)		    setoptyn SURFRAW_end_of_args yes 		;;
 	-*)		    w3_bad_option "$opt"		    	;;
 	*)		    return 1					;;
