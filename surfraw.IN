@@ -623,9 +623,9 @@ w3_browse_url () {
 		fi
 	else
 		if test $SURFRAW_browser_args = "none"; then
-			exec $SURFRAW_browser "$@"
+			exec $SURFRAW_browser "$@" &
 		else
-			exec $SURFRAW_browser $SURFRAW_browser_args "$@"
+			exec $SURFRAW_browser $SURFRAW_browser_args "$@" &
 		fi
 	fi
     fi
