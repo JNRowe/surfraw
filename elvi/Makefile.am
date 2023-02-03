@@ -71,7 +71,6 @@ dist_elvi_SCRIPTS	= \
 		  macports \
 		  mathworld \
 		  mdn \
-		  mininova \
 		  musicbrainz \
 		  mysqldoc \
 		  netbsd \
