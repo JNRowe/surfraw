@@ -3,11 +3,6 @@
 # elvis: cite		-- Search computer science papers (citeseerx.ist.psu.edu)
 . surfraw || exit 1
 
-w3_config_hook () {
-defyn   SURFRAW_cite_citations 0
-defyn   SURFRAW_cite_authors 0
-}
-
 w3_usage_hook () {
     cat <<EOF
 Usage: $w3_argv0 [options] [search words]...
@@ -17,24 +12,8 @@ Description:
    CiteSeer is a scientific literature digital library that
    indexes the full text of spidered PDF and PS documents and performes
    sophisticated clustering and citation analysis on the results.
-
-Local options:
-  -cite                         Include citations.
-  -author                       Search authors instead of documents.
 EOF
     w3_global_usage
-}
-mkopts cite author
-
-w3_parse_option_hook () {
-    opt="$1"
-    optarg="$2"
-    case "$opt" in
-	-cit*)  setoptyn   SURFRAW_cite_citations 1	;;
-	-auth*) setoptyn   SURFRAW_cite_authors 1	;;
-	*) return 1 ;;
-    esac
-    return 0
 }
 
 w3_config
@@ -44,12 +23,7 @@ if test -z "$w3_args"; then
     w3_browse_url "http://citeseerx.ist.psu.edu/"
 else
     escaped_args=$(w3_url_of_arg $w3_args)
-    url="http://citeseerx.ist.psu.edu/search?q=${escaped_args}&submit=Search"
-    if ifyes SURFRAW_cite_citations; then
-	url="${url}&ic=1"
-    fi
-    if ifyes SURFRAW_cite_authors; then
-	url="${url}&uauth=1"
-    fi
+    # It's hard to find what the query parameters are, so we can't configure the sorting.
+    url="https://citeseerx.ist.psu.edu/search_result?query=${escaped_args}&pdf=true"
     w3_browse_url "$url"
 fi
