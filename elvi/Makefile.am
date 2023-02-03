@@ -68,7 +68,6 @@ dist_elvi_SCRIPTS	= \
 		  l1sp \
 		  lastfm \
 		  leodict \
-		  lsm \
 		  macports \
 		  mathworld \
 		  mdn \
