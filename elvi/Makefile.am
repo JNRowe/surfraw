@@ -6,7 +6,6 @@ dist_elvi_SCRIPTS	= \
 		  W \
 		  acronym \
 		  ads \
-		  alioth \
 		  amazon \
 		  archpkg \
 		  archwiki \
