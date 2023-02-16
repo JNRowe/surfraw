@@ -139,27 +139,27 @@ else
      else
 	SURFRAW_acronym_path="http://www.acronymfinder.com/~/search/af.aspx?Acronym=" # Acronym Finder
 	if [ "$SURFRAW_acronym_exa" = 1 ]; then
-		par="exact"
+		stringpar="exact"
 	elif [ "$SURFRAW_acronym_wim" = 1 ]; then
-		par="on"
+		stringpar="on"
 	elif [ "$SURFRAW_acronym_zip" = 1 ]; then
-	        par="zip"
+	        stringpar="zip"
 	fi
-	SURFRAW_acronym_par="&Find=find&string=$par&Page=1"
+	SURFRAW_acronym_par="&Find=find&string=${stringpar}&Page=1"
 	if [ "$SURFRAW_acronym_ict" = 1 ]; then
-		par="IT"
+		categorypar="IT"
 	elif [ "$SURFRAW_acronym_sci" = 1 ]; then
-	        par="SciMed"
+	        categorypar="SciMed"
 	elif [ "$SURFRAW_acronym_gov" = 1 ]; then
-        	par="MilGov"
+        	categorypar="MilGov"
 	elif [ "$SURFRAW_acronym_org" = 1 ]; then
-        	par="Org"
+        	categorypar="Org"
 	elif [ "$SURFRAW_acronym_biz" = 1 ]; then
-        	par="Business"
+        	categorypar="Business"
 	elif [ "$SURFRAW_acronym_pop" = 1 ]; then
-        	par="Slang"
+        	categorypar="Slang"
 	fi
-	SURFRAW_acronym_par="$SURFRAW_acronym_par&Category=$par"
+	SURFRAW_acronym_par="$SURFRAW_acronym_par&Category=${categorypar}"
      fi
      if [ "$SURFRAW_acronym_alpha" = 1 ]; then
 	SURFRAW_acronym_par="$SURFRAW_acronym_par&s=a"
