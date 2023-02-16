@@ -3,11 +3,16 @@
 # elvis: currency	-- Convert currencies with the Universal Currency Converter (www.xe.net/ucc)
 . surfraw || exit 1
 
-list_currency_symbols () {
-
-cat <<EOT
+list_currency_symbols_header ()
+{
+cat <<EOF
 Symbol		Country and Currency
 
+EOF
+}
+list_currency_symbols_body ()
+{
+cat <<EOT
 AFA		Afghanistan, Afghani
 ALL		Albania, Lek
 DZD		Algeria, Dinar
@@ -329,8 +334,13 @@ YER		Yemen, Rial
 ZMK		Zambia, Kwacha
 ZWD		Zimbabwe, Dollar
 EOT
-
 }
+list_currency_symbols ()
+{
+list_currency_symbols_header
+list_currency_symbols_body
+}
+
 
 w3_config_hook () {
 def   SURFRAW_currency_from USD
@@ -363,7 +373,7 @@ w3_complete_hook_opt ()
 {
         local opt="$1"
         case "$opt" in
-                -from=*|-to=*) list_currency_symbols | cut -f1 ;;
+                -from=*|-to=*) list_currency_symbols_body | cut -f1 ;;
                 *) return 1 ;;
         esac
 }
