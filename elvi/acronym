@@ -92,12 +92,12 @@ if test -z "$w3_args"; then
 else
      escaped_args=$(w3_url_of_arg $w3_args)
      if	[ "$SURFRAW_acronym_attic" = 1 ]; then
-	SURFRAW_acronym_path="http://www.acronymattic.com/~/search/aa.aspx?Acronym=" # Acronym Attic
+	SURFRAW_acronym_path="http://www.acronymattic.com/~/search/af.aspx?Acronym=" # Acronym Attic
      else
 	SURFRAW_acronym_path="http://www.acronymfinder.com/~/search/af.aspx?Acronym=" # Acronym Finder
-	SURFRAW_acronym_par="&Find=find&string=${SURFRAW_acronym_match}&Page=1"
-	SURFRAW_acronym_par="$SURFRAW_acronym_par&Category=${SURFRAW_acronym_category}"
      fi
+     SURFRAW_acronym_par="&Find=find&string=${SURFRAW_acronym_match}&Page=1"
+     SURFRAW_acronym_par="$SURFRAW_acronym_par&Category=${SURFRAW_acronym_category}"
      SURFRAW_acronym_par="$SURFRAW_acronym_par&s=${SURFRAW_acronym_sort}"
 fi
 w3_browse_url "$SURFRAW_acronym_path${escaped_args}$SURFRAW_acronym_par"
