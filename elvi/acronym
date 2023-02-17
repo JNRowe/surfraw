@@ -5,9 +5,7 @@
 
 w3_config_hook () {
     def SURFRAW_acronym_category All
-    defyn SURFRAW_acronym_exa 1
-    defyn SURFRAW_acronym_wim 0
-    defyn SURFRAW_acronym_zip 0
+    def SURFRAW_acronym_match exact
     defyn SURFRAW_acronym_ran 0
     defyn SURFRAW_acronym_gen 0
     defyn SURFRAW_acronym_alpha 0
@@ -61,17 +59,11 @@ w3_parse_option_hook () {
 #Slang & Pop Culture category
     -c|-common)	setopt SURFRAW_acronym_category "Slang" ;;
 #exact match
-    -e|-exact)        setoptyn SURFRAW_acronym_exa   1
-		setoptyn SURFRAW_acronym_wim   0
-                setoptyn SURFRAW_acronym_zip   0 ;;
+    -e|-exact)	setopt SURFRAW_acronym_match "exact" ;;
 #Word(s) in meaning match
-    -w|-wim)        setoptyn SURFRAW_acronym_wim   1
-                setoptyn SURFRAW_acronym_exa   0
-                setoptyn SURFRAW_acronym_zip   0 ;;
+    -w|-wim)	setopt SURFRAW_acronym_match "on" ;;
 #Location (postal code, name) match
-    -z|-zip)        setoptyn SURFRAW_acronym_zip   1
-                setoptyn SURFRAW_acronym_wim   0
-                setoptyn SURFRAW_acronym_exa   0 ;;
+    -z|-zip)	setopt SURFRAW_acronym_match "zip" ;;
 #Random acronym
     -r|-random)        setoptyn SURFRAW_acronym_ran   1
 	        setoptyn SURFRAW_acronym_gen   0 ;;
@@ -103,14 +95,7 @@ else
 	SURFRAW_acronym_path="http://www.acronymattic.com/~/search/aa.aspx?Acronym=" # Acronym Attic
      else
 	SURFRAW_acronym_path="http://www.acronymfinder.com/~/search/af.aspx?Acronym=" # Acronym Finder
-	if [ "$SURFRAW_acronym_exa" = 1 ]; then
-		stringpar="exact"
-	elif [ "$SURFRAW_acronym_wim" = 1 ]; then
-		stringpar="on"
-	elif [ "$SURFRAW_acronym_zip" = 1 ]; then
-	        stringpar="zip"
-	fi
-	SURFRAW_acronym_par="&Find=find&string=${stringpar}&Page=1"
+	SURFRAW_acronym_par="&Find=find&string=${SURFRAW_acronym_match}&Page=1"
 	SURFRAW_acronym_par="$SURFRAW_acronym_par&Category=${SURFRAW_acronym_category}"
      fi
      if [ "$SURFRAW_acronym_alpha" = 1 ]; then
