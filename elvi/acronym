@@ -10,9 +10,6 @@ w3_config_hook () {
     defyn SURFRAW_acronym_gen 0
     def SURFRAW_acronym_sort ""  # url parameter value for sort by "rank"
     defyn SURFRAW_acronym_attic 0
-    def   SURFRAW_acronym_path
-    def   SURFRAW_acronym_par
-
 }
 
 w3_usage_hook () {
