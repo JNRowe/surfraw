@@ -39,6 +39,9 @@ run (starting with the elvi name, don't use a leading 'sr' or
 'surfraw', and the second line is a perl regular expression (which can
 be just plain text) to match against the resulting web page.
 
+Blank lines and lines starting with "#" (the comment character) are
+ignored.
+
 Multiple tests can be implemented per elvi, feel free to submit more!
 
 When new test files have been written, add them to EXTRA_DIST in
