@@ -1,67 +1,104 @@
 #!/bin/sh
-# $Id$
 # elvis: imdb		-- Search the Internet Movie Database (www.imdb.com)
-# ianb@erislabs.net 20030209
-
+# Generated-By: mkelvis (surfraw-tools) 0.2.0
+# NOTE: Any double underscore-prefixed names (i.e., variables and functions)
+#       are reserved for `mkelvis` and are an implementation detail.
+#       Depend on at your own risk.
+# Author: Gabriel Lisaca
+# I used the following command to generate this elvis, and then removed unnecessary output.
+# mkelvis imdb www.imdb.com 'www.imdb.com/find/?' \
+#     --description='Search the Internet Movie Database' \
+#     --query-parameter=q \
+#     --enum=category:all:all,titles,episodes,people,companies,keywords \
+#     --collapse=category:all,:titles,tt:episodes,ep:people,nm:companies,co:keywords,kw \
+#     --map=category:s --describe=category:'Category to search' \
+#     --alias=search:category:enum --num-tabs=2
 . surfraw || exit 1
 
-w3_config_hook () {
-def   SURFRAW_imdb_category all
-}
-
-w3_usage_hook () {
-    cat <<EOF
+w3_usage_hook ()
+{
+	cat <<EOF
 Usage: $w3_argv0 [options] [search words]...
 Description:
-  Surfraw search the Internet Movie Database (www.imdb.com)
+  Search the Internet Movie Database (www.imdb.com)
 Local options:
-  -category=                    Category to search
-             All          |
-             Titles       |
-             MyMovies     |
-             People       |
-             Characters   |
-             Quotes       |
-             Bios         |
-             Plots
-                                Default: $SURFRAW_imdb_category
-                                Environment: SURFRAW_imdb_category
+  -category=CATEGORY, -search=CATEGORY     Category to search
+                              all        |
+                              titles     |
+                              episodes   |
+                              people     |
+                              companies  |
+                              keywords   |
+                                           Default: $SURFRAW_imdb_category
+                                           Environment: SURFRAW_imdb_category
 EOF
-    w3_global_usage
-}
-mkopts category=
-w3_complete_hook_opt ()
-{
-        local opt="$1"
-        case "$opt" in
-                -category=*) echo All Titles MyMovies People Characters Quotes Bios Plots ;;
-                *) return 1 ;;
-        esac
+	w3_global_usage
 }
 
-w3_parse_option_hook () {
-    opt="$1"
-    optarg="$2"
-    case "$opt" in
-	-category=Titles)     setopt SURFRAW_imdb_category tt      ;;
-	-category=People)     setopt SURFRAW_imdb_category nm      ;;
-	-category=Characters) setopt SURFRAW_imdb_category ch      ;;
-	-category=*)          setopt SURFRAW_imdb_category $optarg ;;
-	*) return 1 ;;
-    esac
-    return 0
+w3_config_hook ()
+{
+	def SURFRAW_imdb_category all
 }
+
+w3_parse_option_hook ()
+{
+	opt="$1"
+	optarg="$2"
+	case "$opt" in
+		-category=*|-search=*) setopt SURFRAW_imdb_category "$optarg" ;;
+		*) return 1 ;;
+	esac
+	return 0
+}
+
+w3_complete_hook_opt ()
+{
+	local opt="$1"
+	case "$opt" in
+		-category=*|-search=*) echo all titles episodes people companies keywords ;;
+		*) return 1 ;;
+	esac
+}
+mkopts category= search=
 
 w3_config
 w3_parse_args "$@"
-# w3_args now contains a list of arguments
+# `w3_args` now contains a list of arguments.
+
+# Check enums
+case "$SURFRAW_imdb_category" in
+	all|titles|episodes|people|companies|keywords) ;;
+	*) err "Invalid value for SURFRAW_imdb_category" ;;
+esac
+
+# Collapse variables
+it="$SURFRAW_imdb_category"
+case "$it" in
+	all) SURFRAW_imdb_category="" ;;
+	titles) SURFRAW_imdb_category="tt" ;;
+	episodes) SURFRAW_imdb_category="ep" ;;
+	people) SURFRAW_imdb_category="nm" ;;
+	companies) SURFRAW_imdb_category="co" ;;
+	keywords) SURFRAW_imdb_category="kw" ;;
+esac
+
+# Any variables in the url should have values now
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.imdb.com/"
-else
-    escaped_args=$(w3_url_of_arg $w3_args)
-	#Avoids people having to quote "My+Movies" on command line
-	if [ $SURFRAW_imdb_category = MyMovies ]; then
-		SURFRAW_imdb_category="My+Movies"
-	fi
-    w3_browse_url "http://www.imdb.com/find?s=${SURFRAW_imdb_category}&q=${escaped_args}"
+	w3_browse_url "https://www.imdb.com"
+	exit
 fi
+
+# Map variables to parameters
+mappings="s=$(w3_url_escape "$SURFRAW_imdb_category")"
+# Map each value of list variables to parameters
+
+# Add the search to url
+mappings="$mappings&q="
+## Disable globbing to avoid accidental exposure of directory contents.
+set -f
+escaped_args="$(w3_url_of_arg $w3_args)"
+it="$escaped_args"
+search_url="https://www.imdb.com/find/?"
+search_url="$search_url$mappings"
+search_url="$search_url$escaped_args"
+w3_browse_url "$search_url"

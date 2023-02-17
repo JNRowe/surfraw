@@ -1,8 +1,12 @@
 imdb Ralph Bates
-Horror of Frankenstein
-imdb -category=Titles As Good as It Gets
+Jekyll
+imdb -category=titles As Good as It Gets
 As Good as It Gets.*1997
-imdb -category=Names Peter Dinklage
-The Station Agent
-imdb -category=Characters Ralph Wiggum
-The Simpsons
+imdb -category=episodes Heaven Sent
+Doctor Who
+imdb -category=people Peter Dinklage
+Game of Thrones
+imdb -category=companies BBC
+British Broadcasting Corporation
+imdb -category=keywords murder
+[\d,]+ titles
