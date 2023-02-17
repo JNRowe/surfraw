@@ -56,7 +56,6 @@ dist_elvi_SCRIPTS	= \
 		  genbugs \
 		  genportage \
 		  github \
-		  gmane \
 		  google \
 		  gutenberg \
 		  imdb \

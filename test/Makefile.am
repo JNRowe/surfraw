@@ -10,7 +10,7 @@ EXTRA_DIST = runtests elviwithouttests README COOKIES W.test S.test			\
 		dockerhub.test duckduckgo.test ebay.test etym.test excite.test 		\
 		f5.test	finkpkg.test foldoc.test freebsd.test 	 			\
 		freshmeat.test fsfdir.test gcache.test genbugs.test genportage.test \
-		github.test	gmane.test google.test gutenberg.test imdb.test 		\
+		github.test google.test gutenberg.test imdb.test	 		\
 		ixquick.test jamendo.test javasun.test jquery.test lastfm.test		\
 		leodict.test l1sp.test macports.test mathworld.test			\
 		mdn.test musicbrainz.test mysqldoc.test netbsd.test	\
