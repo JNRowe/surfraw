@@ -50,7 +50,6 @@ dist_elvi_SCRIPTS	= \
 		  foldoc \
 		  finkpkg \
 		  freebsd \
-		  freedb \
 		  freshmeat \
 		  fsfdir \
 		  gcache \
