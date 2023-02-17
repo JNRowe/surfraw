@@ -1,4 +1,4 @@
-finkpkg surfraw
-Revolutionary Front Rage Against the Web
-finkpkg -pkg=surfraw
-Revolutionary Front Rage Against the Web
+finkpkg dpkg
+The Debian package manager
+finkpkg -pkg=apt
+Advanced front-end for dpkg
