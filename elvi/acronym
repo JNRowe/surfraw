@@ -83,15 +83,15 @@ w3_parse_args "$@"
 
 if test -z "$w3_args"; then
     if [ "$SURFRAW_acronym_gen" = 1 ]; then
-	SURFRAW_acronym_path="http://www.acronymfinder.com/buzzgen.asp" # Fake Acronym
-    else SURFRAW_acronym_path="http://www.acronymfinder.com/random.aspx"     # Random Acronym
+	SURFRAW_acronym_path="https://www.acronymfinder.com/buzzgen.asp" # Fake Acronym
+    else SURFRAW_acronym_path="https://www.acronymfinder.com/random.aspx"     # Random Acronym
     fi
 else
      escaped_args=$(w3_url_of_arg $w3_args)
      if	[ "$SURFRAW_acronym_attic" = 1 ]; then
-	SURFRAW_acronym_path="http://www.acronymattic.com/~/search/af.aspx?Acronym=" # Acronym Attic
+	SURFRAW_acronym_path="https://www.acronymattic.com/~/search/af.aspx?Acronym=" # Acronym Attic
      else
-	SURFRAW_acronym_path="http://www.acronymfinder.com/~/search/af.aspx?Acronym=" # Acronym Finder
+	SURFRAW_acronym_path="https://www.acronymfinder.com/~/search/af.aspx?Acronym=" # Acronym Finder
      fi
      SURFRAW_acronym_par="&Find=find&string=${SURFRAW_acronym_match}&Page=1"
      SURFRAW_acronym_par="$SURFRAW_acronym_par&Category=${SURFRAW_acronym_category}"
