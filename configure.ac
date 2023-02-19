@@ -20,7 +20,7 @@ AC_ARG_ENABLE([opensearch],
 AC_MSG_RESULT([$enable_opensearch])
 AM_CONDITIONAL(OPENSEARCH, test "$enable_opensearch" = "yes")
 
-AC_MSG_CHECKING([wether to install Bash completions])
+AC_MSG_CHECKING([whether to install Bash completions])
 AC_ARG_ENABLE([bash-completions],
         [AS_HELP_STRING([--disable-bash-completions], [disable Bash completions support])],,
         [enable_bashcompletions=yes])
