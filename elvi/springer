@@ -9,17 +9,7 @@ w3_usage_hook () {
     cat <<EOF
 Usage: $w3_argv0 [options] [search-string]
 Description:
-  Search springer
-Local options:
-  -fields=FIELD			Subject field to search
-           all              |   Seach all fields (default)
-           author           |   Author name
-           title            |   Title
-           series           |   Series
-           isbn             |   ISBN/ISSN
-
-Examples:
-  $w3_argv0 -fields=author featherstone
+  Search Springer for Books and Articles
 EOF
     w3_global_usage
 }
