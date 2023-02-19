@@ -2,7 +2,6 @@ elvi.1sr.gz @mandir@/man1/W.1.gz
 elvi.1sr.gz @mandir@/man1/S.1sr.gz
 elvi.1sr.gz @mandir@/man1/acronym.1sr.gz
 elvi.1sr.gz @mandir@/man1/ads.1sr.gz
-elvi.1sr.gz @mandir@/man1/alioth.1sr.gz
 elvi.1sr.gz @mandir@/man1/amazon.1sr.gz
 elvi.1sr.gz @mandir@/man1/archpkg.1sr.gz
 elvi.1sr.gz @mandir@/man1/archwiki.1sr.gz
@@ -45,7 +44,6 @@ elvi.1sr.gz @mandir@/man1/excite.1sr.gz
 elvi.1sr.gz @mandir@/man1/finkpkg.1sr.gz
 elvi.1sr.gz @mandir@/man1/foldoc.1sr.gz
 elvi.1sr.gz @mandir@/man1/freebsd.1sr.gz
-elvi.1sr.gz @mandir@/man1/freedb.1sr.gz
 elvi.1sr.gz @mandir@/man1/freshmeat.1sr.gz
 elvi.1sr.gz @mandir@/man1/fsfdir.1sr.gz
 elvi.1sr.gz @mandir@/man1/gcache.1sr.gz
@@ -61,11 +59,9 @@ elvi.1sr.gz @mandir@/man1/javasun.1sr.gz
 elvi.1sr.gz @mandir@/man1/lastfm.1sr.gz
 elvi.1sr.gz @mandir@/man1/leodict.1sr.gz
 elvi.1sr.gz @mandir@/man1/l1sp.1sr.gz
-elvi.1sr.gz @mandir@/man1/lsm.1sr.gz
 elvi.1sr.gz @mandir@/man1/macports.1sr.gz
 elvi.1sr.gz @mandir@/man1/mathworld.1sr.gz
 elvi.1sr.gz @mandir@/man1/mdn.1sr.gz
-elvi.1sr.gz @mandir@/man1/mininova.1sr.gz
 elvi.1sr.gz @mandir@/man1/musicbrainz.1sr.gz
 elvi.1sr.gz @mandir@/man1/mysqldoc.1sr.gz
 elvi.1sr.gz @mandir@/man1/netbsd.1sr.gz
@@ -78,12 +74,10 @@ elvi.1sr.gz @mandir@/man1/phpdoc.1sr.gz
 elvi.1sr.gz @mandir@/man1/pin.1sr.gz
 elvi.1sr.gz @mandir@/man1/piratebay.1sr.gz
 elvi.1sr.gz @mandir@/man1/priberam.1sr.gz
-elvi.1sr.gz @mandir@/man1/pubmed.1sr.gz
 elvi.1sr.gz @mandir@/man1/rae.1sr.gz
 elvi.1sr.gz @mandir@/man1/rfc.1sr.gz
 elvi.1sr.gz @mandir@/man1/scholar.1sr.gz
 elvi.1sr.gz @mandir@/man1/scpan.1sr.gz
-elvi.1sr.gz @mandir@/man1/searx.1sr.gz
 elvi.1sr.gz @mandir@/man1/slashdot.1sr.gz
 elvi.1sr.gz @mandir@/man1/slinuxdoc.1sr.gz
 elvi.1sr.gz @mandir@/man1/sourceforge.1sr.gz

@@ -1,96 +1,136 @@
 #!/bin/sh
+# elvis: ntrs		-- Search the NASA Technical Report Server (ntrs.nasa.gov)
+# Generated-By: mkelvis (surfraw-tools) 0.2.0
+# NOTE: Any double underscore-prefixed names (i.e., variables and functions)
+#       are reserved for `mkelvis` and are an implementation detail.
+#       Depend on at your own risk.
+# Author: Gabriel Lisaca
+# I used the following command to generate this elvis, and then (1)
+# removed unnecessary output, (2) replaced the sentinel values with
+# their real values since they contain ":" which can't be escaped in
+# mkelvis (yet), and (3) made sure that -sort= is only mapped to the
+# URL if the value is *not* "relevance".
 #
-# author: Wim Van Hoydonck
-#
-# elvis: ntrs		-- Search the NASA Technical Report Server
+# mkelvis ntrs ntrs.nasa.gov 'ntrs.nasa.gov/search?' \
+#     --description='Search the NASA Technical Report Server' \
+#     --query-parameter=q \
+#     --enum=sort:relevance:relevance,newest-pubdate,oldest-pubdate \
+#     --collapse=sort:relevance,:newest-pubdate,NEWEST_SENTINEL:oldest-pubdate,OLDEST_SENTINEL \
+#     --map=sort:sort --describe=sort:'Sort by SORT' \
+#     --enum=results:25:25,50,100 \
+#     --collapse=results:25,25_SENTINEL:50,50_SENTINEL:100,100_SENTINEL \
+#     --map=results:page --metavar=results:num \
+#     --describe=results:'Number of search results returned' \
+#     --num-tabs=2
 . surfraw || exit 1
 
-w3_config_hook () {
-def   SURFRAW_ntrs_fields	Abstract
-def   SURFRAW_ntrs_results	matchall
-}
-
-w3_usage_hook () {
-    cat <<EOF
-Usage: $w3_argv0 [options] [search-string]
+w3_usage_hook ()
+{
+	cat <<EOF
+Usage: $w3_argv0 [options] [search words]...
 Description:
-  Search ntrs
+  Search the NASA Technical Report Server (ntrs.nasa.gov)
 Local options:
-  -fields=FIELD			Subject field to search
-           all              |   Seach all fields
-           abstract         |   Words in abstract (default)
-           accession        |   Accession number
-           center           |   NASA Center
-           author           |   Author name
-           docID            |   Document ID
-           keywords         |   Keywords
-           date             |   Publication date
-           title            |   Title
-  -results=RESULT		Find Results with
-           all              |   All of the words
-           any              |   At least one of the words
-
-Examples:
-  $w3_argv0 -fields=abstract -results=all free wake
+  -sort=SORT              Sort by SORT
+        relevance       |
+        newest-pubdate  |
+        oldest-pubdate  |
+                          Default: $SURFRAW_ntrs_sort
+                          Environment: SURFRAW_ntrs_sort
+  -results=NUM            Number of search results returned
+           25           |
+           50           |
+           100          |
+                          Default: $SURFRAW_ntrs_results
+                          Environment: SURFRAW_ntrs_results
 EOF
-    w3_global_usage
+	w3_global_usage
 }
-mkopts fields= results=
+
+w3_config_hook ()
+{
+	def SURFRAW_ntrs_sort relevance
+	def SURFRAW_ntrs_results 25
+}
+
+w3_parse_option_hook ()
+{
+	opt="$1"
+	optarg="$2"
+	case "$opt" in
+		-sort=*) setopt SURFRAW_ntrs_sort "$optarg" ;;
+		-results=*) setopt SURFRAW_ntrs_results "$optarg" ;;
+		*) return 1 ;;
+	esac
+	return 0
+}
+
 w3_complete_hook_opt ()
 {
-        local opt="$1"
-        case "$opt" in
-                -fields=*) echo all abstract accession center author docID keyword date title ;;
-                -results=*) echo all any ;;
-                *) return 1 ;;
-        esac
+	local opt="$1"
+	case "$opt" in
+		-sort=*) echo relevance newest-pubdate oldest-pubdate ;;
+		-results=*) echo 25 50 100 ;;
+		*) return 1 ;;
+	esac
 }
-
-w3_parse_option_hook () {
-    opt="$1"
-    optarg="$2"
-    case "$opt" in
-	-fields=*)	setopt	SURFRAW_ntrs_fields	$optarg ;;
-	-results=*)	setopt	SURFRAW_ntrs_results	$optarg	;;
-	*) return 1 ;;
-    esac
-    return 0
-}
-
+mkopts sort=
+mkopts results=
 
 w3_config
 w3_parse_args "$@"
-# w3_args now contains a list of arguments
+# `w3_args` now contains a list of arguments.
 
-case "$SURFRAW_ntrs_fields" in
-    all)       field=All ;;
-    abstract)  field=Abstract ;;
-    accession) field=AccessionNum ;;
-    center)    field=ArchiveName ;;
-    author)    field=AuthorList ;;
-    docID)     field=DocumentID ;;
-    keyword)   field=Keywords ;;
-    date)      field=PublicationDate ;;
-    title)     field=Title ;;
-    *)         field=Abstract ;;
+# Check enums
+case "$SURFRAW_ntrs_sort" in
+	relevance|newest-pubdate|oldest-pubdate) ;;
+	*) err "Invalid value for SURFRAW_ntrs_sort" ;;
 esac
-
 case "$SURFRAW_ntrs_results" in
-    all)       result=matchall ;;
-    any)       result=matchany ;;
-    *)         result=matchall ;;
+	25|50|100) ;;
+	*) err "Invalid value for SURFRAW_ntrs_results" ;;
 esac
 
-if null "$w3_args"; then
-    w3_browse_url "https://ntrs.nasa.gov/search.jsp"
-else
-    # TODO: combine multiple searches, e.g.
-    # first search the abstract for certain keywords,
-    # then search the authors of those results
-    # this gives urls that look like this:
-    #https://ntrs.nasa.gov/search.jsp?N=0&Ntk=Abstract|AuthorList&Ntx=mode%20matchall|mode%20matchall&Ntt=free%20wake|wachspress
-    escaped_args=$(w3_url_of_arg $w3_args)
-    url="https://ntrs.nasa.gov/search.jsp?N=0&Ntk=${field}&Ntx=mode%20${result}&Ntt=${escaped_args}"
-    w3_browse_url "${url}"
+# Collapse variables
+it="$SURFRAW_ntrs_sort"
+case "$it" in
+	relevance) SURFRAW_ntrs_sort="" ;;
+	newest-pubdate) SURFRAW_ntrs_sort='{"field":"published","order":"desc"}' ;;
+	oldest-pubdate) SURFRAW_ntrs_sort='{"field":"published","order":"asc"}' ;;
+esac
+it="$SURFRAW_ntrs_results"
+case "$it" in
+	25) SURFRAW_ntrs_results='{"size":25,"from":0}' ;;
+	50) SURFRAW_ntrs_results='{"size":50,"from":0}' ;;
+	100) SURFRAW_ntrs_results='{"size":100,"from":0}' ;;
+esac
+
+# Any variables in the url should have values now
+if test -z "$w3_args"; then
+	w3_browse_url "https://ntrs.nasa.gov"
+	exit
 fi
 
+# Map inline variables
+# Map each value of inline list variables
+##__mkelvis_inline_variable "$SURFRAW_ntrs_variable" keyword
+
+# Map variables to parameters
+if [ -n "$SURFRAW_ntrs_sort" ]
+then
+	mappings="sort=$(w3_url_escape "$SURFRAW_ntrs_sort")&"
+else
+	mappings=""
+fi
+mappings="${mappings}page=$(w3_url_escape "$SURFRAW_ntrs_results")"
+
+# Add the search to url
+mappings="$mappings&q="
+## Disable globbing to avoid accidental exposure of directory contents.
+set -f
+escaped_args="$(w3_url_of_arg $w3_args)"
+it="$escaped_args"
+search_url="https://ntrs.nasa.gov/search?"
+search_url="$search_url$mappings"
+search_url="$search_url$escaped_args"
+w3_browse_url "$search_url"

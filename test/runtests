@@ -100,6 +100,7 @@ sub runtests
     {
 	$testnum++;
 	chomp($cmd);
+	next if($cmd=~/^#/); # ignore line comments
 	next if($cmd=~/^\s*$/); # ignore blank lines
 	if($cmd=~/^SKIP\s*(.*)/)
 	{

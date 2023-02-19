@@ -3,11 +3,16 @@
 # elvis: currency	-- Convert currencies with the Universal Currency Converter (www.xe.net/ucc)
 . surfraw || exit 1
 
-list_currency_symbols () {
-
-cat <<EOT
+list_currency_symbols_header ()
+{
+cat <<EOF
 Symbol		Country and Currency
 
+EOF
+}
+list_currency_symbols_body ()
+{
+cat <<EOT
 AFA		Afghanistan, Afghani
 ALL		Albania, Lek
 DZD		Algeria, Dinar
@@ -329,8 +334,13 @@ YER		Yemen, Rial
 ZMK		Zambia, Kwacha
 ZWD		Zimbabwe, Dollar
 EOT
-
 }
+list_currency_symbols ()
+{
+list_currency_symbols_header
+list_currency_symbols_body
+}
+
 
 w3_config_hook () {
 def   SURFRAW_currency_from USD
@@ -363,7 +373,7 @@ w3_complete_hook_opt ()
 {
         local opt="$1"
         case "$opt" in
-                -from=*|-to=*) list_currency_symbols | cut -f1 ;;
+                -from=*|-to=*) list_currency_symbols_body | cut -f1 ;;
                 *) return 1 ;;
         esac
 }
@@ -384,8 +394,8 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "http://www.xe.com/currencyconverter/"
+    w3_browse_url "https://www.xe.com/currencyconverter/"
 else
     escaped_args=$(w3_url_of_arg $w3_args)
-    w3_browse_url "http://www.xe.com/currencyconverter/Amount=${escaped_args}&From=${SURFRAW_currency_from}&To=${SURFRAW_currency_to}&submit=Perform+Currency+Conversion"
+    w3_browse_url "https://www.xe.com/currencyconverter/convert/?Amount=${escaped_args}&From=${SURFRAW_currency_from}&To=${SURFRAW_currency_to}&submit=Perform+Currency+Conversion"
 fi

@@ -41,22 +41,20 @@ if test -z "$w3_args"
 then
     case "$SURFRAW_mysqldoc_version" in
         all)    inurl="/doc/"               ;;
+        *8.0*)  inurl="/doc/refman/8.0/en/" ;;
         *5.7*)  inurl="/doc/refman/5.7/en/" ;;
         *5.6*)  inurl="/doc/refman/5.6/en/" ;;
-        *5.5*)  inurl="/doc/refman/5.5/en/" ;;
-        *5.0*)  inurl="/doc/refman/5.0/en/" ;;
-        *[34]*) inurl="/doc/refman/4.1/en/" ;;
+        *[345]*) inurl="/doc/refman/5.6/en/" ;;
         *)      inurl="/doc/"
     esac
     w3_browse_url "https://dev.mysql.com${inurl}"
 else
     case "$SURFRAW_mysqldoc_version" in
         all)    inurl="-u=doc"                  ;;
+        *8.0*)  inurl="-u=doc -u=refman -u=8.0" ;;
         *5.7*)  inurl="-u=doc -u=refman -u=5.7" ;;
         *5.6*)  inurl="-u=doc -u=refman -u=5.6" ;;
-        *5.5*)  inurl="-u=doc -u=refman -u=5.5" ;;
-        *5.0*)  inurl="-u=doc -u=refman -u=5.0" ;;
-        *[34]*) inurl="-u=doc -u=refman -u=4.1" ;;
+        *[345]*) inurl="-u=doc -u=refman -u=5.6" ;;
         *)      inurl="-u=doc"                  ;;
     esac
 

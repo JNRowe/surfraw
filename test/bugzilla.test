@@ -1,8 +1,7 @@
-bugzilla ipv6
-bugs found
+# needs javascript
+# bugzilla ipv6
+# result .* limited .* [\d,]+ bugs
 bugzilla -s=mozilla ipv6
-bugs found
-bugzilla -s=gnome ipv6
 bugs found
 bugzilla -s=kde ipv6
 bugs found
@@ -12,11 +11,9 @@ bugzilla -s=freedesktop ipv6
 bugs found
 bugzilla -s=eclipse SQLIntegrityConstraintViolationException
 bugs found
-bugzilla -s=mandriva ipv6
-bugs found
-bugzilla -s=gentoo net-wireless/wimax
-bugs found
-bugzilla -s=novell ipv6
-bugs found
-bugzilla -s=redhat ipv6
-bugs found
+# needs javascript
+# bugzilla -s=gentoo net-wireless/wimax
+# result .* limited .* [\d,]+ bugs
+# needs javascript
+# bugzilla -s=redhat ipv6
+# [Ss]howing [\d,]+ .* of [\d,]+ entries

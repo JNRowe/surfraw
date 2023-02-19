@@ -175,7 +175,6 @@ OPTIONS
 W               -- Activate Surfraw defined web-browser
 acronym         -- Look for acronyms definitions (www.acronymfinder.com)
 ads             -- Search SAO/NASA Astrophysics Data System
-alioth          -- Search Alioth (alioth.debian.org)
 amazon          -- Search the amazon.com bookstore
 archpkg         -- Search Arch Linux Packages (www.archlinux.org/packages/)
 archwiki        -- Search the Arch Linux Wiki
@@ -220,14 +219,12 @@ f5              -- Search F5 related information (www.f5.com)
 finkpkg         -- Search Fink packages (pdb.finkproject.org)
 foldoc          -- The Free On-Line Dictionary Of Computing (foldoc.org)
 freebsd         -- Search FreeBSD related information (www.freebsd.org)
-freedb          -- Search for cd track listings in FreeDB (www.freedb.org)
 freshmeat       -- Search Freshmeat (www.freshmeat.net)
 fsfdir          -- Search the FSF/UNESCO Free Software Directory (directory.fsf.org)
 gcache          -- Search the web using Google cache (www.google.com)
 genbugs         -- Search the Gentoo bug tracker (bugs.gentoo.org)
 genportage      -- Search gentoo-portage.com for packages
 github          -- Search GitHub (https://github.com)
-gmane           -- Search mailing list with gmane (gmane.org)
 google          -- Search the web using Google (www.google.com)
 gutenberg       -- Search for books on Project Gutenberg (gutenberg.org)
 imdb            -- Search the Internet Movie Database (www.imdb.com)
@@ -238,16 +235,14 @@ jquery          -- Search the jQuery documentation (api.jquery.com)
 l1sp            -- Search lisp documentation
 lastfm          -- Search last.fm
 leodict         -- Search Leo's German <-> English dictionary (dict.leo.org)
-lsm             -- Search the Linux Software Map
 macports        -- Search macports packages (macports.org)
 mathworld       -- Search Wolfram MathWorld
 mdn             -- Search the mozilla developer network (developer.mozilla.org)
-mininova        -- Search the mininova bittorent source.
 musicbrainz     -- Search MusicBrainz (musicbrainz.org)
 mysqldoc        -- Search mysql documentation (dev.mysql.com)
 netbsd          -- Search NetBSD related information (www.netbsd.org)
 nlab            -- Search the nLab wiki (http://ncatlab.org)
-ntrs            -- Search the NASA Technical Report Server
+ntrs            -- Search the NASA Technical Report Server (ntrs.nasa.gov)
 openbsd         -- Search OpenBSD related information (www.openbsd.org)
 oraclesearch    -- Search an OpenSearch-enabled website
 pgdoc           -- Search postgres documentation (www.pgdoc.com)
@@ -256,12 +251,10 @@ phpdoc          -- Search php documentation (php.net)
 pin             -- Search Pinboard bookmarks (http://pinboard.in)
 piratebay       -- Search The Pirate Bay (http://thepiratebay.org)
 priberam        -- Look up word in Priberam online dictionary (www.priberam.pt/dlpo)
-pubmed          -- Search medical/molbio databases (www.ncbi.nlm.nih.gov)
 rae             -- Busca en el diccionario de la Real Academia de la Lengua Española (Spanish Dictionary)
 rfc             -- Search RFCs (internet standards documents)
 scholar         -- Search Google Scholar (scholar.google.com)
 scpan           -- Search the Comprehensive Perl Archive Network (search.cpan.org)
-searx           -- Search using searx metasearch engine instances (searx.me)
 slashdot        -- Search stories on Slashdot (www.slashdot.org)
 slinuxdoc       -- Search entries in LDP (www.linuxdoc.org)
 sourceforge     -- Search SourceForge (www.sourceforge.net)

@@ -1,25 +1,23 @@
 #!/bin/sh
 # $Id$
-# elvis: thesaurus	-- Look up a synonym in Oxford's thesaurus (en.oxforddictionaries.com)
+# elvis: thesaurus	-- Look up a synonym in Merriam-Webster's thesaurus (www.merriam-webster.com)
 . surfraw || exit 1
 
 w3_usage_hook () {
     cat <<EOF
 Usage: $w3_argv0 [search words]...
 Description:
-    Look up a synonym in Oxford's thesaurus (en.oxforddictionaries.com)
+    Look up a synonym in Merriam-Webster's thesaurus (www.merriam-webster.com)
 EOF
     w3_global_usage
 }
 
 w3_config
-# disable requoting, doesn't work with this elvi.
-SURFRAW_quote_ifs=0
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 if test -z "$w3_args"; then
-    w3_browse_url "https://en.oxforddictionaries.com/english-thesaurus"
+    w3_browse_url "https://www.merriam-webster.com/thesaurus/"
 else
     escaped_args=$(w3_url_of_arg $w3_args)
-    w3_browse_url "https://en.oxforddictionaries.com/thesaurus/${escaped_args}"
+    w3_browse_url "https://www.merriam-webster.com/thesaurus/${escaped_args}"
 fi

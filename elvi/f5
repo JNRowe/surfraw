@@ -52,14 +52,14 @@ if ok SURFRAW_f5_dc; then
     if test -z "$escaped_args"; then
         w3_browse_url "https://devcentral.f5.com"
     else
-        w3_browse_url "https://devcentral.f5.com/Default.aspx?tabid=37&cx=015798286719081439686:g38hs-tdy64&cof=FORID:11i&q=${escaped_args}"
+	w3_browse_url "https://devcentral.f5.com/s/global-search/%40uri#q=${escaped_args}&t=community_data&sort=relevancy"
     fi
     exit $?
 fi
 if test -z "$escaped_args"; then
     w3_browse_url "https://www.f5.com"
 else
-    w3_browse_url "https://www.f5.com/search?q=${escaped_args}"
+    w3_browse_url "https://www.f5.com/search#q=${escaped_args}"
 
 fi
 exit $?

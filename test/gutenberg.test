@@ -1,2 +1,6 @@
-gutenberg twain
+gutenberg -search=books twain
+Mark Twain
+gutenberg -search=authors twain
 Twain, Mark
+gutenberg -search=subjects twain
+Mississippi River

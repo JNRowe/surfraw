@@ -1,73 +1,124 @@
 #!/bin/sh
-# $Id$
-# elvis: gutenberg	-- Search for books on Project Gutenberg (gutenberg.org)
+# elvis: gutenberg	-- Search for books on Project Gutenberg (www.gutenberg.org)
+# Generated-By: mkelvis (surfraw-tools) 0.2.0
+# NOTE: Any double underscore-prefixed names (i.e., variables and functions)
+#       are reserved for `mkelvis` and are an implementation detail.
+#       Depend on at your own risk.
+# Author: Gabriel Lisaca
+# I used the following command to generate this elvis, and then made some edits:
+# mkelvis gutenberg www.gutenberg.org 'www.gutenberg.org/ebooks/${SURFRAW_gutenberg_search}/search/?' \
+#     --description='Search for books on Project Gutenberg' --query-parameter=query \
+#     --enum=sort:popular:popular,alphabetical,release-date \
+#     --collapse=sort:popular,downloads:release-date,release_date --map=sort:sort_order \
+#     --metavar=sort:property --describe='sort:Sort results by PROPERTY' \
+#     --enum=search:books:books,authors,subjects \
+#     --collapse=search:books, --metavar=search:category \
+#     --describe=search:'Search by CATEGORY'
+# I didn't include sorting by "quantity" since not all search categories have it.
 . surfraw || exit 1
 
-w3_config_hook () {
-defyn SURFRAW_gutenberg_author 0
-defyn SURFRAW_gutenberg_title  0
-defyn SURFRAW_gutenberg_num    0
-}
-
-w3_usage_hook () {
-    cat <<EOF
+w3_usage_hook ()
+{
+	cat <<EOF
 Usage: $w3_argv0 [options] [search words]...
 Description:
-  Search for books on Project Gutenberg (gutenberg.org)
+  Search for books on Project Gutenberg (www.gutenberg.org)
 Local options:
-  -title                        Search titles (default)
-  -author                       Search authors
-  -num                          Search etext numbers
+  -sort=PROPERTY        Sort results by PROPERTY
+        popular       |
+        alphabetical  |
+        release-date  |
+                        Default: $SURFRAW_gutenberg_sort
+                        Environment: SURFRAW_gutenberg_sort
+  -search=CATEGORY      Search by CATEGORY
+          books       |
+          authors     |
+          subjects    |
+                        Default: $SURFRAW_gutenberg_search
+                        Environment: SURFRAW_gutenberg_search
 EOF
-    w3_global_usage
+	w3_global_usage
 }
-mkopts title author num
 
-w3_parse_option_hook () {
-    opt="$1"
-    optarg="$2"
-    case "$opt" in
-    -a*)        setoptyn SURFRAW_gutenberg_author   1       ;;
-    -ti*)       setoptyn SURFRAW_gutenberg_title    1       ;;
-    -n*)        setoptyn SURFRAW_gutenberg_num      1       ;;
-	*) return 1 ;;
-    esac
-    return 0
+w3_config_hook ()
+{
+	def SURFRAW_gutenberg_sort popular
+	def SURFRAW_gutenberg_search books
 }
+
+w3_parse_option_hook ()
+{
+	opt="$1"
+	optarg="$2"
+	case "$opt" in
+		-sort=*) setopt SURFRAW_gutenberg_sort "$optarg" ;;
+		-search=*) setopt SURFRAW_gutenberg_search "$optarg" ;;
+		*) return 1 ;;
+	esac
+	return 0
+}
+
+w3_complete_hook_opt ()
+{
+	local opt="$1"
+	case "$opt" in
+		-sort=*) echo popular alphabetical release-date ;;
+		-search=*) echo books authors subjects ;;
+		*) return 1 ;;
+	esac
+}
+# Options with arguments + their aliases
+mkopts sort=
+mkopts search=
 
 w3_config
 w3_parse_args "$@"
-# w3_args now contains a list of arguments
+# `w3_args` now contains a list of arguments.
+
+# Check enums
+case "$SURFRAW_gutenberg_sort" in
+	popular|alphabetical|release-date) ;;
+	*) err "Invalid value for SURFRAW_gutenberg_sort" ;;
+esac
+case "$SURFRAW_gutenberg_search" in
+	books|authors|subjects) ;;
+	*) err "Invalid value for SURFRAW_gutenberg_search" ;;
+esac
+
+# Collapse variables
+it="$SURFRAW_gutenberg_sort"
+case "$it" in
+	alphabetical)
+		# A bit inconsistent, but oh well.
+		case "$SURFRAW_gutenberg_search" in
+			books) SURFRAW_gutenberg_sort="title" ;;
+			*) SURFRAW_gutenberg_sort="alpha" ;;
+		esac
+		;;
+	popular) SURFRAW_gutenberg_sort="downloads" ;;
+	release-date) SURFRAW_gutenberg_sort="release_date" ;;
+esac
+it="$SURFRAW_gutenberg_search"
+case "$it" in
+	books) SURFRAW_gutenberg_search="" ;;
+esac
+
+# Any variables in the url should have values now
 if test -z "$w3_args"; then
-    w3_browse_url "https://www.gutenberg.org/"
-else
-    escaped_args=$(w3_url_of_arg $w3_args)
-	if ifno SURFRAW_gutenberg_author &&
-	   ifno SURFRAW_gutenberg_title  &&
-	   ifno SURFRAW_gutenberg_num
-	then
-		SURFRAW_gutenberg_title=1
-	fi
-
-	url="https://www.gutenberg.org/catalog/world/results?"
-	if ifyes SURFRAW_gutenberg_author
-	then
-		url="$url&author=${escaped_args}"
-	else
-		url="$url&author="
-	fi
-	if ifyes SURFRAW_gutenberg_title
-	then
-		url="$url&title=${escaped_args}"
-	else
-		url="$url&title="
-	fi
-	if ifyes SURFRAW_gutenberg_num
-	then
-		url="$url&etextnr=${escaped_args}"
-	else
-		url="$url&etextnr="
-	fi
-
-	w3_browse_url "$url"
+	w3_browse_url "https://www.gutenberg.org"
+	exit
 fi
+
+# Map variables to parameters
+mappings="sort_order=$(w3_url_escape "$SURFRAW_gutenberg_sort")"
+
+# Add the search to url
+mappings="$mappings&query="
+## Disable globbing to avoid accidental exposure of directory contents.
+set -f
+escaped_args="$(w3_url_of_arg $w3_args)"
+it="$escaped_args"
+search_url="https://www.gutenberg.org/ebooks/${SURFRAW_gutenberg_search}/search/?"
+search_url="$search_url$mappings"
+search_url="$search_url$escaped_args"
+w3_browse_url "$search_url"

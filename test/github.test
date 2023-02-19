@@ -1,6 +1,8 @@
 github browser
 mozilla
-github window-manager
-wmfs
+github -lang=C linux
+torvalds/linux
+github -type=user torvalds
+Linus Torvalds
 github surfraw
 surfraw

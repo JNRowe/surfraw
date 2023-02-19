@@ -1,2 +1,2 @@
 discogs radiohead
-/artist/Radiohead
+/artist/(\d+-)?Radiohead

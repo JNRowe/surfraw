@@ -1,10 +1,30 @@
-acronym -e NASA
+# Match types
+acronym -exact NASA
 National Aeronautics and Space Administration \(USA\)
-acronym -u NASA
+acronym -wim NASA
+has an acronym match
+acronym -zip NASA
+Map for
+
+# Search categories
+acronym -ict NASA
+showing only <strong>Information Technology</strong> definitions
+acronym -sci NASA
+showing only <strong>Science & Medicine</strong> definitions
+acronym -gov NASA
+showing only <strong>Military and Government</strong> definitions
+acronym -org NASA
+showing only <strong>Organizations</strong> definitions
+acronym -biz NASA
+showing only <strong>Business & Finance</strong> definitions
+acronym -common NASA
+showing only <strong>Slang/Internet Slang</strong> definitions
+
+acronym -unverified NASA
 Azerbaijan
-acronym surfraw
-What does SURFRAW stand for\?
-acronym -f
+acronym -fake
 Systematic Buzz Phrase Projector \(SBPP\) number
-acronym -a aaa
+
+# Sorting
+acronym -alphabetic aaa
 Academia de Automovilismo Andrade \(Guatemala\)

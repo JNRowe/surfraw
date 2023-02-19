@@ -6,7 +6,6 @@ dist_elvi_SCRIPTS	= \
 		  W \
 		  acronym \
 		  ads \
-		  alioth \
 		  amazon \
 		  archpkg \
 		  archwiki \
@@ -51,14 +50,12 @@ dist_elvi_SCRIPTS	= \
 		  foldoc \
 		  finkpkg \
 		  freebsd \
-		  freedb \
 		  freshmeat \
 		  fsfdir \
 		  gcache \
 		  genbugs \
 		  genportage \
 		  github \
-		  gmane \
 		  google \
 		  gutenberg \
 		  imdb \
@@ -69,11 +66,9 @@ dist_elvi_SCRIPTS	= \
 		  l1sp \
 		  lastfm \
 		  leodict \
-		  lsm \
 		  macports \
 		  mathworld \
 		  mdn \
-		  mininova \
 		  musicbrainz \
 		  mysqldoc \
 		  netbsd \
@@ -87,12 +82,10 @@ dist_elvi_SCRIPTS	= \
 		  pin \
 		  piratebay \
 		  priberam \
-		  pubmed \
 		  rae \
 		  rfc \
 		  scholar \
 		  scpan \
-		  searx \
 		  slashdot \
 		  slinuxdoc \
 		  sourceforge \

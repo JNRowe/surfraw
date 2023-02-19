@@ -1,9 +1,9 @@
 commandlinefu
 is the place to record those command-line gems that you return to again and again
 commandlinefu find something
-Terminal - Commands matching find something - [\d,]+ results
+Commands matching find something
 commandlinefu -txt test
-^# commandlinefu.com by David Winterbottom\n
+^# commandlinefu.com .* danstools00@gmail.com
 commandlinefu -json test
 ^\[\{"id":"\d+","command":.*\}\]$
 commandlinefu -rss test
