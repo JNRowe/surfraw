@@ -82,7 +82,6 @@ dist_elvi_SCRIPTS	= \
 		  pin \
 		  piratebay \
 		  priberam \
-		  pubmed \
 		  rae \
 		  rfc \
 		  scholar \
