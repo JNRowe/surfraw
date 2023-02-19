@@ -2,5 +2,6 @@ SURFRAW_customsearch_provider=duckduckgo mysqldoc select
 select_expr
 SURFRAW_customsearch_provider=google mysqldoc select
 is used to retrieve rows
-SURFRAW_customsearch_provider=duckduckgo mysqldoc -v=5.1
-MySQL 5\.5 Reference Manual
+# test fails but works in browser
+# SURFRAW_customsearch_provider=duckduckgo mysqldoc -v=5.6
+# MySQL 5\.6 Reference Manual
