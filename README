@@ -242,7 +242,7 @@ musicbrainz     -- Search MusicBrainz (musicbrainz.org)
 mysqldoc        -- Search mysql documentation (dev.mysql.com)
 netbsd          -- Search NetBSD related information (www.netbsd.org)
 nlab            -- Search the nLab wiki (http://ncatlab.org)
-ntrs            -- Search the NASA Technical Report Server
+ntrs            -- Search the NASA Technical Report Server (ntrs.nasa.gov)
 openbsd         -- Search OpenBSD related information (www.openbsd.org)
 oraclesearch    -- Search an OpenSearch-enabled website
 pgdoc           -- Search postgres documentation (www.pgdoc.com)
