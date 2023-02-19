@@ -17,9 +17,8 @@ Local options:
   -site=URL                     Bugzilla site to search
                                 The site URL can be specified,
 				or the following aliases can be used:
-				  kernel, mozilla, gnome, kde, apache,
-				  freedesktop, eclipse, redhat,
-				  mandriva, gentoo, novell
+				  kernel, mozilla, kde, apache,
+				  freedesktop, eclipse, redhat, gentoo
                                 Default: $SURFRAW_bugzilla_site
                                 Environment: SURFRAW_bugzilla_site
 				Examples: bugzilla -s=https://bugs.kde.org ipv6
@@ -41,7 +40,7 @@ w3_complete_hook_opt ()
 {
         local opt="$1"
         case "$opt" in
-                -site=*) echo kernel mozilla gnome kde apache freedesktop eclipse redhat mandriva gentoo novell ;;
+                -site=*) echo kernel mozilla kde apache freedesktop eclipse redhat gentoo ;;
                 -status=*) echo open closed all ;;
                 -product=*) echo all ;;
                 *) return 1 ;;
@@ -77,14 +76,12 @@ esac
 case "$SURFRAW_bugzilla_site" in
     kernel)      setopt SURFRAW_bugzilla_site "https://bugzilla.kernel.org"         ;;
     mozilla)     setopt SURFRAW_bugzilla_site "https://bugzilla.mozilla.org"         ;;
-    gnome)       setopt SURFRAW_bugzilla_site "https://bugzilla.gnome.org"           ;;
     kde)         setopt SURFRAW_bugzilla_site "https://bugs.kde.org"                 ;;
     apache)      setopt SURFRAW_bugzilla_site "https://issues.apache.org/bugzilla"   ;;
     freedesktop) setopt SURFRAW_bugzilla_site "https://bugs.freedesktop.org"         ;;
     eclipse)     setopt SURFRAW_bugzilla_site "https://bugs.eclipse.org/bugs"       ;;
     redhat)      setopt SURFRAW_bugzilla_site "https://bugzilla.redhat.com/" ;;
     gentoo)      setopt SURFRAW_bugzilla_site "https://bugs.gentoo.org"              ;;
-    novell)      setopt SURFRAW_bugzilla_site "https://bugzilla.novell.com"         ;;
 esac
 
 if test -z "$w3_args"; then
