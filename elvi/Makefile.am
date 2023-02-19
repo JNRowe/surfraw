@@ -86,7 +86,6 @@ dist_elvi_SCRIPTS	= \
 		  rfc \
 		  scholar \
 		  scpan \
-		  searx \
 		  slashdot \
 		  slinuxdoc \
 		  sourceforge \
