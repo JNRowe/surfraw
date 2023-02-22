@@ -29,6 +29,7 @@ BUILT_SOURCES = surfraw.conf
 
 do_subst = sed -e 's|@ELVIDIR[@]|${ELVIDIR}|g'\
 	    -e 's|@VERSION[@]|${VERSION}|g'\
+	    -e 's|@PACKAGE_STRING[@]|${PACKAGE_STRING}|g'\
 	    -e 's|@TEXTBROWSER[@]|${TEXTBROWSER}|g'\
 	    -e 's|@GRAPHICALBROWSER[@]|${GRAPHICALBROWSER}|g'\
 	    -e 's|@AWK[@]|${AWK}|g'\

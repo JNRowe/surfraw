@@ -1,4 +1,4 @@
-# -*- sh -*- bash programmable completion for Surfraw, v2.2
+# -*- sh -*- bash programmable completion for @PACKAGE_STRING@
 
 __surfraw_validate_elvis_exists ()
 {
