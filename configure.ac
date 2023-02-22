@@ -4,7 +4,11 @@ dnl Process this file with autoconf to produce a configure script.
 
 dnl This is the only place where the package version appears
 dnl (apart from changelogs & NEWS)
-AC_INIT(surfraw, 2.3.0)
+AC_INIT([Surfraw],
+	[2.3.0],
+	[surfraw-devel@lists.alioth.debian.org],
+	[surfraw],
+	[https://gitlab.com/surfraw/Surfraw])
 AC_PREREQ(2.69)
 AC_CONFIG_SRCDIR([surfraw.IN])
 dnl Reduce project root clutter.
