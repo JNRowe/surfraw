@@ -4,12 +4,18 @@ dnl Process this file with autoconf to produce a configure script.
 
 dnl This is the only place where the package version appears
 dnl (apart from changelogs & NEWS)
-AC_INIT(surfraw, 2.3.0)
-AC_PREREQ(2.54)
+AC_INIT([Surfraw],
+	[2.3.0],
+	[surfraw-devel@lists.alioth.debian.org],
+	[surfraw],
+	[https://gitlab.com/surfraw/Surfraw])
+AC_PREREQ(2.69)
 AC_CONFIG_SRCDIR([surfraw.IN])
+dnl Reduce project root clutter.
+AC_CONFIG_AUX_DIR([build-aux])
 
 dnl minimum automake version, not surfraw version
-AM_INIT_AUTOMAKE([1.10])
+AM_INIT_AUTOMAKE([1.16])
 
 AC_MSG_CHECKING([whether to enable local OpenSearch support])
 AC_ARG_ENABLE([opensearch],
@@ -18,7 +24,7 @@ AC_ARG_ENABLE([opensearch],
 AC_MSG_RESULT([$enable_opensearch])
 AM_CONDITIONAL(OPENSEARCH, test "$enable_opensearch" = "yes")
 
-AC_MSG_CHECKING([wether to install Bash completions])
+AC_MSG_CHECKING([whether to install Bash completions])
 AC_ARG_ENABLE([bash-completions],
         [AS_HELP_STRING([--disable-bash-completions], [disable Bash completions support])],,
         [enable_bashcompletions=yes])
@@ -54,11 +60,13 @@ AC_SUBST(VERSION)
 AC_SUBST(TEXTBROWSER)
 AC_SUBST(GRAPHICALBROWSER)
 
-ISODATE=`date -u -r ChangeLog +%Y-%m-%d`
-AC_SUBST(ISODATE)
+AC_CONFIG_COMMANDS_PRE([ISODATE=`date -u -r "$srcdir/ChangeLog" +%Y-%m-%d`
+			AC_SUBST(ISODATE)])
 
 dnl Checks for programs.
 AC_PROG_INSTALL
+AC_PROG_MKDIR_P
+AC_PROG_LN_S
 AC_PROG_AWK
 AC_PATH_PROG([PERL], [perl], [perl])
 AC_SUBST(PERL)
