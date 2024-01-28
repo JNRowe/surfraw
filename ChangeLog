@@ -1,3 +1,7 @@
+2024-01-28  Thomas Böhler <witcher@wiredspace.de>
+
+	* elvi: add elvi for doc.rust-lang.org
+
 2021-11-08  Gabriel Lisaca <gabriel.lisaca@gmail.com>
 
 	* Remove fallback for graphical remotes: it doesn't work with exec

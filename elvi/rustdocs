@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# AUTHOR: Thomas Böhler <witcher@wiredspace.de>
+#
+# DATE: Sun Jan 28 2024
+#
+# DESC: Elvi to search doc.rust-lang.org
+# elvis: rustdocs		-- Search doc.rust-lang.org
+. surfraw || exit 1
+
+w3_usage_hook () {
+	cat <<EOF
+Usage: $w3_argv0 [options] [search words]...
+Description:
+  Search the Rust standard library on doc.rust-lang.org
+EOF
+	w3_global_usage
+}
+
+w3_config
+w3_parse_args "$@"
+
+prefix="https://doc.rust-lang.org/std/index.html"
+
+if test -z "$w3_args"; then
+	w3_browse_url "$prefix"
+else
+	escaped_args=`w3_url_of_arg $w3_args`
+	w3_browse_url "$prefix?search=${escaped_args}"
+fi
