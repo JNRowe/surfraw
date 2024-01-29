@@ -149,13 +149,13 @@ if test -z "$w3_args"; then
 else
     escaped_args=$(w3_url_of_arg $w3_args)
 
-    if ifyes SURFRAW_debcontents_ubuntu
-    then
-	if [ "$SURFRAW_debcontents_distro" = "stable" ]
+	if ifyes SURFRAW_debcontents_ubuntu
 	then
-		SURFRAW_debcontents_distro=raring
+		if [ "$SURFRAW_debcontents_distro" = "stable" ]
+		then
+			SURFRAW_debcontents_distro=focal
+		fi
 	fi
-    fi
     url="$searchurl?keywords=${escaped_args}&searchon=contents"
 
     url="$url&arch=${SURFRAW_debcontents_arch}"
