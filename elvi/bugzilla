@@ -19,7 +19,7 @@ Local options:
 				or the following aliases can be used:
 				  kernel, mozilla, gnome, kde, apache,
 				  freedesktop, eclipse, redhat,
-				  mandriva, gentoo, novell
+				  gentoo, novell
                                 Default: $SURFRAW_bugzilla_site
                                 Environment: SURFRAW_bugzilla_site
 				Examples: bugzilla -s=https://bugs.kde.org ipv6
@@ -41,7 +41,7 @@ w3_complete_hook_opt ()
 {
         local opt="$1"
         case "$opt" in
-                -site=*) echo kernel mozilla gnome kde apache freedesktop eclipse redhat mandriva gentoo novell ;;
+                -site=*) echo kernel mozilla gnome kde apache freedesktop eclipse redhat gentoo novell ;;
                 -status=*) echo open closed all ;;
                 -product=*) echo all ;;
                 *) return 1 ;;
