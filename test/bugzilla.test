@@ -12,7 +12,5 @@ bugzilla -s=eclipse SQLIntegrityConstraintViolationException
 bugs found
 bugzilla -s=gentoo net-wireless/wimax
 bugs found
-bugzilla -s=novell ipv6
-bugs found
 bugzilla -s=redhat ipv6
 bugs found
