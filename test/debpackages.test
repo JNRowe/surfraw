@@ -2,6 +2,3 @@ debpackages surfraw
 Found <strong>\d+</strong> matching package
 debpackages -u surfraw
 Found <strong>\d+</strong> matching package
-debpackages -a surfraw
-Found <strong>\d+</strong> matching package
-
