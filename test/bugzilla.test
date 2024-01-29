@@ -2,8 +2,6 @@ bugzilla ipv6
 bugs found
 bugzilla -s=mozilla ipv6
 bugs found
-bugzilla -s=gnome ipv6
-bugs found
 bugzilla -s=kde ipv6
 bugs found
 bugzilla -s=apache ipv6
