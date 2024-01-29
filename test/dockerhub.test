@@ -1,5 +1,1 @@
-dockerhub nginx
-official
-dockerhub -automatic matomo
-wonderfall
-
+SKIP dependency on JavaScript
