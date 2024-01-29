@@ -40,11 +40,14 @@ w3_parse_option_hook () {
 w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
+
+prefix="https://citeseerx.ist.psu.edu"
+
 if test -z "$w3_args"; then
-    w3_browse_url "http://citeseerx.ist.psu.edu/"
+    w3_browse_url "$prefix"
 else
     escaped_args=$(w3_url_of_arg $w3_args)
-    url="http://citeseerx.ist.psu.edu/search?q=${escaped_args}&submit=Search"
+    url="$prefix/search_result?query=${escaped_args}&submit=Search"
     if ifyes SURFRAW_cite_citations; then
 	url="${url}&ic=1"
     fi
