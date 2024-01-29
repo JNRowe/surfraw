@@ -1,5 +1,5 @@
 bugzilla ipv6
-bugs found
+Content:</strong>\n\s*ipv6
 bugzilla -s=mozilla ipv6
 bugs found
 bugzilla -s=kde ipv6
@@ -11,6 +11,6 @@ bugs found
 bugzilla -s=eclipse SQLIntegrityConstraintViolationException
 bugs found
 bugzilla -s=gentoo net-wireless/wimax
-bugs found
+Content:</strong>\n\s*net-wireless/wimax
 bugzilla -s=redhat ipv6
 bugs found
