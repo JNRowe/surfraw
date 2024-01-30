@@ -127,43 +127,62 @@ w3_config
 w3_parse_args "$@"
 # w3_args now contains a list of arguments
 
-if test -z "$w3_args"; then
-    if [ "$SURFRAW_acronym_gen" = 1 ]; then
-	SURFRAW_acronym_path="http://www.acronymfinder.com/buzzgen.asp" # Fake Acronym
-    else SURFRAW_acronym_path="http://www.acronymfinder.com/random.aspx"     # Random Acronym
-    fi
-else
-     escaped_args=$(w3_url_of_arg $w3_args)
-     if	[ "$SURFRAW_acronym_attic" = 1 ]; then
-	SURFRAW_acronym_path="http://www.acronymattic.com/~/search/aa.aspx?Acronym=" # Acronym Attic
-     else
-	SURFRAW_acronym_path="http://www.acronymfinder.com/~/search/af.aspx?Acronym=" # Acronym Finder
-	if [ "$SURFRAW_acronym_exa" = 1 ]; then
-		par="exact"
-	elif [ "$SURFRAW_acronym_wim" = 1 ]; then
-		par="on"
-	elif [ "$SURFRAW_acronym_zip" = 1 ]; then
-	        par="zip"
-	fi
-	SURFRAW_acronym_par="&Find=find&string=$par&Page=1"
-	if [ "$SURFRAW_acronym_ict" = 1 ]; then
-		par="IT"
-	elif [ "$SURFRAW_acronym_sci" = 1 ]; then
-	        par="SciMed"
-	elif [ "$SURFRAW_acronym_gov" = 1 ]; then
-        	par="MilGov"
-	elif [ "$SURFRAW_acronym_org" = 1 ]; then
-        	par="Org"
-	elif [ "$SURFRAW_acronym_biz" = 1 ]; then
-        	par="Business"
-	elif [ "$SURFRAW_acronym_pop" = 1 ]; then
-        	par="Slang"
-	fi
-	SURFRAW_acronym_par="$SURFRAW_acronym_par&Category=$par"
-     fi
-     if [ "$SURFRAW_acronym_alpha" = 1 ]; then
-	SURFRAW_acronym_par="$SURFRAW_acronym_par&s=a"
-     fi
-fi
-w3_browse_url "$SURFRAW_acronym_path${escaped_args}$SURFRAW_acronym_par"
+finder_prefix="https://www.acronymfinder.com"
+finder_search="$finder_prefix/~/search/af.aspx"
+attic_prefix="http://www.acronymattic.com"
+attic_search="$attic_prefix/~/search/af.aspx"
 
+if test -z "$w3_args"; then
+	if [ "$SURFRAW_acronym_gen" = 1 ]; then
+		# Fake Acronym
+		SURFRAW_acronym_path="$finder_prefix/buzzgen.asp"
+	else
+		# Random Acronym
+		SURFRAW_acronym_path="$finder_prefix/random.aspx"
+	fi
+else
+	escaped_args=$(w3_url_of_arg $w3_args)
+
+	if [ "$SURFRAW_acronym_attic" = 1 ]; then
+		# Acronym Attic
+		SURFRAW_acronym_path="$attic_search?Acronym="
+	else
+		# Acronym Finder
+		SURFRAW_acronym_path="$finder_search?Acronym="
+
+		if [ "$SURFRAW_acronym_exa" = 1 ]; then
+			par="exact"
+		elif [ "$SURFRAW_acronym_wim" = 1 ]; then
+			par="on"
+		elif [ "$SURFRAW_acronym_zip" = 1 ]; then
+			par="zip"
+		fi
+
+		SURFRAW_acronym_par="&Find=find&string=$par&Page=1"
+
+		if [ "$SURFRAW_acronym_ict" = 1 ]; then
+			cat="IT"
+		elif [ "$SURFRAW_acronym_sci" = 1 ]; then
+			cat="SciMed"
+		elif [ "$SURFRAW_acronym_gov" = 1 ]; then
+			cat="MilGov"
+		elif [ "$SURFRAW_acronym_org" = 1 ]; then
+			cat="Org"
+		elif [ "$SURFRAW_acronym_biz" = 1 ]; then
+			cat="Business"
+		elif [ "$SURFRAW_acronym_pop" = 1 ]; then
+			cat="Slang"
+		fi
+
+		if [ -n "$cat" ]; then
+			# don't add category if none was selected
+			SURFRAW_acronym_par="$SURFRAW_acronym_par&Category=$par"
+		fi
+	fi
+
+	if [ "$SURFRAW_acronym_alpha" = 1 ]; then
+		SURFRAW_acronym_par="$SURFRAW_acronym_par&s=a"
+	fi
+fi
+
+w3_browse_url "$SURFRAW_acronym_path${escaped_args}$SURFRAW_acronym_par"

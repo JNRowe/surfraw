@@ -156,6 +156,29 @@ Gabriel Lisaca <gabriel.lisaca@gmail.com>
 Sascha <GlancingMind@outlook.com>
         Bug fixes
 
+Thomas Böhler <witcher@wiredspace.de>
+      bugzilla: Remove stray references to mandriva
+      bugzilla: Remove GNOME instance
+      bugzilla: Remove Novell instance
+      test: bugzilla: fix tests for new versions
+      acronym: Fix broken elvi
+      test: acronym: result now printing in bold
+      test: ads: SKIP because of JavaScript dependency
+      test: ask: fix match being lower case
+      test: austlii: fix outdated match string
+      cite: fix outdated url
+      test: cite: use general search result
+      test: commandlinefu: modernize response
+      currency: modernize elvis request
+      debcontents: update Ubuntu LTS to focal
+      debcontents: remove unmaintained archives
+      test: debcontents: Remove archive, search bookworm
+      debpackages: remove unmaintained archives
+      test: discogs: fix artist URL
+      test: dockerhub: SKIP due to javascript dep
+      test: ebay: remove CN search
+      changelog: Update recent changes done in bulk
+
 THANKS TO
 
 Brian Nelson           <bnelson@bloodclot.net>

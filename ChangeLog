@@ -1,3 +1,25 @@
+2021-01-30  Thomas Böhler <witcher@wiredspace.de>
+
+	* Remove chinese search from ebay
+	* Skip dockerhub test due to dependency on JavaScript
+	* Fix artist URL for discogs search
+	* Remove search from unmaintained debian archive
+	* Search bookworm by default for debcontents elvi
+	* Search Ubuntu focal by default for debcontents elvi
+	* Update currency request for updated website
+	* Update commandlinefu request for updated website
+	* Make cite's search result more general for tests
+	* Fix cite's outdated URL
+	* Fix outdated mach string for austlii test
+	* Fix ask test for lower case response
+	* Skip ads test due to dependency on JavaScript
+	* Fix acronym test for bold response
+	* Fix broken acronym elvi
+	* Fix bugzilla test response
+	* Remove bugzilla Novell instance
+	* Remove bugzilla GNOME instance
+	* Remove stray references to mandriva for bugzilla elvi
+
 2021-11-08  Gabriel Lisaca <gabriel.lisaca@gmail.com>
 
 	* Remove fallback for graphical remotes: it doesn't work with exec

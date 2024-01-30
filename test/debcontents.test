@@ -1,6 +1,6 @@
 debcontents surfraw
 usr/bin.*surfraw
 debcontents -u surfraw
-etc/bash_completion.d.*surfraw
-debcontents -distro=slink -a grep
-base/help/.*grep
+/usr/share/bash-completion/completions/.*surfraw
+debcontents -distro=bookworm grep
+/usr/lib/plan9/bin/.*grep

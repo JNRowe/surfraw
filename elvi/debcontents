@@ -8,7 +8,6 @@ def   SURFRAW_debcontents_arch    i386
 def   SURFRAW_debcontents_distro  stable
 def   SURFRAW_debcontents_search  "files"
 defyn SURFRAW_debcontents_ubuntu  no
-defyn SURFRAW_debcontents_archive no
 }
 
 w3_usage_hook () {
@@ -17,7 +16,6 @@ Usage: $w3_argv0 [options] [search words]...
 Description:
   Search contents of debian/ubuntu packages (packages.debian.org/packages.ubuntu.com)
 Local options:
-  -a                            Search archived debian releases
   -u                            Search ubuntu packages instead of debian
   -search=                      Type of search
       files              |      Packages that contain files named like this
@@ -30,15 +28,15 @@ Local options:
       i386               |      Intel x86        (all)
       powerpc            |      PowerPC          (all)
       amd64              |      AMD64            (all)
-      m68k               |      Motorola 680x0   (debian, archive.debian)
-      alpha              |      Alpha            (debian, archive.debian)
-      sparc              |      SPARC            (debian, archive.debian)
-      arm                |      ARM              (debian, archive.debian)
-      hppa               |      HP PA/RISC       (debian, archive.debian)
-      ia64               |      Intel IA-64      (debian, archive.debian)
-      mips               |      MIPS             (debian, archive.debian)
-      mipsel             |      MIPS (DEC)       (debian, archive.debian)
-      s390               |      IBM S/390        (debian, archive.debian)
+      m68k               |      Motorola 680x0   (debian)
+      alpha              |      Alpha            (debian)
+      sparc              |      SPARC            (debian)
+      arm                |      ARM              (debian)
+      hppa               |      HP PA/RISC       (debian)
+      ia64               |      Intel IA-64      (debian)
+      mips               |      MIPS             (debian)
+      mipsel             |      MIPS (DEC)       (debian)
+      s390               |      IBM S/390        (debian)
       hurd-i386          |      Hurd (i386)      (debian)
       kfreebsd-amd64     |      kFreeBSD (amd64) (debian)
       kfreebsd-i386             kFreeBSD (i386)  (debian)
@@ -50,14 +48,6 @@ Local options:
        testing           |      Testing
        unstable          |      Unstable
        oldstable         |      Old Stable
-     Archived Debian (-a):
-      bo                 |      1.3.1
-      hamm               |      2.0
-      slink              |      2.1
-      potato             |      2.2
-      woody              |      3.0
-      sarge              |      3.1
-      etch               |      4.0
      Ubuntu (-u):
        dapper            |      Dapper
        dapper-updates    |      Dapper Updates
@@ -121,7 +111,6 @@ w3_parse_option_hook () {
 	-distro=*)  setopt   SURFRAW_debcontents_distro  $optarg	;;
 	-search=*)  setopt   SURFRAW_debcontents_search  $optarg	;;
 	-u*)        setoptyn SURFRAW_debcontents_ubuntu  yes    	;;
-	-a*)        setoptyn SURFRAW_debcontents_archive yes    	;;
 	-ca*) 	    setoptyn SURFRAW_debcontents_usecase yes    	;;
 	*) return 1 ;;
     esac
@@ -136,10 +125,6 @@ if   ifyes SURFRAW_debcontents_ubuntu
 then
 	searchpage="http://packages.ubuntu.com/#search_contents"
 	searchurl="http://packages.ubuntu.com/search"
-elif ifyes SURFRAW_debcontents_archive
-then
-	searchpage="https://archive.debian.net/#search_contents"
-	searchurl="https://archive.debian.net/search"
 else
 	searchpage="https://packages.debian.org/#search_contents"
 	searchurl="https://packages.debian.org/search"
@@ -149,21 +134,20 @@ if test -z "$w3_args"; then
 else
     escaped_args=$(w3_url_of_arg $w3_args)
 
-    if ifyes SURFRAW_debcontents_ubuntu
-    then
-	if [ "$SURFRAW_debcontents_distro" = "stable" ]
+	if ifyes SURFRAW_debcontents_ubuntu
 	then
-		SURFRAW_debcontents_distro=raring
+		if [ "$SURFRAW_debcontents_distro" = "stable" ]
+		then
+			SURFRAW_debcontents_distro=focal
+		fi
 	fi
-    fi
     url="$searchurl?keywords=${escaped_args}&searchon=contents"
 
     url="$url&arch=${SURFRAW_debcontents_arch}"
     url="$url&suite=${SURFRAW_debcontents_distro}"
 
     case "$SURFRAW_debcontents_search" in
-	p*)      if ifyes SURFRAW_debcontents_ubuntu ||
-	            ifyes SURFRAW_debcontents_archive
+	p*)      if ifyes SURFRAW_debcontents_ubuntu
                  then
                     searchmode=""
 		 else
