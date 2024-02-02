@@ -90,6 +90,7 @@ dist_elvi_SCRIPTS	= \
 		  pubmed \
 		  rae \
 		  rfc \
+		  rustdocs \
 		  scholar \
 		  scpan \
 		  searx \

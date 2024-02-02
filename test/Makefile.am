@@ -16,11 +16,11 @@ EXTRA_DIST = runtests elviwithouttests README COOKIES W.test S.test			\
 		mdn.test mininova.test musicbrainz.test mysqldoc.test netbsd.test	\
 		nlab.test ntrs.test openbsd.test oraclesearch.test pgdoc.test		\
 		phpdoc.test pin.test piratebay.test pgpkeys.test priberam.test		\
-		pubmed.test rae.test rfc.test scholar.test scpan.test searx.test	\
-		slashdot.test slinuxdoc.test sourceforge.test springer.test			\
-		stack.test stockquote.test thesaurus.test translate.test			\
-		urban.test w3css.test w3html.test w3link.test w3rdf.test			\
-		wayback.test webster.test wikipedia.test wiktionary.test			\
+		pubmed.test rae.test rfc.test rustdocs.test scholar.test scpan.test \
+		searx.test slashdot.test slinuxdoc.test sourceforge.test 			\
+		springer.test stack.test stockquote.test thesaurus.test 			\
+		translate.test urban.test w3css.test w3html.test w3link.test 		\
+		w3rdf.test wayback.test webster.test wikipedia.test wiktionary.test \
 		wolfram.test woffle.test worldwidescience.test yahoo.test			\
 		yandex.test youtube.test
 

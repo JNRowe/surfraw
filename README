@@ -259,6 +259,7 @@ priberam        -- Look up word in Priberam online dictionary (www.priberam.pt/d
 pubmed          -- Search medical/molbio databases (www.ncbi.nlm.nih.gov)
 rae             -- Busca en el diccionario de la Real Academia de la Lengua Española (Spanish Dictionary)
 rfc             -- Search RFCs (internet standards documents)
+rustdocs        -- Search doc.rust-lang.org
 scholar         -- Search Google Scholar (scholar.google.com)
 scpan           -- Search the Comprehensive Perl Archive Network (search.cpan.org)
 searx           -- Search using searx metasearch engine instances (searx.me)
