@@ -333,7 +333,7 @@ w3_parse_option_hook () {
 
 list_elvi() {
     local_dir="$1"
-	local_files="$(find -L "$local_dir/" ! -type d ! -name '*~' -exec readlink -f {} \; | sort | uniq | xargs)"
+	local_files="$(find -L "$local_dir/" \( ! -type d ! -xtype l ! -name '*~' -print \) -o \( ! -type d ! -name '*~' -exec readlink -f {} \; \) | sort | uniq | xargs)"
 	if [ -n "$local_files" ]
 	then
 	awk '/^#[ 	]+elvis:[ 	]+/{ sub("^# elvis: ",""); print $0; }' $local_files
